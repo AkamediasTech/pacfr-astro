@@ -20,17 +20,11 @@ const {
     {description}
   </p>
   <div class="flex flex-col gap-3 sm:flex-row">
-    <a
-      href={primaryCta.href}
-      class="cta-glow inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200"
-    >
+    <a href={primaryCta.href} class="btn btn-primary btn--glow">
       {primaryCta.label}
     </a>
     {secondaryCta && (
-      <a
-        href={secondaryCta.href}
-        class="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200"
-      >
+      <a href={secondaryCta.href} class="btn btn-ghost">
         {secondaryCta.label}
       </a>
     )}

@@ -1,0 +1,10 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+
+  "tailwindCSS.validate": true,
+  "tailwindCSS.lint.invalidApply": "error",
+  "tailwindCSS.lint.invalidScreen": "error",
+  "tailwindCSS.lint.invalidVariant": "error",
+  "tailwindCSS.lint.tailwindDirective": "error",
+  "tailwindCSS.lint.recommendedVariantOrder": "warning"
+}

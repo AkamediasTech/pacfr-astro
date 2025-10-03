@@ -1,4 +1,40 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center font-semibold text-sm rounded-full transition focus-visible:outline-2 focus-visible:outline-offset-2;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary {
+    @apply bg-cyan-400 text-slate-950 px-6 py-3 hover:bg-cyan-300 focus-visible:outline-cyan-200;
+  }
+
+  .btn-ghost {
+    @apply border border-white/20 text-white px-6 py-3 hover:border-cyan-300 hover:text-cyan-200 focus-visible:outline-cyan-200;
+  }
+
+  .btn--glow::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.6) 50%,
+      transparent 80%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+  }
+
+  .btn--glow:hover::after,
+  .btn--glow:focus-visible::after {
+    transform: translateX(120%);
+  }
+}
 
 @layer utilities {
   @keyframes fade-in-up {
@@ -22,25 +58,5 @@
     opacity: 1;
     transform: translateY(0);
     animation: fade-in-up 0.6s ease forwards;
-  }
-
-  .cta-glow {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-glow::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.6) 50%, transparent 80%);
-    transform: translateX(-120%);
-    transition: transform 0.6s ease;
-    pointer-events: none;
-  }
-
-  .cta-glow:hover::after,
-  .cta-glow:focus-visible::after {
-    transform: translateX(120%);
   }
 }
