@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Aka Médias — Agence créative',
+  description = "Landing page démo construite avec Astro et Tailwind.",
+} = Astro.props;
+const year = new Date().getFullYear();
+---
+<html lang="fr" class="bg-slate-950 text-slate-50">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 font-sans">
+    <header class="border-b border-white/10 bg-black/30 backdrop-blur">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+        <a href="/" class="text-lg font-semibold tracking-tight text-white hover:text-cyan-300">
+          Aka Médias
+        </a>
+        <nav class="hidden gap-6 text-sm font-medium text-white/70 md:flex">
+          <a href="#services" class="transition hover:text-cyan-300">Services</a>
+          <a href="#portfolio" class="transition hover:text-cyan-300">Portfolio</a>
+          <a href="#contact" class="transition hover:text-cyan-300">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="mx-auto flex max-w-6xl flex-col gap-24 px-6 py-16">
+      <slot />
+    </main>
+
+    <footer class="border-t border-white/10 bg-black/40">
+      <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm text-white/60 md:flex-row">
+        <span>&copy; {year} Aka Médias. Tous droits réservés.</span>
+        <a class="transition hover:text-cyan-300" href="mailto:contact@aka-medias.com">
+          contact@aka-medias.com
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>

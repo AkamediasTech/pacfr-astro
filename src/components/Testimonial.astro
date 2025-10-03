@@ -1,0 +1,19 @@
+---
+export interface Props {
+  quote: string;
+  author: string;
+  role?: string;
+}
+
+const { quote, author, role } = Astro.props;
+---
+<section class="rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-white/0 p-8 text-left shadow-xl shadow-cyan-500/10" aria-labelledby="testimonial-heading">
+  <div class="flex items-center gap-4">
+    <div class="h-12 w-12 rounded-full bg-cyan-400/20" aria-hidden="true"></div>
+    <div>
+      <h2 id="testimonial-heading" class="text-lg font-semibold text-white">{author}</h2>
+      {role && <p class="text-sm text-white/60">{role}</p>}
+    </div>
+  </div>
+  <p class="mt-6 text-lg italic text-white/80">“{quote}”</p>
+</section>
