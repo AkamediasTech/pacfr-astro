@@ -1,17 +1,4 @@
 ---
-export interface Feature {
-  title: string;
-  description: string;
-  icon?: string;
-}
-
-export interface Props {
-  eyebrow?: string;
-  title: string;
-  description?: string;
-  features: Feature[];
-}
-
 const { eyebrow, title, description, features } = Astro.props;
 ---
 <section id="services" class="flex flex-col gap-10" aria-labelledby="services-heading">

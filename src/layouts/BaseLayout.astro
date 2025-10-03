@@ -1,11 +1,5 @@
----
+﻿---
 import '../styles/global.css';
-import scrollReveal from '../scripts/scrollReveal';
-
-export interface Props {
-  title?: string;
-  description?: string;
-}
 
 const {
   title = 'Aka Médias — Agence créative',
@@ -46,7 +40,8 @@ const year = new Date().getFullYear();
         </a>
       </div>
     </footer>
-
-    <script type="module" is:inline set:html={scrollReveal}></script>
+    <script>
+      import "../scripts/scrollReveal"
+    </script>
   </body>
 </html>
