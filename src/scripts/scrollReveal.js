@@ -1,22 +1,42 @@
+const DEFAULT_VARIANT = 'fade-up';
+
 const initScrollReveal = () => {
-  const targets = document.querySelectorAll("[data-reveal]");
-  if (!targets.length || !("IntersectionObserver" in window)) {
+  const targets = document.querySelectorAll('[data-reveal]');
+  if (!targets.length || !('IntersectionObserver' in window)) {
     return;
   }
 
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          obs.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) {
+        return;
+      }
 
-  targets.forEach((element) => observer.observe(element));
+      const el = entry.target;
+      el.classList.add('is-visible');
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.15 });
+
+  targets.forEach((element) => {
+    const variant = element.dataset.reveal || DEFAULT_VARIANT;
+    const delay = element.dataset.revealDelay;
+
+    element.classList.add('reveal', `reveal--${variant}`);
+    if (delay) {
+      element.classList.add(`reveal-delay-${delay}`);
+    }
+
+    observer.observe(element);
+  });
 };
 
-initScrollReveal();
+const onReady = () => {
+  initScrollReveal();
+};
+
+document.readyState === 'loading'
+  ? document.addEventListener('DOMContentLoaded', onReady, { once: true })
+  : onReady();
+
+export default initScrollReveal;

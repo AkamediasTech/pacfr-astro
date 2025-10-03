@@ -69,10 +69,11 @@ const projects = [
       </p>
     </div>
     <div class="grid gap-6 md:grid-cols-3">
-      {projects.map((project) => (
+      {projects.map((project, index) => (
         <article
-          class="reveal group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-cyan-400/60"
-          data-reveal
+          class="group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-cyan-400/60"
+          data-reveal="fade-up"
+          data-reveal-delay={index ? String(index * 100) : undefined}
         >
           <div class="flex flex-col gap-3">
             <span class="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300/80">{project.category}</span>

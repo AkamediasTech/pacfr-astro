@@ -15,10 +15,11 @@ const { eyebrow, title, description, features } = Astro.props;
   </div>
 
   <div class="grid gap-6 md:grid-cols-3">
-    {features.map((feature) => (
+    {features.map((feature, index) => (
       <article
-        class="reveal rounded-2xl border border-white/10 bg-white/5 p-6 shadow-lg shadow-cyan-500/5 transition hover:border-cyan-300/60"
-        data-reveal
+        class="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-lg shadow-cyan-500/5 transition hover:border-cyan-300/60"
+        data-reveal="fade-up"
+        data-reveal-delay={index ? String(index * 100) : undefined}
       >
         {feature.icon && (
           <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400/15 text-2xl text-cyan-300">
