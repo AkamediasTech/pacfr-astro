@@ -70,7 +70,10 @@ const projects = [
     </div>
     <div class="grid gap-6 md:grid-cols-3">
       {projects.map((project) => (
-        <article class="group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-cyan-400/60">
+        <article
+          class="reveal group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-cyan-400/60"
+          data-reveal
+        >
           <div class="flex flex-col gap-3">
             <span class="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300/80">{project.category}</span>
             <h3 class="text-xl font-semibold text-white">{project.title}</h3>

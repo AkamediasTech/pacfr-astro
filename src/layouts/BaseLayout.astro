@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import scrollReveal from '../scripts/scrollReveal';
 
 export interface Props {
   title?: string;
@@ -45,5 +46,7 @@ const year = new Date().getFullYear();
         </a>
       </div>
     </footer>
+
+    <script type="module" is:inline set:html={scrollReveal}></script>
   </body>
 </html>
