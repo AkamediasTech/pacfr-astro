@@ -1,0 +1,24 @@
+---
+import Card from "../components/demos/Card.astro"
+import BaseLayout from "../layouts/BaseLayout.astro"
+import AuroraImage from "../assets/case-photos/aurora.png";
+import GoogleCloudTransparentLogo from "../assets/case-photos/google-cloud-transparent-logo.webp";
+---
+
+<BaseLayout   
+    title = 'Préparation pour Aka Médias',
+    description = "Pages pour expérimentations/apprentissage">
+    <p>Vasile Vasilescu</p>
+    <section class="flex flex-wrap justify-center gap-10">
+        <div class="basis-full md:basis-1/4">
+        <Card image={AuroraImage} alt="Aurora Image"/>
+        </div>
+        <div class="basis-full md:basis-1/4">
+        <Card image={GoogleCloudTransparentLogo} alt="Google Cloud Transparent Logo Image"/>
+        </div>
+        <div class="basis-full md:basis-1/4">
+        <Card image={AuroraImage} alt="Aurora Image"/>
+        </div>
+    </section>
+</BaseLayout>
+

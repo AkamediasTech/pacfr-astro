@@ -14,8 +14,8 @@ const year = new Date().getFullYear();
     <meta name="description" content={description} />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 font-sans">
-    <header class="border-b border-white/10 bg-black/30 backdrop-blur">
+  <body class="min-h-screen max-w-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 font-sans">
+    <header class="border-b border-white/10 bg-black/30 backdrop-blur relative z-50">
       <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <a href="/" class="text-lg font-semibold tracking-tight text-white hover:text-cyan-300">
           Aka Médias
@@ -25,8 +25,27 @@ const year = new Date().getFullYear();
           <a href="#portfolio" class="transition hover:text-cyan-300">Portfolio</a>
           <a href="#contact" class="transition hover:text-cyan-300">Contact</a>
         </nav>
+        <button class="hover:cursor-pointer md:hidden" type="button" aria-expanded="false" aria-controls="mobile-menu" data-mobile-menu-toggle>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-6 h-6">
+								<line x1="4" x2="20" y1="12" y2="12"></line>
+								<line x1="4" x2="20" y1="6" y2="6"></line>
+								<line x1="4" x2="20" y1="18" y2="18"></line>
+							</svg>
+        </button>
       </div>
     </header>
+
+    <!-- Mobile Menu Slide In -->
+    <div id="mobile-menu" class="fixed top-0 right-0 pt-28 w-64 h-screen bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-40 md:hidden flex flex-col p-6 space-y-4 translate-x-full">
+		<a href="#accueil" class="text-gray-700 hover:text-[#0097B2] transition-colors">Accueil</a>
+		<a href="#avantages" class="text-gray-700 hover:text-[#0097B2] transition-colors">Avantages</a>
+		<a href="#temoignages" class="text-gray-700 hover:text-[#0097B2] transition-colors">Témoignages</a>
+		<a href="#contact" class="text-gray-700 hover:text-[#0097B2] transition-colors">Contact</a>
+		<button class="go-to-form mt-auto text-white rounded-md text-sm font-medium h-10 px-4 py-2 bg-[#0097B2] hover:bg-[#007a94]">
+			Devis gratuit
+		</button>
+		</div>
+    <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-30 md:hidden hidden"></div>
 
     <main class="mx-auto flex max-w-6xl flex-col gap-24 px-6 py-16">
       <slot />
@@ -41,7 +60,8 @@ const year = new Date().getFullYear();
       </div>
     </footer>
     <script>
-      import "../scripts/scrollReveal"
+      import "../scripts/mobileMenu";
+      import "../scripts/scrollReveal";
     </script>
   </body>
 </html>
