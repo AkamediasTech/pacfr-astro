@@ -3,22 +3,61 @@ import Card from "../components/demos/Card.astro"
 import BaseLayout from "../layouts/BaseLayout.astro"
 import AuroraImage from "../assets/case-photos/aurora.png";
 import GoogleCloudTransparentLogo from "../assets/case-photos/google-cloud-transparent-logo.webp";
+import { Image } from "astro:assets";
+
+
+const items = [
+    {
+        "id": 1,
+        "image": AuroraImage,
+        "altDescription": "Aurora Image"
+    },
+    {
+        "id": 2,
+        "image": GoogleCloudTransparentLogo,
+        "altDescription": "Google Cloud Transparent Logo Image"
+    },
+    {
+        "id": 3,
+        "image": AuroraImage,
+        "altDescription": "Aurora Image"
+    }
+];
+
+
 ---
 
 <BaseLayout   
     title = 'Préparation pour Aka Médias',
     description = "Pages pour expérimentations/apprentissage">
-    <p>Vasile Vasilescu</p>
-    <section class="flex flex-wrap justify-center gap-10">
-        <div class="basis-full md:basis-1/4">
-        <Card image={AuroraImage} alt="Aurora Image"/>
-        </div>
-        <div class="basis-full md:basis-1/4">
-        <Card image={GoogleCloudTransparentLogo} alt="Google Cloud Transparent Logo Image"/>
-        </div>
-        <div class="basis-full md:basis-1/4">
-        <Card image={AuroraImage} alt="Aurora Image"/>
-        </div>
+    <!-- <section class="grid grid-cols-1 gap-10 sm:grid-cols-3">
+        <Card image={AuroraImage} alt="Aurora Image" />
+        <Card image={GoogleCloudTransparentLogo} alt="Google Cloud Transparent Logo Image" />
+        <Card image={AuroraImage} alt="Aurora Image" />
     </section>
+
+    <div class="border border-red-500 h-[40vh]">
+        <img src={GoogleCloudTransparentLogo.src} class="max-h-[75%] w-full max-w-full block h-auto aspect-[1/1]"/>
+    </div> -->
+
+
+    <!-- Practicing exotic properties -->
+    <div class="mx-auto relative h-[300px] w-[80vw] max-w-xl rounded-lg bg-blue-600">
+        <div
+            class="absolute h-[clamp(6rem,14vw,8.5rem)] w-[clamp(6rem,20vw,8.5rem)]
+                top-[clamp(-3rem,-7vw,-1rem)] left-[clamp(-3rem,-7vw,-1rem)]
+                rounded-lg border-2 border-yellow-500 bg-yellow-500">
+        </div>
+         <div
+            class="absolute h-[clamp(6rem,14vw,12rem)] w-[clamp(6rem,20vw,12rem)]
+                bottom-[clamp(-3rem,-7vw,-1rem)] right-[clamp(-3rem,-7vw,-1rem)]
+                rounded-lg border-2 border-orange-500 bg-orange-500">
+        </div>
+    </div>
+
+
+
+    
+
 </BaseLayout>
 
