@@ -7,25 +7,25 @@ const {
 } = Astro.props;
 const year = new Date().getFullYear();
 ---
-<html lang="fr" class="bg-slate-950 text-slate-50">
+<html lang="fr" class="bg-slate-50 text-slate-900">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen max-w-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 font-sans">
-    <header class="border-b border-white/10 bg-black/30 backdrop-blur relative z-50">
+  <body class="min-h-screen max-w-screen bg-gradient-to-b from-white via-slate-50 to-slate-100 font-sans text-slate-900">
+    <header class="relative z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
       <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-        <a href="/" class="text-lg font-semibold tracking-tight text-white hover:text-cyan-300">
+        <a href="/" class="text-lg font-semibold tracking-tight text-slate-900 transition hover:text-cyan-600">
           Aka Médias
         </a>
-        <nav class="hidden gap-6 text-sm font-medium text-white/70 md:flex">
-          <a href="#services" class="transition hover:text-cyan-300">Services</a>
-          <a href="#portfolio" class="transition hover:text-cyan-300">Portfolio</a>
-          <a href="#contact" class="transition hover:text-cyan-300">Contact</a>
+        <nav class="hidden gap-6 text-sm font-medium text-slate-600 md:flex">
+          <a href="#services" class="transition hover:text-cyan-600">Services</a>
+          <a href="#portfolio" class="transition hover:text-cyan-600">Portfolio</a>
+          <a href="#contact" class="transition hover:text-cyan-600">Contact</a>
         </nav>
-        <button class="hover:cursor-pointer md:hidden" type="button" aria-expanded="false" aria-controls="mobile-menu" data-mobile-menu-toggle>
+        <button class="text-slate-700 hover:cursor-pointer md:hidden" type="button" aria-expanded="false" aria-controls="mobile-menu" data-mobile-menu-toggle>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-6 h-6">
 								<line x1="4" x2="20" y1="12" y2="12"></line>
 								<line x1="4" x2="20" y1="6" y2="6"></line>
@@ -51,10 +51,10 @@ const year = new Date().getFullYear();
       <slot />
     </main>
 
-    <footer class="border-t border-white/10 bg-black/40">
-      <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm text-white/60 md:flex-row">
+    <footer class="border-t border-slate-200 bg-white/80">
+      <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm text-slate-500 md:flex-row">
         <span>&copy; {year} Aka Médias. Tous droits réservés.</span>
-        <a class="transition hover:text-cyan-300" href="mailto:contact@aka-medias.com">
+        <a class="transition hover:text-cyan-600" href="mailto:contact@aka-medias.com">
           contact@aka-medias.com
         </a>
       </div>

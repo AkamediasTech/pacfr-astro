@@ -8,11 +8,11 @@
   }
 
   .btn-primary {
-    @apply bg-cyan-400 text-slate-950 px-6 py-3 hover:bg-cyan-300 focus-visible:outline-cyan-200;
+    @apply bg-cyan-600 text-white px-6 py-3 hover:bg-cyan-500 focus-visible:outline-cyan-500;
   }
 
   .btn-ghost {
-    @apply border border-white/20 text-white px-6 py-3 hover:border-cyan-300 hover:text-cyan-200 focus-visible:outline-cyan-200;
+    @apply border border-slate-300 bg-white text-slate-700 px-6 py-3 hover:border-cyan-500 hover:text-cyan-600 focus-visible:outline-cyan-500;
   }
 
   .btn--glow::after {
