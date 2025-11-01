@@ -6,5 +6,9 @@
   "tailwindCSS.lint.invalidScreen": "error",
   "tailwindCSS.lint.invalidVariant": "error",
   "tailwindCSS.lint.tailwindDirective": "error",
-  "tailwindCSS.lint.recommendedVariantOrder": "warning"
+  "tailwindCSS.lint.recommendedVariantOrder": "warning",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[astro]":{
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
