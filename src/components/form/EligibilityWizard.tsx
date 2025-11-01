@@ -5,6 +5,7 @@ import type { Step } from './config';
 import PhaseHeader from './PhaseHeader';
 import ProgressBar from './ProgressBar';
 import PhaseSummary from './PhaseSummary';
+import ChoiceStep from './ChoiceStep';
 
 type ScreenState = 'step' | 'checklist' | 'summary';
 
@@ -203,34 +204,6 @@ const goToNextStep = () => {
     goToPreviousStep();
   }
 
-const renderChoiceStep = (step: Extract<Step, { type: 'choice' }>) => {
-  const selected = answers[step.id];
-
-  return (
-    <div class="mt-8 grid gap-4 sm:grid-cols-2">
-      {step.options.map((option) => {
-        const isActive = selected === option.value;
-
-        return (
-        <button
-            key={option.value}
-            type="button"
-            class={`choice-tile ${isActive ? 'choice-tile--active' : ''}`}
-            onClick={() => handleChoice(step.id, option.value)}
-          >
-            {option.icon ? (
-              <span class={`choice-tile__icon ${isActive ? 'text-brand-blue' : 'text-slate-500'}`}>
-                {OPTION_ICONS[option.icon]}
-              </span>
-            ) : null}
-            <span>{option.label}</span>
-          </button>
-        );
-      })}
-    </div>
-  );
-};
-
 const renderFormStep = (step: Extract<Step, { type: 'form' }>) => (
   <form
     id="eligibility-step-form"
@@ -273,7 +246,9 @@ const renderFormStep = (step: Extract<Step, { type: 'form' }>) => (
       {currentStep.subtitle ? (
         <p class="mt-2 text-sm text-slate-500">{currentStep.subtitle}</p>
       ) : null}
-      {isChoiceStep(currentStep) ? renderChoiceStep(currentStep) : null}
+        {isChoiceStep(currentStep) ? (
+            <ChoiceStep step={currentStep} selectedValue={answers[currentStep.id]} onSelect={(value) => handleChoice(currentStep.id, value)} />
+        ) : null}
       {isFormStep(currentStep) ? renderFormStep(currentStep) : null}
     </>
   );

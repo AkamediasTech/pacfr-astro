@@ -6,6 +6,8 @@ export type ChoiceOption = {
   icon?: 'apartment' | 'house' | 'tenant' | 'owner' | 'oil' | 'gas' | 'electricity' | 'other';
 };
 
+export type ChoiceStep = Extract<Step, { type: 'choice' }>;
+
 export const OPTION_ICONS: Record<NonNullable<ChoiceOption['icon']>, JSX.Element> = {
   apartment: (
     <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
@@ -55,9 +57,6 @@ export const OPTION_ICONS: Record<NonNullable<ChoiceOption['icon']>, JSX.Element
     </svg>
   ),
 };
-
-
-
 
 export type FormField = {
   name: string;
