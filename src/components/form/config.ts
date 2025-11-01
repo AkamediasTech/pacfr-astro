@@ -31,11 +31,37 @@ export type Step =
       submitLabel: string;
     };
 
+export type PhaseHeaderContent = {
+  title: string;
+  subtitle?: string;
+  backgroundClass?: string;
+};
+
+export const DEFAULT_HEADER_STEP: PhaseHeaderContent = {
+  title: 'Calculez le montant de vos aides 2025',
+  subtitle: 'Anah, CEE, MPR, Éco-PTZ',
+  backgroundClass: 'bg-brand-blue',
+};
+
+export type PhaseHeaderConfig = {
+  step: PhaseHeaderContent;
+  summary?: PhaseHeaderContent;
+  final?: PhaseHeaderContent;
+};
+
+const DEFAULT_PHASE_AUTO_ADVANCE_DELAY_MS = 1200;
+
 export type PhaseConfig = {
   id: string;
   phaseNumber: number;
   steps: Step[];
-  checklistId: 'beforeZip' | 'beforeContact' | 'finalSummary';
+  checklistMessages: string[];
+  header: PhaseHeaderConfig;
+  progress: {
+    stepLabel: string;               // « Décrivez votre logement »
+    checklistLabel?: string;         // « Analyse en cours… »
+    autoAdvanceDelayMs?: number;     // 1200 par défaut : la phase suivante démarre autoAdvanceDelayMs après la fin de l'animation de checklist. Autrement dit, c'est le temps d'attente qu'on passe sur l'écran de succès de la phase
+  };
   successMessage: string | ((answers: Record<string, string>) => string);
   isFinal?: boolean;
 };
@@ -44,8 +70,6 @@ export const PHASES: PhaseConfig[] = [
   {
     id: 'housing',
     phaseNumber: 1,
-    checklistId: 'beforeZip',
-    successMessage: 'Votre logement est éligible à MaPrimeRénov',
     steps: [
       {
         id: 'propertyType',
@@ -88,13 +112,33 @@ export const PHASES: PhaseConfig[] = [
         ],
       },
     ],
+    checklistMessages: [
+      'Analyse des caractéristiques de votre logement',
+      'Prise en compte de votre statut',
+      'Adaptation des aides selon votre profil',
+    ],
+    header: {
+      step: {
+        title: 'Calculez le montant de vos aides 2025',
+        subtitle: 'Anah, CEE, MPR, Éco-PTZ',
+        backgroundClass: 'bg-brand-blue',
+      },
+      summary: {
+        title: 'Analyse de vos réponses',
+        subtitle: 'Nous validons votre éligibilité.',
+        backgroundClass: 'bg-brand-blue',
+      },
+    },
+    progress: {
+      stepLabel: 'Décrivez votre logement',
+      checklistLabel: 'Analyse en cours…',
+      autoAdvanceDelayMs: DEFAULT_PHASE_AUTO_ADVANCE_DELAY_MS,
+    },
+    successMessage: 'Votre logement est éligible à MaPrimeRénov',
   },
   {
     id: 'location',
     phaseNumber: 2,
-    checklistId: 'beforeContact',
-    successMessage: (answers) =>
-      `Bonne nouvelle ! ${answers.city ?? 'Votre ville'} est éligible à 1 400 € d’aides`,
     steps: [
       {
         id: 'zipcode',
@@ -120,12 +164,33 @@ export const PHASES: PhaseConfig[] = [
         submitLabel: 'Vérifier mon éligibilité',
       },
     ],
+    checklistMessages: [
+      'Vérification de la géolocalisation',
+      'Recherche des aides disponibles dans votre région',
+    ],
+    header: {
+      step: {
+        title: 'Calculez le montant de vos aides 2025',
+        subtitle: 'Anah, CEE, MPR, Éco-PTZ',
+        backgroundClass: 'bg-brand-blue',
+      },
+      summary: {
+        title: 'Analyse de votre localisation',
+        subtitle: 'Nous identifions vos aides régionales.',
+        backgroundClass: 'bg-brand-blue',
+      },
+    },
+    progress: {
+      stepLabel: 'Validez votre localisation',
+      checklistLabel: 'Analyse de votre zone…',
+      autoAdvanceDelayMs: DEFAULT_PHASE_AUTO_ADVANCE_DELAY_MS,
+    },
+    successMessage: (answers) =>
+      `Bonne nouvelle ! ${answers['address-level2'] ?? 'Votre commune'} est éligible à 1 400 € d’aides`,
   },
   {
     id: 'contact',
     phaseNumber: 3,
-    checklistId: 'finalSummary',
-    successMessage: 'Demande soumise avec succès',
     isFinal: true,
     steps: [
       {
@@ -138,45 +203,38 @@ export const PHASES: PhaseConfig[] = [
           { name: 'email', label: 'Email', type: 'email', autoComplete: 'email' },
           { name: 'tel', label: 'Téléphone', type: 'tel', autoComplete: 'tel' },
         ],
-        submitLabel: 'Recevoir mon estimation',
+        submitLabel: 'Obtenir une estimation',
       },
     ],
-  },
-];
-
-export const CHECKLIST_PHASES = [
-  {
-    id: 'beforeZip',
-    phase: 1,
-    messages: {
-      Aides: [
-        'Analyse des caractéristiques de votre logement',
-        'Prise en compte de votre statut',
-        'Adaptation des aides selon votre profil',
-      ],
+    checklistMessages: [
+      'Analyse de votre dossier',
+      'Calcul des aides disponibles',
+      'Sélection des professionnels RGE',
+      'Application des remises disponibles',
+      'Préparation de votre estimation personnalisée',
+    ],
+    header: {
+      step: {
+        title: 'Votre estimation est prête',
+        subtitle: 'Renseignez vos coordonnées pour la recevoir.',
+        backgroundClass: 'bg-[#149f48]',
+      },
+      summary: {
+        title: 'Nous vous contacterons sous 24h',
+        subtitle: 'Un conseiller vous rappellera très prochainement.',
+        backgroundClass: 'bg-emerald-600',
+      },
+      final: {
+        title: 'Nous vous contacterons sous 24h',
+        subtitle: 'Un conseiller vous rappellera très prochainement.',
+        backgroundClass: 'bg-[#149f48]',
+      },
     },
-  },
-  {
-    id: 'beforeContact',
-    phase: 2,
-    messages: {
-      Aides: [
-        'Vérification de la géolocalisation',
-        'Recherche des aides disponibles dans votre région',
-      ],
+    progress: {
+      stepLabel: 'Saisissez vos coordonnées',
+      checklistLabel: 'Préparation de votre estimation…',
+      autoAdvanceDelayMs: 0, // pas de bascule automatique sur la phase finale
     },
-  },
-  {
-    id: 'finalSummary',
-    phase: 3,
-    messages: {
-      Aides: [
-        'Analyse de votre dossier',
-        'Calcul des aides disponibles',
-        'Sélection des professionnels RGE',
-        'Application des remises disponibles',
-        'Préparation de votre estimation personnalisée',
-      ],
-    },
+    successMessage: 'Demande soumise avec succès',
   },
 ];

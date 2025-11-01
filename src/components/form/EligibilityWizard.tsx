@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'preact/hooks';
+import { useRef, useMemo, useState } from 'preact/hooks';
 import { ChecklistAnimator } from './ChecklistAnimator';
-import { CHECKLIST_PHASES, PHASES } from './config';
+import { PHASES, DEFAULT_HEADER_STEP } from './config';
 import type { ChoiceOption, Step } from './config';
 import type { JSX } from 'preact/jsx-runtime';
 
@@ -70,87 +70,108 @@ export default function EligibilityWizard() {
   const [screen, setScreen] = useState<ScreenState>('step');
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [checklistKey, setChecklistKey] = useState(0);
+  const autoAdvanceTimerRef = useRef<number | null>(null);
 
   const currentPhase = PHASES[phaseIndex];
+  if (!currentPhase) {
+    return null;
+  }
   const currentStep = currentPhase.steps[stepIndex];
+  if (!currentStep) {
+    return null;
+  }
+
+
+const resolveHeaderContent = () => {
+  const { header } = currentPhase;
+
+  if (screen === 'summary') {
+    if (currentPhase.isFinal && header.final) {
+      return header.final;
+    }
+    return header.summary ?? header.step;
+  }
+
+  return header.step;
+};
+
+const headerContent = resolveHeaderContent() ?? DEFAULT_HEADER_STEP;
+const headerBgClass = headerContent.backgroundClass ?? DEFAULT_HEADER_STEP.backgroundClass ?? 'bg-brand-blue';
+const headerTitle = headerContent.title ?? DEFAULT_HEADER_STEP.title;
+const headerSubtitle = headerContent.subtitle ?? '';
+
+
+const hasSubtitle = Boolean(headerSubtitle);
+
+const checklistItems = currentPhase.checklistMessages ?? [];
 
   const totalScreens = useMemo(
     () => PHASES.reduce((sum, phase) => sum + phase.steps.length + 2, 0),
     [],
   );
 
+
+// Calculer le libellé et l’affichage de la barre de progression
+const currentScreenIndex = useMemo(() => {
+let offset = 0;
+
+for (let i = 0; i < phaseIndex; i += 1) {
+    offset += PHASES[i].steps.length + 2;
+}
+
+if (screen === 'step') {
+    offset += stepIndex;
+} else if (screen === 'checklist') {
+    offset += currentPhase.steps.length;
+} else {
+    offset += currentPhase.steps.length + 1;
+}
+
+return offset;
+}, [phaseIndex, stepIndex, screen, currentPhase]);
+
+const progressPercent =
+totalScreens > 1 ? Math.round((currentScreenIndex / (totalScreens - 1)) * 100) : 0;
+
+const shouldShowProgress = !(screen === 'summary' && currentPhase.isFinal);
+
+const progressLabel =
+screen === 'checklist' || (screen === 'summary' && !currentPhase.isFinal)
+    ? currentPhase.progress?.checklistLabel ?? currentPhase.progress?.stepLabel ?? `Phase ${phaseIndex + 1}`
+    : currentPhase.progress?.stepLabel ?? `Phase ${phaseIndex + 1}`;
+
+// const progressText = `${progressLabel} • ${progressPercent} %`;
+const progressText = `${progressPercent} %`;
+
+
 const canGoBack = !( 
     (phaseIndex === 0 && stepIndex === 0 && screen === 'step') || 
     (screen === 'summary' && currentPhase.isFinal) // Lorsque la soumission est finie
 );
 
-  const currentScreenIndex = useMemo(() => {
-    let offset = 0;
 
-    for (let i = 0; i < phaseIndex; i += 1) {
-      offset += PHASES[i].steps.length + 2;
-    }
+const clearAutoAdvanceTimer = () => {
+  if (autoAdvanceTimerRef.current !== null) {
+    window.clearTimeout(autoAdvanceTimerRef.current);
+    autoAdvanceTimerRef.current = null;
+  }
+};
 
-    if (screen === 'step') {
-      offset += stepIndex;
-    } else if (screen === 'checklist') {
-      offset += currentPhase.steps.length;
-    } else {
-      offset += currentPhase.steps.length + 1;
-    }
+const scheduleNextPhaseIfNeeded = () => {
+  clearAutoAdvanceTimer();
 
-    return offset;
-  }, [phaseIndex, stepIndex, screen, currentPhase]);
+  if (currentPhase.isFinal) return;
 
-  const progressPercent = totalScreens > 1 ? Math.round((currentScreenIndex / (totalScreens - 1)) * 100) : 0;
+  const delay = currentPhase.progress?.autoAdvanceDelayMs ?? 1200;
+  if (!delay) return;
 
-    const progressText = `${progressPercent} %`;
-
-    // Calcul du titre à afficher pour le header du card formulaire
-    const computeHeader = () => {
-        const base = {
-            title: 'Calculez le montant de vos aides 2025',
-            subtitle: 'Anah, CEE, MPR, Éco-PTZ',
-            bgClass: 'bg-brand-blue',
-        };
-
-        if (screen === 'summary') {
-            if (currentPhase.isFinal) {
-                return {
-                    title: 'Nous vous contacterons sous 24h',
-                    subtitle: 'Un conseiller vous rappellera très prochainement.',
-                    bgClass: 'bg-[#149f48]',
-                };
-            }
-
-            return {
-                title: 'Analyse de vos réponses',
-                subtitle: 'Anah, CEE, MPR, Éco-PTZ',
-                bgClass: base.bgClass,
-            };
-        }
-
-        if (currentPhase.id === 'contact') {
-            return {
-            title: 'Votre estimation est prête',
-            // subtitle: 'Renseignez vos coordonnées pour la recevoir.',
-            subtitle: "Anah, CEE, MPR, Éco-PTZ",
-            bgClass: 'bg-[#149f48]',
-            };
-        }
-
-            return base;
-    };
-
-    const { title: headerTitle, 
-            subtitle: headerSubtitle, 
-            bgClass: headerBgClass } = computeHeader();
-
-    const hasSubtitle = Boolean(headerSubtitle);
-
-
-  const checklistItems =
-    CHECKLIST_PHASES.find((item) => item.id === currentPhase.checklistId)?.messages.Aides ?? [];
+  autoAdvanceTimerRef.current = window.setTimeout(() => {
+    setPhaseIndex((prev) => prev + 1);
+    setStepIndex(0);
+    setScreen('step');
+    autoAdvanceTimerRef.current = null;
+  }, delay);
+};
 
   const handleChoice = (stepId: string, value: string) => {
     setAnswers((prev) => ({ ...prev, [stepId]: value }));
@@ -173,15 +194,17 @@ const handleFormSubmit =
     goToNextStep();
   };
 
-  const goToNextStep = () => {
-    if (stepIndex < currentPhase.steps.length - 1) {
-      setStepIndex((prev) => prev + 1);
-      return;
-    }
+const goToNextStep = () => {
+  clearAutoAdvanceTimer();
 
-    setScreen('checklist');
-    setChecklistKey((prev) => prev + 1);
-  };
+  if (stepIndex < currentPhase.steps.length - 1) {
+    setStepIndex((prev) => prev + 1);
+    return;
+  }
+
+  setScreen('checklist');
+  setChecklistKey((prev) => prev + 1);
+};
 
   const handleChecklistComplete = () => {
     setScreen('summary');
@@ -189,25 +212,12 @@ const handleFormSubmit =
   };
 
   const handleReset = () => {
+    clearAutoAdvanceTimer();
     setPhaseIndex(0);
     setStepIndex(0);
     setScreen('step');
     setAnswers({});
   };
-
-
-const scheduleNextPhaseIfNeeded = () => {
-  if (currentPhase.isFinal) {
-    // on reste sur l’écran final + bouton “Recommencer”
-    return;
-  }
-
-  setTimeout(() => {
-        setPhaseIndex((prev) => prev + 1);
-        setStepIndex(0);
-        setScreen('step');
-    }, 1200);
-};
 
   const handleBack = () => {
 
@@ -336,8 +346,8 @@ const renderFormStep = (step: Extract<Step, { type: 'form' }>) => (
 
     {/* Cache la barre de progression lorsqu'on est à 100% et la demande a été soumise/envoyée avec succès */}
     <div class="px-6 pt-6 sm:px-8">
-        {!(screen === 'summary' && currentPhase.isFinal) ? (
-            <div class="flex flex-col gap-2">
+        {shouldShowProgress ? (
+           <div class="flex flex-col gap-2">
                 <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
                     <span class="text-lg font-bold uppercase tracking-[0.1em] text-brand-blue">
                         {progressText}
@@ -354,7 +364,6 @@ const renderFormStep = (step: Extract<Step, { type: 'form' }>) => (
     </div>
 
       <div class="relative flex-1 px-6 pb-8 pt-4 sm:px-8">
-    {/* <div class="relative flex-1 px-6 pb-8 pt-4 sm:px-8 min-h-[360px] sm:min-h-[320px]"> */}
         {screen === 'step' ? renderStepContent() : null}
 
         {screen === 'checklist' ? (
