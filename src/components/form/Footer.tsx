@@ -15,7 +15,7 @@ const Footer: FunctionalComponent<FooterProps> = ({
   submitLabel,
   progressText,
 }) => (
-  <footer class="flex min-h-[72px] items-center justify-between border-t border-slate-200 px-6 py-4 sm:px-8">
+  <footer class="flex flex-col sm:flex-row gap-4 min-h-[72px] items-center justify-between border-t border-slate-200 px-6 py-4 sm:px-8">
     {canGoBack ? (
       <button
         type="button"
