@@ -1,60 +1,11 @@
 import { useRef, useMemo, useState } from 'preact/hooks';
 import { ChecklistAnimator } from './ChecklistAnimator';
-import { PHASES, DEFAULT_HEADER_STEP } from './config';
-import type { ChoiceOption, Step } from './config';
-import type { JSX } from 'preact/jsx-runtime';
+import { PHASES, DEFAULT_HEADER_STEP, OPTION_ICONS} from './config';
+import type { Step } from './config';
+import PhaseHeader from './PhaseHeader';
 
 type ScreenState = 'step' | 'checklist' | 'summary';
 
-const OPTION_ICONS: Record<NonNullable<ChoiceOption['icon']>, JSX.Element> = {
-  apartment: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <rect x="4" y="3" width="16" height="18" rx="2" />
-      <path d="M9 7h2v2H9zM13 7h2v2h-2zM9 11h2v2H9zM13 11h2v2h-2zM9 15h6v4H9z" />
-    </svg>
-  ),
-  house: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <path d="M3 10.5 12 3l9 7.5" />
-      <path d="M5 10v9h4v-5h6v5h4v-9" />
-    </svg>
-  ),
-  tenant: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <rect x="4" y="4" width="16" height="16" rx="2" />
-      <path d="M8 14h8M8 10h5" />
-    </svg>
-  ),
-  owner: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <circle cx="8" cy="15" r="3" />
-      <path d="M17 3h4v4l-7 7" />
-      <path d="M19 3 9 13" />
-    </svg>
-  ),
-  oil: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <path d="M12 2s4 5 4 8a4 4 0 1 1-8 0c0-3 4-8 4-8z" />
-    </svg>
-  ),
-  gas: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <path d="M12 2v6l3 3-3 3v8" />
-      <path d="M9 18h6" />
-    </svg>
-  ),
-  electricity: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" />
-    </svg>
-  ),
-  other: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <path d="M3 21c3-8 7-12 9-12s6 4 9 12" />
-      <path d="M8 15h8" />
-    </svg>
-  ),
-};
 
 function isChoiceStep(step: Step): step is Extract<Step, { type: 'choice' }> {
   return step.type === 'choice';
@@ -96,12 +47,6 @@ const resolveHeaderContent = () => {
 };
 
 const headerContent = resolveHeaderContent() ?? DEFAULT_HEADER_STEP;
-const headerBgClass = headerContent.backgroundClass ?? DEFAULT_HEADER_STEP.backgroundClass ?? 'bg-brand-blue';
-const headerTitle = headerContent.title ?? DEFAULT_HEADER_STEP.title;
-const headerSubtitle = headerContent.subtitle ?? '';
-
-
-const hasSubtitle = Boolean(headerSubtitle);
 
 const checklistItems = currentPhase.checklistMessages ?? [];
 
@@ -219,7 +164,7 @@ const goToNextStep = () => {
     setAnswers({});
   };
 
-  const handleBack = () => {
+  const goToPreviousStep = () => {
 
     // Si on est déjà sur l'écran de validation, on revient directement
     // à la dernière étape de la phase sans repasser par la checklist.
@@ -250,6 +195,11 @@ const goToNextStep = () => {
       setScreen('step');
     }
   };
+
+  const handleBack = () => {
+    clearAutoAdvanceTimer();
+    goToPreviousStep();
+  }
 
 const renderChoiceStep = (step: Extract<Step, { type: 'choice' }>) => {
   const selected = answers[step.id];
@@ -305,7 +255,6 @@ const renderFormStep = (step: Extract<Step, { type: 'form' }>) => (
             const target = event.currentTarget as HTMLInputElement;
             setAnswers((prev) => ({ ...prev, [field.name]: target.value }));
           }}
-        // class="mt-2 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base text-slate-800 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-[#1264c1]/30"
         class="mt-2 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base text-slate-800 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-[#4a90e2]/30"
         />
       </label>
@@ -334,15 +283,7 @@ const renderFormStep = (step: Extract<Step, { type: 'form' }>) => (
 
   return (
     <section class="flex h-full w-full flex-col overflow-hidden rounded-[8px] bg-white shadow-[0_30px_60px_-20px_rgba(10,63,149,0.35)]">
-        <header class={`${headerBgClass} px-6 pb-6 pt-6 text-center text-white sm:px-8 transition-colors duration-500`}>
-            <h1 class="text-xl font-semibold sm:text-2xl">{headerTitle}</h1>
-            <p class={`mt-1 text-xs uppercase tracking-[0.4em] text-white/70 transition-opacity duration-300 ${
-                    hasSubtitle ? 'opacity-100' : 'opacity-0'
-                }`}
-                >
-                {headerSubtitle || '\u2007'}
-            </p>
-        </header>
+        <PhaseHeader content={headerContent} />
 
     {/* Cache la barre de progression lorsqu'on est à 100% et la demande a été soumise/envoyée avec succès */}
     <div class="px-6 pt-6 sm:px-8">
