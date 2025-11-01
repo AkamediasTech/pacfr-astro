@@ -11,7 +11,7 @@ import FranceRenovLogo from "../assets/main/france_renov_logo.png";
 const brandLogo = {
   name: "Eco Energie France",
   file: EcoEnergieLogo,
-  className: "h-8 md:h-16",
+  className: "h-8 md:h-16 px-3",
 }
 
 const partnerLogos = [
@@ -92,9 +92,9 @@ const year = new Date().getFullYear();
 		</div> -->
     <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-30 md:hidden hidden"></div>
 
-    <main class="mx-auto flex max-w-6xl flex-col gap-24 px-6 py-16">
+    <!-- <main class="mx-auto flex max-w-6xl flex-col gap-24 px-6 py-16"> -->
       <slot />
-    </main>
+    <!-- </main> -->
 
     <footer class="border-t border-slate-200 bg-white/80">
       <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm text-slate-500 md:flex-row">

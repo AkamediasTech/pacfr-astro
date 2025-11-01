@@ -6,6 +6,7 @@ import CaseStudies from '../components/CaseStudies.astro';
 import ImageShowcase from '../components/ImageShowcase.astro';
 import Testimonial from '../components/Testimonial.astro';
 import ContactCard from '../components/ContactCard.astro';
+import HeroSection from '../components/HeroSection.astro';
 
 const features = [
   {
@@ -47,13 +48,16 @@ const projects = [
   title="Aka Médias — Studio créatif Astro + Tailwind"
   description="Exemple de landing page Astro qui démontre l’intégration de Tailwind et de composants réutilisables."
 >
-  <Hero
+
+  <HeroSection />
+
+  <!-- <Hero
     eyebrow="Studio créatif"
     title="Des expériences digitales qui marquent"
     description="Nous aidons les marques à raconter des histoires mémorables grâce à des design soignés, des vidéos impactantes et une présence numérique cohérente."
     primaryCta={{ href: '#contact', label: 'Démarrer un projet' }}
     secondaryCta={{ href: '#portfolio', label: 'Voir nos réalisations' }}
-  />
+  /> -->
 
   <!-- <FeatureGrid
     eyebrow="Services"
