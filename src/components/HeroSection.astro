@@ -1,7 +1,7 @@
 ---
 import FormBackground from "../assets/main/banner2.png";
 import CheckIcon from "../assets/main/check-sq-1.svg";
-import EligibilityWizard from "./form/EligibilityWizard";
+import EligibilityForm from "./form/EligibilityForm";
 
 const checklist = [
   "Recevez jusqu'à 11 500€ d'aides en 72h",
@@ -9,7 +9,6 @@ const checklist = [
   "25% de plus-value sur votre maison",
   "Simulez vos aides 2025 ou le coût des travaux",
 ];
-
 
 ---
 
@@ -72,7 +71,7 @@ const checklist = [
 
         <!-- Carte formulaire -->
         <div class="relative z-10 mx-auto w-full max-w-lg">
-            <EligibilityWizard client:load/>
+            <EligibilityForm client:load/>
         </div>
 
 

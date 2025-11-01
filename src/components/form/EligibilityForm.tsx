@@ -1,12 +1,13 @@
 import { useRef, useMemo, useState } from 'preact/hooks';
 import { ChecklistAnimator } from './ChecklistAnimator';
-import { PHASES, DEFAULT_HEADER_STEP, OPTION_ICONS} from './config';
+import { PHASES, DEFAULT_HEADER_STEP} from './config';
 import type { Step } from './config';
 import PhaseHeader from './PhaseHeader';
 import ProgressBar from './ProgressBar';
 import PhaseSummary from './PhaseSummary';
 import ChoiceStep from './ChoiceStep';
 import FormStep from './FormStep';
+import Footer from './Footer';
 
 type ScreenState = 'step' | 'checklist' | 'summary';
 
@@ -19,7 +20,7 @@ function isFormStep(step: Step): step is Extract<Step, { type: 'form' }> {
   return step.type === 'form';
 }
 
-export default function EligibilityWizard() {
+export default function EligibilityForm() {
   const [phaseIndex, setPhaseIndex] = useState(0);
   const [stepIndex, setStepIndex] = useState(0);
   const [screen, setScreen] = useState<ScreenState>('step');
@@ -37,123 +38,123 @@ export default function EligibilityWizard() {
   }
 
 
-const resolveHeaderContent = () => {
-  const { header } = currentPhase;
+  const resolveHeaderContent = () => {
+    const { header } = currentPhase;
 
-  if (screen === 'summary') {
-    if (currentPhase.isFinal && header.final) {
-      return header.final;
+    if (screen === 'summary') {
+      if (currentPhase.isFinal && header.final) {
+        return header.final;
+      }
+      return header.summary ?? header.step;
     }
-    return header.summary ?? header.step;
+
+    return header.step;
+  };
+
+  const headerContent = resolveHeaderContent() ?? DEFAULT_HEADER_STEP;
+
+  const checklistItems = currentPhase.checklistMessages ?? [];
+
+    const totalScreens = useMemo(
+      () => PHASES.reduce((sum, phase) => sum + phase.steps.length + 2, 0),
+      [],
+    );
+
+
+  // Calculer le libellé et l’affichage de la barre de progression
+  const currentScreenIndex = useMemo(() => {
+  let offset = 0;
+
+  for (let i = 0; i < phaseIndex; i += 1) {
+      offset += PHASES[i].steps.length + 2;
   }
 
-  return header.step;
-};
+  if (screen === 'step') {
+      offset += stepIndex;
+  } else if (screen === 'checklist') {
+      offset += currentPhase.steps.length;
+  } else {
+      offset += currentPhase.steps.length + 1;
+  }
 
-const headerContent = resolveHeaderContent() ?? DEFAULT_HEADER_STEP;
+  return offset;
+  }, [phaseIndex, stepIndex, screen, currentPhase]);
 
-const checklistItems = currentPhase.checklistMessages ?? [];
+  const progressPercent =
+  totalScreens > 1 ? Math.round((currentScreenIndex / (totalScreens - 1)) * 100) : 0;
 
-  const totalScreens = useMemo(
-    () => PHASES.reduce((sum, phase) => sum + phase.steps.length + 2, 0),
-    [],
+  const shouldShowProgress = !(screen === 'summary' && currentPhase.isFinal);
+
+  const progressLabel =
+  screen === 'checklist' || (screen === 'summary' && !currentPhase.isFinal)
+      ? currentPhase.progress?.checklistLabel ?? currentPhase.progress?.stepLabel ?? `Phase ${phaseIndex + 1}`
+      : currentPhase.progress?.stepLabel ?? `Phase ${phaseIndex + 1}`;
+
+  // const progressText = `${progressLabel} • ${progressPercent} %`;
+  const progressText = `${progressPercent} %`;
+
+
+  const canGoBack = !( 
+      (phaseIndex === 0 && stepIndex === 0 && screen === 'step') || 
+      (screen === 'summary' && currentPhase.isFinal) // Lorsque la soumission est finie
   );
 
 
-// Calculer le libellé et l’affichage de la barre de progression
-const currentScreenIndex = useMemo(() => {
-let offset = 0;
+  const clearAutoAdvanceTimer = () => {
+    if (autoAdvanceTimerRef.current !== null) {
+      window.clearTimeout(autoAdvanceTimerRef.current);
+      autoAdvanceTimerRef.current = null;
+    }
+  };
 
-for (let i = 0; i < phaseIndex; i += 1) {
-    offset += PHASES[i].steps.length + 2;
-}
+  const scheduleNextPhaseIfNeeded = () => {
+    clearAutoAdvanceTimer();
 
-if (screen === 'step') {
-    offset += stepIndex;
-} else if (screen === 'checklist') {
-    offset += currentPhase.steps.length;
-} else {
-    offset += currentPhase.steps.length + 1;
-}
+    if (currentPhase.isFinal) return;
 
-return offset;
-}, [phaseIndex, stepIndex, screen, currentPhase]);
+    const delay = currentPhase.progress?.autoAdvanceDelayMs ?? 1200;
+    if (!delay) return;
 
-const progressPercent =
-totalScreens > 1 ? Math.round((currentScreenIndex / (totalScreens - 1)) * 100) : 0;
-
-const shouldShowProgress = !(screen === 'summary' && currentPhase.isFinal);
-
-const progressLabel =
-screen === 'checklist' || (screen === 'summary' && !currentPhase.isFinal)
-    ? currentPhase.progress?.checklistLabel ?? currentPhase.progress?.stepLabel ?? `Phase ${phaseIndex + 1}`
-    : currentPhase.progress?.stepLabel ?? `Phase ${phaseIndex + 1}`;
-
-// const progressText = `${progressLabel} • ${progressPercent} %`;
-const progressText = `${progressPercent} %`;
-
-
-const canGoBack = !( 
-    (phaseIndex === 0 && stepIndex === 0 && screen === 'step') || 
-    (screen === 'summary' && currentPhase.isFinal) // Lorsque la soumission est finie
-);
-
-
-const clearAutoAdvanceTimer = () => {
-  if (autoAdvanceTimerRef.current !== null) {
-    window.clearTimeout(autoAdvanceTimerRef.current);
-    autoAdvanceTimerRef.current = null;
-  }
-};
-
-const scheduleNextPhaseIfNeeded = () => {
-  clearAutoAdvanceTimer();
-
-  if (currentPhase.isFinal) return;
-
-  const delay = currentPhase.progress?.autoAdvanceDelayMs ?? 1200;
-  if (!delay) return;
-
-  autoAdvanceTimerRef.current = window.setTimeout(() => {
-    setPhaseIndex((prev) => prev + 1);
-    setStepIndex(0);
-    setScreen('step');
-    autoAdvanceTimerRef.current = null;
-  }, delay);
-};
+    autoAdvanceTimerRef.current = window.setTimeout(() => {
+      setPhaseIndex((prev) => prev + 1);
+      setStepIndex(0);
+      setScreen('step');
+      autoAdvanceTimerRef.current = null;
+    }, delay);
+  };
 
   const handleChoice = (stepId: string, value: string) => {
     setAnswers((prev) => ({ ...prev, [stepId]: value }));
     goToNextStep();
-    };
-
-const handleFormSubmit =
-  (step: Extract<Step, { type: 'form' }>) =>
-  (event: Event & { currentTarget: HTMLFormElement }) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const nextValues: Record<string, string> = {};
-
-    step.fields.forEach((field) => {
-      const rawValue = formData.get(field.name);
-      nextValues[field.name] = typeof rawValue === 'string' ? rawValue.trim() : '';
-    });
-
-    setAnswers((prev) => ({ ...prev, ...nextValues }));
-    goToNextStep();
   };
 
-const goToNextStep = () => {
-  clearAutoAdvanceTimer();
+  const handleFormSubmit =
+    (step: Extract<Step, { type: 'form' }>) =>
+    (event: Event & { currentTarget: HTMLFormElement }) => {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      const nextValues: Record<string, string> = {};
 
-  if (stepIndex < currentPhase.steps.length - 1) {
-    setStepIndex((prev) => prev + 1);
-    return;
-  }
+      step.fields.forEach((field) => {
+        const rawValue = formData.get(field.name);
+        nextValues[field.name] = typeof rawValue === 'string' ? rawValue.trim() : '';
+      });
 
-  setScreen('checklist');
-  setChecklistKey((prev) => prev + 1);
-};
+      setAnswers((prev) => ({ ...prev, ...nextValues }));
+      goToNextStep();
+  };
+
+  const goToNextStep = () => {
+    clearAutoAdvanceTimer();
+
+    if (stepIndex < currentPhase.steps.length - 1) {
+      setStepIndex((prev) => prev + 1);
+      return;
+    }
+
+    setScreen('checklist');
+    setChecklistKey((prev) => prev + 1);
+  };
 
   const handleChecklistComplete = () => {
     setScreen('summary');
@@ -173,7 +174,6 @@ const goToNextStep = () => {
     // Si on est déjà sur l'écran de validation, on revient directement
     // à la dernière étape de la phase sans repasser par la checklist.
     if (screen === 'summary') {
-    //   setScreen('checklist');
       setScreen('step');
       setStepIndex(currentPhase.steps.length - 1);
       return;
@@ -230,7 +230,6 @@ const goToNextStep = () => {
             onSubmit={handleFormSubmit(currentStep)}
         />
         ) : null}
-      {/* {isFormStep(currentStep) ? renderFormStep(currentStep) : null} */}
     </>
   );
 
@@ -273,36 +272,16 @@ const goToNextStep = () => {
                 onReset={handleReset}
             />
         ) : null}
-
-
       </div>
 
-      <footer class="flex min-h-[72px] items-center justify-between border-t border-slate-200 px-6 py-4 sm:px-8">
+      <Footer
+        canGoBack={canGoBack}
+        onBack={handleBack}
+        showSubmit={screen === 'step' && isFormStep(currentStep)}
+        submitLabel={isFormStep(currentStep) ? currentStep.submitLabel : undefined}
+        progressText={`Étape ${phaseIndex + 1} / ${PHASES.length}`}
+    />
 
-        {/* ghost arrondi */}
-        {canGoBack ? (
-            <button
-                type="button"
-                onClick={handleBack}
-                class="inline-flex items-center justify-center rounded-full border border-[rgba(18,100,193,0.25)] bg-transparent px-8 py-3 text-sm font-semibold text-brand-blue transition hover:bg-[rgba(18,100,193,0.08)] hover:border-[rgba(18,100,193,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(18,100,193,0.4)] hover:cursor-pointer gap-2"
-            >
-                Retour
-
-            </button>
-            ) : (
-            <span />
-        )}
-
-        {screen === 'step' && isFormStep(currentStep) ? (
-          <button type="submit" form="eligibility-step-form" class="btn btn-success btn--glow px-6 py-3 hover:cursor-pointer">
-            {currentStep.submitLabel}
-          </button>
-        ) : (
-          <p class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-            Etape {phaseIndex + 1} / {PHASES.length}
-          </p>
-        )}
-      </footer>
     </section>
   );
 }
