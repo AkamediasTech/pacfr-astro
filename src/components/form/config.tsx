@@ -7,6 +7,7 @@ export type ChoiceOption = {
 };
 
 export type ChoiceStep = Extract<Step, { type: 'choice' }>;
+export type FormStep = Extract<Step, { type: 'form' }>;
 
 export const OPTION_ICONS: Record<NonNullable<ChoiceOption['icon']>, JSX.Element> = {
   apartment: (

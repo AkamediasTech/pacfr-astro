@@ -6,6 +6,7 @@ import PhaseHeader from './PhaseHeader';
 import ProgressBar from './ProgressBar';
 import PhaseSummary from './PhaseSummary';
 import ChoiceStep from './ChoiceStep';
+import FormStep from './FormStep';
 
 type ScreenState = 'step' | 'checklist' | 'summary';
 
@@ -204,52 +205,32 @@ const goToNextStep = () => {
     goToPreviousStep();
   }
 
-const renderFormStep = (step: Extract<Step, { type: 'form' }>) => (
-  <form
-    id="eligibility-step-form"
-    class={`mt-8 space-y-5 ${step.fields.length > 2 ? 'grid gap-4 sm:grid-cols-2 sm:space-y-0' : ''}`}
-    onSubmit={handleFormSubmit(step) as any}
-  >
-    {step.fields.map((field) => (
-      <label
-        key={field.name}
-        class={`flex flex-col text-sm font-semibold text-slate-600 ${
-          field.fullWidth ? 'sm:col-span-2' : ''
-        }`}
-      >
-        {field.label}
-        <input
-          name={field.name}
-          type={field.type ?? 'text'}
-          placeholder={field.placeholder}
-          autoComplete={field.autoComplete}
-          maxLength={field.maxLength}
-          required
-          value={answers[field.name] ?? ''}
-          onInput={(event) => {
-            const target = event.currentTarget as HTMLInputElement;
-            setAnswers((prev) => ({ ...prev, [field.name]: target.value }));
-          }}
-        class="mt-2 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base text-slate-800 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-[#4a90e2]/30"
-        />
-      </label>
-    ))}
-  </form>
-);
-
 
   const renderStepContent = () => (
     <>
       <h2 class="text-xl font-semibold uppercase tracking-[0.15em] text-brand-blue">
         {currentStep.title}
       </h2>
+
       {currentStep.subtitle ? (
         <p class="mt-2 text-sm text-slate-500">{currentStep.subtitle}</p>
       ) : null}
+
         {isChoiceStep(currentStep) ? (
             <ChoiceStep step={currentStep} selectedValue={answers[currentStep.id]} onSelect={(value) => handleChoice(currentStep.id, value)} />
         ) : null}
-      {isFormStep(currentStep) ? renderFormStep(currentStep) : null}
+
+        {isFormStep(currentStep) ? (
+        <FormStep
+            step={currentStep}
+            values={answers}
+            onFieldChange={(name, value) =>
+            setAnswers((prev) => ({ ...prev, [name]: value }))
+            }
+            onSubmit={handleFormSubmit(currentStep)}
+        />
+        ) : null}
+      {/* {isFormStep(currentStep) ? renderFormStep(currentStep) : null} */}
     </>
   );
 
