@@ -1,6 +1,7 @@
 ---
 import FormBackground from "../assets/main/banner2.png";
 import CheckIcon from "../assets/main/check-sq-1.svg";
+import EligibilityWizard from "./form/EligibilityWizard";
 
 const checklist = [
   "Recevez jusqu'à 11 500€ d'aides en 72h",
@@ -70,25 +71,11 @@ const checklist = [
 
 
         <!-- Carte formulaire -->
-        <div class="relative mx-auto max-w-md rounded-3xl bg-white p-0 shadow-[0_30px_60px_-20px_rgba(10,63,149,0.35)]">
-          <div class="rounded-t-3xl w-full bg-blue-1 px-6 py-4 text-center text-white">
-            <p class="text-lg font-semibold">Calculez le montant de vos aides 2025</p>
-            <p class="mt-1 text-xs uppercase tracking-[0.35em] text-sky-100">
-              Anah · CEE · MPR · Éco-PTZ
-            </p>
-          </div>
-
-          <div class="mt-6 p-6">
-            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center">
-            <p class="text-sm font-medium uppercase tracking-[0.25em] text-slate-500">
-              Formulaire à venir
-            </p>
-            <p class="mt-2 text-base text-slate-600">
-              Cette zone accueillera votre simulateur interactif.
-            </p>
-            </div>
-          </div>
+        <div class="relative z-10 mx-auto w-full max-w-lg">
+            <EligibilityWizard client:load/>
         </div>
+
+
       </div>
     </div>
 </section>

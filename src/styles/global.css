@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
+:root {
+  --brand-blue: #1264c1;
+}
+
 @layer components {
+  .bg-brand-gradient {
+    background: linear-gradient(90deg, rgb(74, 144, 226), rgb(53, 122, 189));
+  }
+
   .btn {
     @apply inline-flex items-center justify-center font-semibold text-sm rounded-full transition focus-visible:outline-2 focus-visible:outline-offset-2;
     position: relative;
@@ -38,12 +46,73 @@
   .btn--glow:focus-visible::after {
     transform: translateX(120%);
   }
+
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-lg border px-5 py-2 text-sm font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2;
+    border-color: var(--brand-blue);
+    color: var(--brand-blue);
+  }
+
+  .btn-outline:hover,
+  .btn-outline:focus-visible {
+    background-color: var(--brand-blue);
+    color: #fff;
+    outline-color: var(--brand-blue);
+  }
+
+  .choice-tile {
+      @apply flex h-[92px] w-full flex-col items-center justify-center gap-3 rounded-xl border border-slate-200 bg-slate-100 text-[15px] font-semibold text-slate-700 transition hover:cursor-pointer;
+      outline: none;
+  }
+  .choice-tile:hover,
+  .choice-tile:focus-visible {
+    border-color: var(--brand-blue);
+    background-color: #fff;
+    color: var(--brand-blue);
+    box-shadow: 0 18px 40px -25px rgba(18, 100, 193, 0.4);
+  }
+  .choice-tile--active {
+    border-color: var(--brand-blue);
+    background-color: #fff;
+    color: var(--brand-blue);
+    box-shadow: 0 18px 40px -25px rgba(18, 100, 193, 0.55);
+  }
+  .choice-tile__icon {
+    @apply flex h-10 w-10 items-center justify-center rounded-lg  transition;
+    color: var(--brand-blue);
+  }
+
+
 }
 
 @layer utilities {
 
   .bg-blue-1 {
     background-color: #1264c1;
+  }
+
+  .bg-brand-gradient-1 {
+  background: linear-gradient(90deg, rgb(74, 144, 226), rgb(53, 122, 189));
+}
+
+  .bg-brand-blue { background-color: var(--brand-blue); }
+  .text-brand-blue { color: var(--brand-blue); }
+  .border-brand-blue { border-color: var(--brand-blue); }
+
+  .animate-scale-in {
+    animation: scale-in 0.35s ease-out forwards;
+  }
+
+  @keyframes scale-in {
+    from {
+      transform: scale(0.6);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 
 
@@ -104,3 +173,5 @@
     transition-delay: 0.4s;
   }
 }
+
+
