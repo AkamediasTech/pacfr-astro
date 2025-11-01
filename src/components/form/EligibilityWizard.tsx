@@ -370,6 +370,14 @@ const renderFormStep = (step: Extract<Step, { type: 'form' }>) => (
           <ChecklistAnimator
             items={checklistItems}
             playKey={`${currentPhase.id}-${checklistKey}`}
+            animationTiming={
+                currentPhase.checklistAnimation
+                ? {
+                    minDelayMs: currentPhase.checklistAnimation.minDelayMs,
+                    maxDelayMs: currentPhase.checklistAnimation.maxDelayMs,
+                    }
+                : undefined
+            }
             onComplete={handleChecklistComplete}
           />
         ) : null}

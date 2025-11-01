@@ -51,10 +51,21 @@ export type PhaseHeaderConfig = {
 
 const DEFAULT_PHASE_AUTO_ADVANCE_DELAY_MS = 1200;
 
+export const CHECKLIST_ANIMATION = {
+  minDelayMs: 350,
+  maxDelayMs: 650,
+};
+
+
+
 export type PhaseConfig = {
   id: string;
   phaseNumber: number;
   steps: Step[];
+  checklistAnimation?: {
+    minDelayMs: number;
+    maxDelayMs: number;
+  };
   checklistMessages: string[];
   header: PhaseHeaderConfig;
   progress: {

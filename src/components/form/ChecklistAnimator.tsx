@@ -3,12 +3,13 @@ import { useEffect, useState } from 'preact/hooks';
 type ChecklistAnimatorProps = {
   items: string[];
   playKey: string;
+  animationTiming?: {minDelayMs: number, maxDelayMs: number};
   onComplete?: () => void;
 };
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export function ChecklistAnimator({ items, playKey, onComplete }: ChecklistAnimatorProps) {
+export function ChecklistAnimator({ items, playKey, animationTiming, onComplete }: ChecklistAnimatorProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [completed, setCompleted] = useState<number[]>([]);
 
@@ -22,7 +23,15 @@ export function ChecklistAnimator({ items, playKey, onComplete }: ChecklistAnima
       for (let i = 0; i < items.length; i += 1) {
         if (isCancelled) return;
         setActiveIndex(i);
-        await wait(500);
+        // await wait(500);
+
+        const min = animationTiming?.minDelayMs ?? 400;
+        const max = animationTiming?.maxDelayMs ?? 700;
+        const delay = Math.floor(Math.random() * (max - min + 1)) + min;
+        await wait(delay);
+
+
+
         if (isCancelled) return;
         setCompleted((prev) => [...prev, i]);
       }
