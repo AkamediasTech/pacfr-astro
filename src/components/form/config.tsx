@@ -105,10 +105,12 @@ export type PhaseHeaderConfig = {
 };
 
 const DEFAULT_PHASE_AUTO_ADVANCE_DELAY_MS = 1200;
+const DEFAULT_CHECK_ITEM_MIN_DELAY_MS = 950;
+const DEFAULT_CHECK_ITEM_MAX_DELAY_MS = 1450;
 
 export const CHECKLIST_ANIMATION = {
-  minDelayMs: 350,
-  maxDelayMs: 650,
+  minDelayMs: DEFAULT_CHECK_ITEM_MIN_DELAY_MS,
+  maxDelayMs: DEFAULT_CHECK_ITEM_MAX_DELAY_MS,
 };
 
 
@@ -178,6 +180,7 @@ export const PHASES: PhaseConfig[] = [
         ],
       },
     ],
+    checklistAnimation: CHECKLIST_ANIMATION,
     checklistMessages: [
       'Analyse des caractéristiques de votre logement',
       'Prise en compte de votre statut',
@@ -230,6 +233,7 @@ export const PHASES: PhaseConfig[] = [
         submitLabel: 'Vérifier mon éligibilité',
       },
     ],
+    checklistAnimation: CHECKLIST_ANIMATION,
     checklistMessages: [
       'Vérification de la géolocalisation',
       'Recherche des aides disponibles dans votre région',
@@ -272,6 +276,7 @@ export const PHASES: PhaseConfig[] = [
         submitLabel: 'Obtenir une estimation',
       },
     ],
+    checklistAnimation: CHECKLIST_ANIMATION,
     checklistMessages: [
       'Analyse de votre dossier',
       'Calcul des aides disponibles',
