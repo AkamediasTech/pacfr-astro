@@ -3,6 +3,7 @@ import { ChecklistAnimator } from './ChecklistAnimator';
 import { PHASES, DEFAULT_HEADER_STEP, OPTION_ICONS} from './config';
 import type { Step } from './config';
 import PhaseHeader from './PhaseHeader';
+import ProgressBar from './ProgressBar';
 
 type ScreenState = 'step' | 'checklist' | 'summary';
 
@@ -285,23 +286,8 @@ const renderFormStep = (step: Extract<Step, { type: 'form' }>) => (
     <section class="flex h-full w-full flex-col overflow-hidden rounded-[8px] bg-white shadow-[0_30px_60px_-20px_rgba(10,63,149,0.35)]">
         <PhaseHeader content={headerContent} />
 
-    {/* Cache la barre de progression lorsqu'on est à 100% et la demande a été soumise/envoyée avec succès */}
     <div class="px-6 pt-6 sm:px-8">
-        {shouldShowProgress ? (
-           <div class="flex flex-col gap-2">
-                <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-                    <span class="text-lg font-bold uppercase tracking-[0.1em] text-brand-blue">
-                        {progressText}
-                    </span>
-                </div>
-                <div class="h-2 w-full overflow-hidden rounded-full bg-slate-200/80">
-                    <div
-                        class="h-full rounded-full bg-brand-gradient transition-all duration-500 ease-out"
-                        style={{ width: `${progressPercent}%` }}
-                    />
-                </div>
-            </div>
-        ) : null}
+        <ProgressBar label={progressText} percent={progressPercent} visible={shouldShowProgress} />
     </div>
 
       <div class="relative flex-1 px-6 pb-8 pt-4 sm:px-8">
