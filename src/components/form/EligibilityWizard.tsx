@@ -4,6 +4,7 @@ import { PHASES, DEFAULT_HEADER_STEP, OPTION_ICONS} from './config';
 import type { Step } from './config';
 import PhaseHeader from './PhaseHeader';
 import ProgressBar from './ProgressBar';
+import PhaseSummary from './PhaseSummary';
 
 type ScreenState = 'step' | 'checklist' | 'summary';
 
@@ -310,33 +311,14 @@ const renderFormStep = (step: Extract<Step, { type: 'form' }>) => (
         ) : null}
 
         {screen === 'summary' ? (
-          <div class="mt-12 flex flex-col items-center gap-6 text-center">
-            <div class="animate-scale-in rounded-full bg-emerald-500/15 p-5">
-              <svg class="h-12 w-12 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M20 6 9 17l-5-5" />
-              </svg>
-            </div>
-            <div>
-              <p class="text-lg font-semibold text-brand-blue">{successMessage}</p>
-              {!currentPhase.isFinal ? (
-                <p class="mt-2 text-sm text-slate-500">
-                  Passons à l’étape suivante pour finaliser votre estimation.
-                </p>
-              ) : (
-                <p class="mt-2 text-sm text-slate-500">
-                  Merci ! Vous serez contacté rapidement pour finaliser votre dossier.
-                </p>
-              )}
-            </div>
-
-            {currentPhase.isFinal ? (
-                <button type="button" onClick={handleReset} class="btn btn-success btn--glow px-6 py-3 hover:cursor-pointer">
-                    Recommencer une simulation
-                </button>
-            ) : null}
-
-          </div>
+            <PhaseSummary
+                successMessage={successMessage}
+                isFinal={currentPhase.isFinal ?? false}
+                onReset={handleReset}
+            />
         ) : null}
+
+
       </div>
 
       <footer class="flex min-h-[72px] items-center justify-between border-t border-slate-200 px-6 py-4 sm:px-8">
