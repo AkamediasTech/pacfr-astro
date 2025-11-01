@@ -185,14 +185,7 @@ const handleFormSubmit =
 
   const handleChecklistComplete = () => {
     setScreen('summary');
-  };
-
-  const handleSummaryContinue = () => {
-    if (currentPhase.isFinal) return;
-
-    setPhaseIndex((prev) => prev + 1);
-    setStepIndex(0);
-    setScreen('step');
+    scheduleNextPhaseIfNeeded();
   };
 
   const handleReset = () => {
@@ -202,19 +195,19 @@ const handleFormSubmit =
     setAnswers({});
   };
 
-    useEffect(() => {
-        if (screen === 'summary' && !currentPhase.isFinal) {
-        const timer = setTimeout(() => {
-            setPhaseIndex((prev) => prev + 1);
-            setStepIndex(0);
-            setScreen('step');
-        }, 1200);
 
-            return () => clearTimeout(timer);
-        }
-      
-    }, [screen, currentPhase.isFinal]);
+const scheduleNextPhaseIfNeeded = () => {
+  if (currentPhase.isFinal) {
+    // on reste sur l’écran final + bouton “Recommencer”
+    return;
+  }
 
+  setTimeout(() => {
+        setPhaseIndex((prev) => prev + 1);
+        setStepIndex(0);
+        setScreen('step');
+    }, 1200);
+};
 
   const handleBack = () => {
 
