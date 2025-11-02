@@ -26,21 +26,21 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
 
 <section class="bg-white">
   <div class="bg-[#1D1F55] text-white">
-    <div class="mx-auto max-w-5xl px-6 py-8 text-center sm:py-10">
-      <p class="text-xs font-semibold uppercase tracking-[0.4em] text-slate-200">Nos clients</p>
-      <h2 class="mt-2 text-2xl font-extrabold sm:text-3xl">Parlent de nous</h2>
+    <div class="mx-auto  max-w-12/15 px-6 py-6 text-start sm:py-10">
+      <p class="text-3xl font-semibold uppercase tracking-[0.0em] text-slate-50">Nos clients</p>
+      <h2 class="text-3xl uppercase font-semibold sm:text-3xl text-[#0a7cff]">Parlent de nous</h2>
     </div>
   </div>
 
-  <div class="mx-auto max-w-6xl px-6 pb-16 pt-10">
-    <div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
-      <aside class="rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm lg:w-[280px] lg:flex-none">
-        <div class="flex items-center gap-4">
+  <div class="mx-auto max-w-[95%] sm:max-w-12/15 lg:px-6 pb-16 lg:py-24 pt-10 lg:ps-0">
+    <div class="flex flex-col  gap-10 lg:flex-row lg:items-start lg:gap-6 lg:items-stretch">
+      <aside class="rounded-2xl bg-white px-5 py-5 lg:w-[280px] lg:flex-none lg:flex-1 mb-auto">
+        <div class="flex items-center  justify-center lg:justtify-start gap-4">
           <div class="h-14 w-14 overflow-hidden rounded-full bg-slate-200">
             <AstroImage src={GoogleProfile} alt="Profil Google" class="h-full w-full object-cover" />
           </div>
           <div>
-            <p class="text-sm font-semibold text-slate-600">EnergieFrance</p>
+            <p class="text-sm font-semibold text-slate-800">EnergieFrance</p>
             <div class="flex items-center gap-2">
               <span class="text-xl font-bold text-slate-900">4.6</span>
               <span class="flex items-center text-amber-400">
@@ -51,13 +51,22 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
                 ))}
               </span>
             </div>
-            <p class="text-xs text-slate-500">Basé sur 39 avis · powered by Google</p>
+            <p class="text-xs text-slate-500">Basé sur 39 avis</p>
+             <p class="tracking-normal flex gap-0">
+              <span class="p-0 pr-1 m-0">powered by </span>
+              <span class="p-0 m-0" style="color:#6186ec!important">G</span>
+              <span class="p-0 m-0" style="color:#cd523f!important">o</span>
+              <span class="p-0 m-0" style="color:#eabe43!important">o</span>
+              <span class="p-0 m-0" style="color:#6186ec!important">g</span>
+              <span class="p-0 m-0" style="color:#63a45d!important">l</span>
+              <span class="p-0 m-0" style="color:#cd523f!important">e</span>
+            </p>
           </div>
         </div>
 
-        <p class="mt-6 text-sm text-slate-500">
+        <!-- <p class="mt-6 text-sm text-slate-500">
           <span class="font-semibold text-slate-900">98%</span> des clients nous recommandent.
-        </p>
+        </p> -->
       </aside>
 
       <div
