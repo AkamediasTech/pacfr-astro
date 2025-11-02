@@ -1,7 +1,7 @@
 ---
 import { Image as AstroImage } from 'astro:assets';
 
-// Remplace ces imports par tes propres fichiers
+// Remplace ces imports par tes propres fichiers.
 import GoogleProfile from '../assets/reviews/google-profile.webp';
 import ArrowLeft from '../assets/reviews/arrow-left.png';
 import ArrowRight from '../assets/reviews/arrow-right.png';
@@ -33,68 +33,76 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
   </div>
 
   <div class="mx-auto max-w-6xl px-6 pb-16 pt-10">
-    <div class="mb-10 flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm sm:flex-row sm:items-center sm:justify-between">
-      <div class="flex items-center gap-4">
-        <div class="h-14 w-14 overflow-hidden rounded-full bg-slate-200">
-          <AstroImage src={GoogleProfile} alt="Profil Google" class="h-full w-full object-cover" />
-        </div>
-        <div>
-          <p class="text-sm font-semibold text-slate-600">EnergieFrance</p>
-          <div class="flex items-center gap-2">
-            <span class="text-xl font-bold text-slate-900">4.6</span>
-            <span class="flex items-center text-amber-400">
-              {Array.from({ length: 5 }, (_, index) => (
-                <svg class={`h-4 w-4 ${index < 4 ? 'fill-amber-400' : 'fill-slate-200'}`} viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.12 3.439a1 1 0 00.95.69h3.62c.969 0 1.371 1.24.588 1.81l-2.928 2.128a1 1 0 00-.364 1.118l1.12 3.438c.3.922-.755 1.688-1.54 1.118l-2.928-2.128a1 1 0 00-1.175 0L6.83 16.668c-.784.57-1.838-.196-1.539-1.118l1.12-3.438a1 1 0 00-.364-1.118L3.12 8.866c-.783-.57-.38-1.81.588-1.81h3.62a1 1 0 00.95-.69l1.12-3.439z" />
-                </svg>
-              ))}
-            </span>
+    <div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
+      <aside class="rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm lg:w-[280px] lg:flex-none">
+        <div class="flex items-center gap-4">
+          <div class="h-14 w-14 overflow-hidden rounded-full bg-slate-200">
+            <AstroImage src={GoogleProfile} alt="Profil Google" class="h-full w-full object-cover" />
           </div>
-          <p class="text-xs text-slate-500">Basé sur 39 avis · powered by Google</p>
-        </div>
-      </div>
-      <div class="text-sm text-slate-500">
-        <span class="font-semibold text-slate-900">98%</span> des clients nous recommandent.
-      </div>
-    </div>
-
-    <div
-      id={carouselId}
-      class="relative"
-      data-visible-desktop="3"
-      data-visible-tablet="2"
-      data-visible-mobile="1"
-      data-gap="24"
-    >
-      <div class="carousel-frame">
-        <button type="button" class="carousel-arrow" data-prev aria-label="Avis précédent">
-          <AstroImage src={ArrowLeft} alt="Précédent" class="h-5 w-5" />
-        </button>
-
-        <div class="carousel-window" data-window>
-          <ul class="carousel-track" data-track>
-            {slides.map((slide) => (
-              <li class="carousel-slide" data-slide>
-                <div class="inline-block overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-                  <AstroImage
-                    src={slide.image}
-                    alt={slide.alt}
-                    class="h-full w-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </li>
-            ))}
-          </ul>
+          <div>
+            <p class="text-sm font-semibold text-slate-600">EnergieFrance</p>
+            <div class="flex items-center gap-2">
+              <span class="text-xl font-bold text-slate-900">4.6</span>
+              <span class="flex items-center text-amber-400">
+                {Array.from({ length: 5 }, (_, index) => (
+                  <svg class={`h-4 w-4 ${index < 4 ? 'fill-amber-400' : 'fill-slate-200'}`} viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.12 3.439a1 1 0 00.95.69h3.62c.969 0 1.371 1.24.588 1.81l-2.928 2.128a1 1 0 00-.364 1.118l1.12 3.438c.3.922-.755 1.688-1.54 1.118l-2.928-2.128a1 1 0 00-1.175 0L6.83 16.668c-.784.57-1.838-.196-1.539-1.118l1.12-3.438a1 1 0 00-.364-1.118L3.12 8.866c-.783-.57-.38-1.81.588-1.81h3.62a1 1 0 00.95-.69l1.12-3.439z" />
+                  </svg>
+                ))}
+              </span>
+            </div>
+            <p class="text-xs text-slate-500">Basé sur 39 avis · powered by Google</p>
+          </div>
         </div>
 
-        <button type="button" class="carousel-arrow" data-next aria-label="Avis suivant">
-          <AstroImage src={ArrowRight} alt="Suivant" class="h-5 w-5" />
-        </button>
-      </div>
+        <p class="mt-6 text-sm text-slate-500">
+          <span class="font-semibold text-slate-900">98%</span> des clients nous recommandent.
+        </p>
+      </aside>
 
-      <div class="carousel-dots" data-dots></div>
+      <div
+        id={carouselId}
+        class="relative flex-1 min-w-0"
+        data-visible-desktop="3"
+        data-visible-tablet="2"
+        data-visible-mobile="1"
+        data-gap="24"
+      >
+        <div class="carousel-frame">
+          <button type="button" class="carousel-arrow" data-prev aria-label="Avis précédent">
+             <!-- <AstroImage src={ArrowLeft} alt="Précédent" class="h-7 w-8 pl-2.5 font-bold" /> -->
+
+           <svg class="h-10 w-10 rotate-180 font-bold" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512"><g id="_x34_1_Arrow_Right"><g><path fill="#1264c1" d="m502.713 260.065-114.1 181.722c-1.472 2.247-3.951 3.641-6.584 3.641h-142.14c-2.866 0-5.422-1.55-6.817-4.028-1.395-2.402-1.317-5.423.232-7.824l111.621-177.618-111.621-177.539c-1.549-2.401-1.627-5.422-.232-7.824 1.394-2.478 3.95-4.028 6.817-4.028h142.14c2.633 0 5.112 1.395 6.584 3.641l114.1 181.645c1.549 2.479 1.549 5.734 0 8.212z"/><path d="m158.047 445.438c2.667 0 5.144-1.369 6.558-3.631l114.104-181.737c1.585-2.511 1.585-5.719 0-8.238l-114.103-181.647c-1.418-2.254-3.896-3.623-6.558-3.623h-142.176c-2.818 0-5.416 1.536-6.782 4.002-1.362 2.466-1.278 5.477.223 7.867l111.599 177.524-111.598 177.615c-1.502 2.39-1.585 5.401-.219 7.867 1.362 2.474 3.96 4.002 6.778 4.002h142.174zm-21.426-185.361c1.585-2.519 1.585-5.726 0-8.245l-106.728-169.778h123.873l109.239 173.901-109.239 173.991h-123.877z"/></g></g></svg>
+
+          </button>
+
+          <div class="carousel-window min-w-0" data-window>
+            <ul class="carousel-track" data-track>
+              {slides.map((slide) => (
+                <li class="carousel-slide" data-slide>
+                  <div class="inline-block overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                    <AstroImage
+                      src={slide.image}
+                      alt={slide.alt}
+                      class="h-full w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <button type="button" class="carousel-arrow" data-next aria-label="Avis suivant">
+            <!-- <AstroImage src={ArrowRight} alt="Suivant" class="h-7 w-8 pr-2.5 font-bold" /> -->
+
+            <svg class="h-10 w-10 font-bold" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512"><g id="_x34_1_Arrow_Right"><g><path fill="#1264c1" d="m502.713 260.065-114.1 181.722c-1.472 2.247-3.951 3.641-6.584 3.641h-142.14c-2.866 0-5.422-1.55-6.817-4.028-1.395-2.402-1.317-5.423.232-7.824l111.621-177.618-111.621-177.539c-1.549-2.401-1.627-5.422-.232-7.824 1.394-2.478 3.95-4.028 6.817-4.028h142.14c2.633 0 5.112 1.395 6.584 3.641l114.1 181.645c1.549 2.479 1.549 5.734 0 8.212z"/><path d="m158.047 445.438c2.667 0 5.144-1.369 6.558-3.631l114.104-181.737c1.585-2.511 1.585-5.719 0-8.238l-114.103-181.647c-1.418-2.254-3.896-3.623-6.558-3.623h-142.176c-2.818 0-5.416 1.536-6.782 4.002-1.362 2.466-1.278 5.477.223 7.867l111.599 177.524-111.598 177.615c-1.502 2.39-1.585 5.401-.219 7.867 1.362 2.474 3.96 4.002 6.778 4.002h142.174zm-21.426-185.361c1.585-2.519 1.585-5.726 0-8.245l-106.728-169.778h123.873l109.239 173.901-109.239 173.991h-123.877z"/></g></g></svg>
+          </button>
+        </div>
+
+        <div class="carousel-dots" data-dots></div>
+      </div>
     </div>
   </div>
 </section>
@@ -107,6 +115,7 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
   }
   .carousel-window {
     flex: 1;
+    min-width: 0;
     overflow: hidden;
   }
   .carousel-track {
@@ -130,13 +139,14 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
     border-radius: 9999px;
     background-color: #ffffff;
     box-shadow: 0 12px 30px -18px rgba(15, 23, 42, 0.4);
-    border: 1px solid rgba(148, 163, 184, 0.35);
+    /* border: 1px solid rgba(148, 163, 184, 0.35); */
     transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   }
   .carousel-arrow:hover {
     background-color: #f8fafc;
     border-color: rgba(148, 163, 184, 0.6);
     transform: translateY(-2px);
+    cursor: pointer;
   }
   .carousel-arrow:active {
     transform: translateY(0);
@@ -160,16 +170,18 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
     justify-content: center;
     gap: 0.5rem;
   }
-
-   :global(.carousel-dot) {
-    height: 8px;
-    width: 8px;
+  :global(.carousel-dot) {
+    width: 10px;
+    height: 10px;
     border-radius: 9999px;
-    background-color: #dbeafe;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    background-color: #cbd5f5;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   :global(.carousel-dot.is-active) {
-    background-color: #1d1f55;
+    background-color: #0a7cff;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 0 8px rgba(10, 124, 255, 0.5);
     transform: scale(1.3);
   }
 </style>
@@ -216,14 +228,13 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
     const maxIndex = () => Math.max(0, slides.length - visible);
 
     const buildDots = () => {
-      const total = Math.max(1, slides.length - visible + 1);
       dotsContainer.innerHTML = '';
-      dots = Array.from({ length: total }, (_, pos) => {
+      dots = slides.map((_, pos) => {
         const dot = document.createElement('button');
         dot.type = 'button';
         dot.classList.add('carousel-dot');
         dot.addEventListener('click', () => {
-          index = pos;
+          index = Math.min(pos, maxIndex());
           render();
         });
         dotsContainer.appendChild(dot);
