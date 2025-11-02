@@ -17,7 +17,7 @@ const FormStep: FunctionalComponent<FormStepProps> = ({ step, values, onFieldCha
     {step.fields.map((field) => (
       <label
         key={field.name}
-        class={`flex flex-col text-sm font-semibold text-slate-600 ${
+        class={`flex flex-col text-sm font-semibold text-slate-700 italic ${
           field.fullWidth ? 'sm:col-span-2' : ''
         }`}
       >

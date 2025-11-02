@@ -17,10 +17,10 @@ const checklist = [
     <div class="flex h-full w-full flex-col lg:flex-row-reverse lg:items-stretch ">
 
       <!-- Version mobile : visible jusqu’à lg -->
-      <div class="flex flex-col gap-4 w-[90%] max-w-lg my-10 mx-auto lg:hidden">
-        <h1 class="text-3xl font-extrabold text-slate-900 sm:text-4xl">
-          <span class="block">Simulateur pompe à chaleur</span>
-          <span class="mt-1 block bg-gradient-to-r from-[#0A008A] to-[hsl(233,89%,71%)] bg-clip-text text-transparent font-bold [-webkit-text-fill-color:transparent]">
+      <div class="flex flex-col items-center gap-0 w-[90%] max-w-lg my-8 mx-auto lg:hidden">
+        <h1 class="text-2xl font-extrabold text-slate-900 sm:text-4xl text-center">
+          <span class="block leading-[28px]">Simulateur pompe à chaleur</span>
+          <span class="block bg-gradient-to-r from-[#0A008A] to-[hsl(233,89%,71%)] bg-clip-text text-transparent font-bold [-webkit-text-fill-color:transparent]">
             Chauffez et économisez
           </span>
         </h1>
@@ -28,10 +28,16 @@ const checklist = [
         <!-- <a href="#simulateur" class="btn btn-success btn--glow w-full md:w-auto">
           Calculer mes aides financières
         </a> -->
+        <div class=" flex flex-col items-center gap-1 lg:hidden">
+          <svg class=" mt-4 h-7 w-7 text-slate-600 arrow-bounce" xmlns="http://www.w3.org/2000/svg" 
+          viewBox="240 -720 480 560"  fill="#000000">
+          <path d="M480-200 240-440l56-56 184 183 184-183 56 56-240 240Zm0-240L240-680l56-56 184 183 184-183 56 56-240 240Z"></path>
+        </svg>
+        </div>
       </div>
 
       <!-- Colonne formulaire (placeholder) -->
-      <div class="relative flex w-full  lg:w-11/20  lg:py-16">
+      <div class="relative flex w-full  lg:w-11/20  lg:py-12">
 
         <!-- Image de fond pour la carte formulaire -->
         <div
@@ -50,8 +56,8 @@ const checklist = [
       <!-- Version desktop : masquée avant lg -->
       <!-- <div class="flex flex-col justify-center w-full max-w-lg mx-auto lg:mx-0 lg:w-9/20 py-16 px-[7.5%] sm:px-0 lg:px-[7.5%] lg:ps-[7.5%]"> -->
       <div class="flex flex-col justify-center w-full max-w-lg lg:max-w-none mx-auto lg:mx-0 lg:w-9/20 py-16 px-[7.5%] sm:px-0 lg:px-[7.5%] lg:ps-[7.5%]">
-        <h1 class="hidden lg:inline mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">
-            <span class="block">Simulateur pompe à chaleur</span>
+        <h1 class="hidden lg:inline mt-3 text-3xl font-extrabold text-slate-900 sm:text-3xl">
+            <span class="block ">Simulateur pompe à chaleur</span>
             <span class="mt-1 block bg-gradient-to-r from-[#0A008A] to-[hsl(233,89%,71%)] bg-clip-text text-transparent font-bold [-webkit-text-fill-color:transparent]">
             Chauffez et économisez
             </span>
@@ -80,7 +86,7 @@ const checklist = [
           </a> -->
             <a
                 href="#simulateur"
-                class="hidden sm:block btn btn-success btn--glow mt-8 w-fit max-w-fit md:w-auto"
+                class="hidden sm:block btn btn-success btn--glow mt-8 py-4 w-fit max-w-fit md:w-auto rounded-[0.5rem]"
                 >
                 Calculer mes aides financières
             </a>
@@ -93,3 +99,17 @@ const checklist = [
 </section>
 
 
+<style>
+  @keyframes arrow-bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.75; }
+    50%      { transform: translateY(6px); opacity: 1; }
+  }
+
+  .arrow-bounce {
+    animation: arrow-bounce 1.6s ease-in-out infinite;
+  }
+
+  .arrow-bounce.delay-200 {
+    animation-delay: 0.2s;
+  }
+</style>

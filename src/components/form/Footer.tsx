@@ -20,7 +20,7 @@ const Footer: FunctionalComponent<FooterProps> = ({
       <button
         type="button"
         onClick={onBack}
-        class="inline-flex items-center justify-center rounded-full border border-[rgba(18,100,193,0.25)] bg-transparent py-5 px-6 sm:px-8 sm:py-3 text-sm font-semibold text-brand-blue transition hover:bg-[rgba(18,100,193,0.08)] hover:border-[rgba(18,100,193,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(18,100,193,0.4)] hover:cursor-pointer"
+        class="inline-flex items-center justify-center rounded-[8px] border border-[rgba(18,100,193,0.25)] bg-transparent py-5 px-6 sm:px-8 sm:py-4 text-sm font-semibold text-brand-blue transition hover:bg-[rgba(18,100,193,0.08)] hover:border-[rgba(18,100,193,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(18,100,193,0.4)] hover:cursor-pointer"
       >
         Retour
       </button>
@@ -32,7 +32,7 @@ const Footer: FunctionalComponent<FooterProps> = ({
       <button
         type="submit"
         form="eligibility-step-form"
-        class="btn btn-success btn--glow px-6 py-5 sm:py-3 hover:cursor-pointer"
+        class="btn btn-success btn--glow px-6 py-5 sm:py-4 rounded-[8px] hover:cursor-pointer"
       >
         {submitLabel ?? 'Continuer'}
       </button>
