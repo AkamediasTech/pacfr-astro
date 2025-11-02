@@ -9,7 +9,7 @@ type ChoiceStepProps = {
 };
 
 const ChoiceStep: FunctionalComponent<ChoiceStepProps> = ({ step, selectedValue, onSelect }) => (
-  <div class="mt-8 grid gap-4 sm:grid-cols-2">
+  <div class="mt-8 grid gap-4 grid-cols-2">
     {step.options.map((option) => {
       const Icon = option.icon ? OPTION_ICONS[option.icon] : null;
       const isActive = selectedValue === option.value;

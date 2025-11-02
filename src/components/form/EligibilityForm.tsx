@@ -239,7 +239,7 @@ export default function EligibilityForm() {
       : currentPhase.successMessage;
 
   return (
-    <section class="flex h-full w-[90%] mx-auto sm:w-full flex-col overflow-hidden rounded-[8px] bg-white shadow-[0_30px_60px_-20px_rgba(10,63,149,0.35)]">
+    <section class="flex h-full w-[100%] mx-auto sm:w-full flex-col overflow-hidden rounded-[8px] bg-white shadow-[0_30px_60px_-20px_rgba(10,63,149,0.35)]">
         <PhaseHeader content={headerContent} />
 
     <div class="px-6 pt-6 sm:px-8">

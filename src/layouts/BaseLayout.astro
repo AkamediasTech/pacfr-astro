@@ -7,20 +7,56 @@ import FranceRelanceLogo from "../assets/main/france_relance_logo.png";
 import MaPrimeRenovLogo from "../assets/main/ma_prime_renov_logo.png";
 import FranceRenovLogo from "../assets/main/france_renov_logo.png";
 
+const visibilityClasses = {
+  mobile: 'flex',
+  tablet: 'hidden sm:flex',
+  desktop: 'hidden lg:flex',
+} as const;
 
 const brandLogo = {
   name: "Eco Energie France",
   file: EcoEnergieLogo,
   className: "h-8 md:h-16 px-3",
+  showOnMobile: true,
 }
 
 const partnerLogos = [
-  // {name: "Eco Energie France", file: EcoEnergieLogo, className: "h-10"},
-  {name: "République Française", file: RepubliqueFrancaiseLogo, className: "h-8 md:h-16", showOnMobile: false},
-  {name: "France Relance", file: FranceRelanceLogo, className: "md:h-16", showOnMobile: true},
-  {name: "MaPrimeRenov", file: MaPrimeRenovLogo, className: "md:h-16", showOnMobile: true},
-  {name: "France Renov", file: FranceRenovLogo, className: "md:h-16", showOnMobile: false},
+  { name: "République Française", 
+    file: RepubliqueFrancaiseLogo, 
+    className: "h-8 md:h-16", 
+    visibleAbove: "tablet"
+  },
+  { name: "France Relance", 
+    file: FranceRelanceLogo, 
+    className: "md:h-16", 
+    visibleAbove: "mobile", 
+  },
+  { name: "MaPrimeRenov", 
+    file: MaPrimeRenovLogo, 
+    className: "md:h-16", 
+    visibleAbove: "mobile",
+  },
+  { name: "France Renov", 
+    file: FranceRenovLogo, 
+    className: "md:h-16", 
+    visibleAbove: "desktop"
+  },
 ]
+
+
+const getVisibilityClass = (viewport: string) => {
+
+  switch (viewport) {
+    case "mobile":
+      return visibilityClasses.mobile;
+    case "tablet":
+      return visibilityClasses.tablet;
+    case "desktop":
+      return visibilityClasses.desktop;
+    default:
+      return visibilityClasses.mobile;
+  }
+};
 
 
 const {
@@ -62,9 +98,9 @@ const year = new Date().getFullYear();
         </div>
 
       <div class="flex items-center gap-4 md:gap-6">
-        {partnerLogos && Array.isArray(partnerLogos) && partnerLogos?.map((brand)=>{
+        <!-- {partnerLogos && Array.isArray(partnerLogos) && partnerLogos?.map((brand)=>{
           return (
-            <div class={`flex flex-shrink-0 items-center justify-center brand?.showOnMobile ? ${brand?.showOnMobile ? '' : 'hidden sm:flex'} : '' bg-white px-2 sm:px-4 sm:py-2`}>
+            <div class={`flex flex-shrink-0 items-center justify-center ${brand?.showOnMobile ? null : 'hidden sm:flex'} : '' bg-white px-2 sm:px-4 sm:py-2`}>
               <Image 
                 src={brand.file} 
                 alt={brand.name}
@@ -74,8 +110,29 @@ const year = new Date().getFullYear();
               />
             </div>
           )
+        })} -->
+
+        {partnerLogos.map((brand) => {
+
+          const classes = getVisibilityClass(brand?.visibleAbove);
+
+          return (
+            <div class={`${classes} items-center justify-center bg-white px-2 sm:px-4 sm:py-2`}>
+              <Image 
+              src={brand.file} 
+              alt={brand.name}
+              class={`h-10 w-auto object-contain ${brand?.className ?? ''}`}
+              loading="lazy"
+              decoding="async"
+            />
+            </div>
+          );
         })}
+
       </div>
+
+
+
       </div>
      
     </header>
@@ -108,5 +165,9 @@ const year = new Date().getFullYear();
       // import "../scripts/mobileMenu";
       import "../scripts/scrollReveal";
     </script>
+
   </body>
 </html>
+
+
+

@@ -13,28 +13,57 @@ const checklist = [
 ---
 
 <section class="relative flex mx-auto w-full lg:h-[75vh]">
-    <div class="flex h-full w-full flex-col-reverse gap-10 lg:flex-row lg:items-stretch ">
+
+    <div class="flex h-full w-full flex-col lg:flex-row-reverse lg:items-stretch ">
+
+      <!-- Version mobile : visible jusqu’à lg -->
+      <div class="flex flex-col gap-4 w-[90%] max-w-lg my-10 mx-auto lg:hidden">
+        <h1 class="text-3xl font-extrabold text-slate-900 sm:text-4xl">
+          <span class="block">Simulateur pompe à chaleur</span>
+          <span class="mt-1 block bg-gradient-to-r from-[#0A008A] to-[hsl(233,89%,71%)] bg-clip-text text-transparent font-bold [-webkit-text-fill-color:transparent]">
+            Chauffez et économisez
+          </span>
+        </h1>
+        <p class="text-base font-medium italic text-slate-600">Testez en 3 clics</p>
+        <!-- <a href="#simulateur" class="btn btn-success btn--glow w-full md:w-auto">
+          Calculer mes aides financières
+        </a> -->
+      </div>
+
+      <!-- Colonne formulaire (placeholder) -->
+      <div class="relative flex w-full  lg:w-11/20  lg:py-16">
+
+        <!-- Image de fond pour la carte formulaire -->
+        <div
+            class="absolute inset-0 hidden bg-cover bg-center lg:block [clip-path:polygon(14%_0%,100%_0%,100%_100%,0%_100%)]"
+            style={`background-image: url(${FormBackground.src});`}
+            aria-hidden="true"
+        ></div>
+
+        <!-- Carte formulaire -->
+        <div class="relative z-10 mx-auto w-[92.5%] lg:w-full max-w-lg">
+            <EligibilityForm client:load/>
+        </div>
+      </div>
+
       <!-- Colonne texte -->
-      <div class="flex flex-col justify-center w-full lg:w-9/20 py-16 ps-[7.5%]">
-        <h1 class="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+      <!-- Version desktop : masquée avant lg -->
+      <!-- <div class="flex flex-col justify-center w-full max-w-lg mx-auto lg:mx-0 lg:w-9/20 py-16 px-[7.5%] sm:px-0 lg:px-[7.5%] lg:ps-[7.5%]"> -->
+      <div class="flex flex-col justify-center w-full max-w-lg lg:max-w-none mx-auto lg:mx-0 lg:w-9/20 py-16 px-[7.5%] sm:px-0 lg:px-[7.5%] lg:ps-[7.5%]">
+        <h1 class="hidden lg:inline mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">
             <span class="block">Simulateur pompe à chaleur</span>
             <span class="mt-1 block bg-gradient-to-r from-[#0A008A] to-[hsl(233,89%,71%)] bg-clip-text text-transparent font-bold [-webkit-text-fill-color:transparent]">
             Chauffez et économisez
             </span>
         </h1>
-        <p class="mt-2 text-base font-medium italic text-slate-600">
+        <p class="hidden sm:block mt-2 text-base font-medium italic text-slate-600">
         Testez en 3 clics
         </p>
 
         <ul class="mt-6 flex flex-col gap-4 text-base text-slate-600">
           {checklist.map((item) => (
             <li class="flex items-center gap-3">
-              {/* <span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-md bg-emerald-500 text-white"> */}
             <span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-md bg-white text-green">
-                {/* <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none">
-                  <path d="M6.1 11.2 3.3 8.4l1.1-1.1 1.7 1.7 4.5-4.6 1.1 1.1-5.6 5.7z" fill="currentColor" />
-                </svg> */}
-                {/* <img src={CheckIcon} alt="" class="h-4 w-4" aria-hidden="true" /> */}
                 <CheckIcon class="h-14 w-14 text-emerald-500" aria-hidden="true" />
               </span>
               <span>{item}</span>
@@ -51,31 +80,15 @@ const checklist = [
           </a> -->
             <a
                 href="#simulateur"
-                class="btn btn-success btn--glow mt-8 w-full md:w-auto"
+                class="hidden sm:block btn btn-success btn--glow mt-8 w-fit max-w-fit md:w-auto"
                 >
                 Calculer mes aides financières
             </a>
         </div>
       </div>
 
-      <!-- Colonne formulaire (placeholder) -->
-      <div class="relative flex w-full  lg:w-11/20  py-16">
-
-        <!-- Image de fond pour la carte formulaire -->
-        <div
-            class="absolute inset-0 hidden bg-cover bg-center lg:block [clip-path:polygon(14%_0%,100%_0%,100%_100%,0%_100%)]"
-            style={`background-image: url(${FormBackground.src});`}
-            aria-hidden="true"
-        ></div>
 
 
-        <!-- Carte formulaire -->
-        <div class="relative z-10 mx-auto w-full max-w-lg">
-            <EligibilityForm client:load/>
-        </div>
-
-
-      </div>
     </div>
 </section>
 
