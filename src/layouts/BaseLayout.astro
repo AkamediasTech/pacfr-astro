@@ -16,29 +16,29 @@ const visibilityClasses = {
 const brandLogo = {
   name: "Eco Energie France",
   file: EcoEnergieLogo,
-  className: "h-8 md:h-16 px-3",
+  className: "h-8 md:h-15 px-3",
   showOnMobile: true,
 }
 
 const partnerLogos = [
   { name: "République Française", 
     file: RepubliqueFrancaiseLogo, 
-    className: "h-8 md:h-16", 
+    className: "h-8 md:h-15", 
     visibleAbove: "tablet"
   },
   { name: "France Relance", 
     file: FranceRelanceLogo, 
-    className: "md:h-16", 
+    className: "md:h-15", 
     visibleAbove: "mobile", 
   },
   { name: "MaPrimeRenov", 
     file: MaPrimeRenovLogo, 
-    className: "md:h-16", 
+    className: "md:h-15", 
     visibleAbove: "mobile",
   },
   { name: "France Renov", 
     file: FranceRenovLogo, 
-    className: "md:h-16", 
+    className: "md:h-15", 
     visibleAbove: "desktop"
   },
 ]
@@ -75,16 +75,17 @@ const year = new Date().getFullYear();
   </head>
   <body class="min-h-screen max-w-screen bg-gradient-to-b from-white via-slate-50 to-slate-100 font-sans text-slate-900">
     <header class="relative z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
-      <div class="bg-[#0A3F95] text-white">
-        <div class="mx-auto w-[90%] px-6 py-2 text-left text-lg font-semibold tracking-wide italic">
+      <div class="bg-[#004081] text-white">
+        <div class="mx-auto w-[90%] py-1 lg:px-12 text-center text-xs md:text-md lg:text-lg sm:text-left tracking-wide italic">
           Jusqu'à 11 500 € d'aides pour votre pompe à chaleur
         </div>
       </div>
 
-      <div class="mx-auto w-full sm:w-[90%] flex items-center gap-4 px-6 py-4 md:flex-row justify-between">
+      <div class="mx-auto w-[95%] sm:w-[90%] flex items-center gap-4 sm:px-6 py-2 md:flex-row justify-between">
         <div>
         <a href="/" class="flex items-center gap-3 text-lg font-semibold tracking-tight text-slate-900">
-           <div class="flex items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-4 shadow-sm">
+           <div class="flex items-center justify-center sm:px-4 py-4"
+           >
           <!-- <div class="flex flex-shrink-0 items-center justify-center gap-3 px-4 py-2"> -->
               <Image 
                 src={brandLogo.file} 
@@ -97,7 +98,7 @@ const year = new Date().getFullYear();
         </a>
         </div>
 
-      <div class="flex items-center gap-4 md:gap-6">
+      <div class="flex items-center gap-4 md:gap-3">
         <!-- {partnerLogos && Array.isArray(partnerLogos) && partnerLogos?.map((brand)=>{
           return (
             <div class={`flex flex-shrink-0 items-center justify-center ${brand?.showOnMobile ? null : 'hidden sm:flex'} : '' bg-white px-2 sm:px-4 sm:py-2`}>

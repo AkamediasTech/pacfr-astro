@@ -20,7 +20,9 @@ const Footer: FunctionalComponent<FooterProps> = ({
       <button
         type="button"
         onClick={onBack}
-        class="inline-flex items-center justify-center rounded-[8px] border border-[rgba(18,100,193,0.25)] bg-transparent py-5 px-6 sm:px-8 sm:py-4 text-sm font-semibold text-brand-blue transition hover:bg-[rgba(18,100,193,0.08)] hover:border-[rgba(18,100,193,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(18,100,193,0.4)] hover:cursor-pointer"
+        class="inline-flex items-center justify-center rounded-[8px] border border-[rgba(18,100,193,0.25)] bg-transparent py-5 px-6 sm:px-6 sm:py-3 
+        text-sm lg:text-base font-semibold text-brand-blue transition hover:bg-[rgba(18,100,193,0.08)] hover:border-[rgba(18,100,193,0.4)] 
+        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(18,100,193,0.4)] hover:cursor-pointer"
       >
         Retour
       </button>
@@ -37,7 +39,7 @@ const Footer: FunctionalComponent<FooterProps> = ({
         {submitLabel ?? 'Continuer'}
       </button>
     ) : (
-      <p class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
+      <p class="text-xs lg:text-base font-semibold uppercase tracking-[0.3em] text-slate-400">
         {progressText}
       </p>
     )}

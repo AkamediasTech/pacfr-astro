@@ -1,7 +1,8 @@
 ---
 import TvaLogo from "../assets/main/tva.png";
 import AnahLogo from "../assets/main/anha.png";
-import MaPrimeRenovIcon from "../assets/main/ma_prime_renov_logo.png";
+// import MaPrimeRenovIcon from "../assets/main/ma_prime_renov_logo.png";
+import MaPrimeRenovIcon from "../assets/main/Ma-prime-renov 1.png";
 import EcoPretIcon from "../assets/main/taux0.jpg";
 import { Image } from "astro:assets";
 
@@ -15,11 +16,11 @@ const badges = [
 
 ---
 
-<section class="bg-white w-full">
-  <div class="mx-auto flex max-w-4xl flex-nowrap items-center justify-center gap-6 px-6 py-8 sm:gap-10 lg:py-10">
+<!-- <section class="bg-white w-full border-t-2 border-slate-200 py-4 lg:py-2">
+  <div class="mx-auto flex max-w-4xl flex-nowrap items-center justify-center gap-6 lg:gap-10 px-6">
     {badges.map((badge) => (
-      <figure class="flex flex-col items-center gap-3 text-center basis-[20%]">
-        <span class="flex h-12 w-fit lg:w-36 items-center justify-center rounded-full">
+      <figure class="flex flex-col items-center text-center h-fit">
+        <div class="flex h-fit w-fit max-w-16 lg:w-36 items-center justify-center rounded-full">
           <Image
             src={badge.file}
             alt={badge.name}
@@ -28,8 +29,66 @@ const badges = [
             loading="lazy"
             decoding="async"
           />
-        </span>
+        </div>
       </figure>
     ))}
   </div>
+</section> -->
+
+<!-- <section class="bg-white w-full border-t-2 border-slate-200 py-4 lg:py-4">
+  <div class="mx-auto flex max-w-4xl flex-nowrap items-center justify-center gap-6 lg:gap-12 px-6 h-[80px]">
+    {badges.map((badge) => (
+      // <figure class="flex flex-col items-center text-center h-fit">
+          <Image
+            src={badge.file}
+            alt={badge.name}
+            // class="w-[43px] sm:w-[80px]  object-contain"
+            // class="w-[60px] sm:w-[80px] max-h-[70px] object-contain"
+            class="h-[60px] sm:h-[80xp] w-auto "
+            format="webp"
+            loading="lazy"
+            decoding="async"
+          />
+      // </figure>
+    ))}
+  </div>
+</section> -->
+
+
+<section class="bg-white w-full border-t-2 border-slate-200 py-4 lg:py-4">
+  <div class="mx-auto flex max-w-4xl flex-nowrap items-center justify-center gap-6 lg:gap-12 px-6 h-[80px]">
+     <Image
+            src={badges[0].file}
+            alt={badges[0].name}
+            class="w-[58.5px] md:w-[78px] "
+            format="webp"
+            loading="lazy"
+            decoding="async"
+      />
+      <Image
+        src={badges[1].file}
+        alt={badges[1].name}
+        class="w-[65.25px] md:w-[87px] "
+        format="webp"
+        loading="lazy"
+        decoding="async"
+      />
+      <Image
+          src={badges[2].file}
+          alt={badges[2].name}
+          class="w-[54px] md:w-[72px] "
+          format="webp"
+          loading="lazy"
+          decoding="async"
+        />
+      <Image
+            src={badges[3].file}
+            alt={badges[3].name}
+            class="w-[43px] md:w-[57px] "
+            format="webp"
+            loading="lazy"
+            decoding="async"
+        />
+  </div>
 </section>
+
