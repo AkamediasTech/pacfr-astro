@@ -17,9 +17,9 @@ const PhaseHeader: FunctionalComponent<PhaseHeaderProps> = ({ content }) => {
 
   return (
     <header class={`${backgroundClass} px-6 pb-6 pt-6 text-center text-white sm:px-8 transition-colors duration-500`}>
-      <h1 class="text-xl font-semibold sm:text-2xl">{title}</h1>
+      <h1 class="text-lg sm:text-xl">{title}</h1>
       <p
-        class={`mt-1 text-xs uppercase tracking-[0.4em] text-white/70 transition-opacity duration-300 ${
+        class={`mt-1 text-xs uppercase tracking-[0.2em] text-white/70 transition-opacity duration-300 ${
           hasSubtitle ? 'opacity-100' : 'opacity-0'
         }`}
       >

@@ -11,50 +11,149 @@ export type FormStep = Extract<Step, { type: 'form' }>;
 
 export const OPTION_ICONS: Record<NonNullable<ChoiceOption['icon']>, JSX.Element> = {
   apartment: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <rect x="4" y="3" width="16" height="18" rx="2" />
-      <path d="M9 7h2v2H9zM13 7h2v2h-2zM9 11h2v2H9zM13 11h2v2h-2zM9 15h6v4H9z" />
+    <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    stroke-width="2" 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+    >
+      <rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect>
+      <path d="M9 22v-4h6v4"></path>
+      <path d="M8 6h.01"></path>
+      <path d="M16 6h.01"></path>
+      <path d="M12 6h.01"></path>
+      <path d="M12 10h.01"></path>
+      <path d="M12 14h.01"></path>
+      <path d="M16 10h.01"></path>
+      <path d="M16 14h.01"></path>
+      <path d="M8 10h.01"></path>
+      <path d="M8 14h.01"></path>
     </svg>
   ),
   house: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <path d="M3 10.5 12 3l9 7.5" />
-      <path d="M5 10v9h4v-5h6v5h4v-9" />
+    <svg class="h-7 w-7" 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    stroke-width="2" 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+    >
+      <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+      <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
     </svg>
   ),
   tenant: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <rect x="4" y="4" width="16" height="16" rx="2" />
-      <path d="M8 14h8M8 10h5" />
+    <svg 
+      class="h-7 w-7"
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-width="2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      >
+      <path d="M16 19h6"></path>
+      <path d="M16 2v4"></path>
+      <path d="M21 15V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8.5"></path>
+      <path d="M3 10h18"></path>
+      <path d="M8 2v4"></path>
     </svg>
   ),
   owner: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <circle cx="8" cy="15" r="3" />
-      <path d="M17 3h4v4l-7 7" />
-      <path d="M19 3 9 13" />
+    <svg
+      class="h-7 w-7" 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-width="2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      >
+      <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z">
+      </path>
+      <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
     </svg>
   ),
   oil: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <path d="M12 2s4 5 4 8a4 4 0 1 1-8 0c0-3 4-8 4-8z" />
+    <svg 
+    class="h-7 w-7" 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    stroke-width="2" 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+    >
+      <line x1="3" x2="15" y1="22" y2="22"></line>
+      <line x1="4" x2="14" y1="9" y2="9"></line>
+      <path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"></path>
+      <path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"></path>
     </svg>
   ),
   gas: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <path d="M12 2v6l3 3-3 3v8" />
-      <path d="M9 18h6" />
+    // <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    //   <path d="M12 2v6l3 3-3 3v8" />
+    //   <path d="M9 18h6" />
+    // </svg>
+    <svg 
+      class="h-7 w-7"
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-width="2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      >
+      <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z">
+      </path>
     </svg>
   ),
   electricity: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" />
+    // <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    //   <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" />
+    // </svg>
+    <svg
+      class="h-7 w-7" 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-width="2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      >
+        <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
+      </path>
     </svg>
   ),
   other: (
-    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-      <path d="M3 21c3-8 7-12 9-12s6 4 9 12" />
-      <path d="M8 15h8" />
+    // <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    //   <path d="M3 21c3-8 7-12 9-12s6 4 9 12" />
+    //   <path d="M8 15h8" />
+    // </svg>
+
+    <svg 
+      class="h-7 w-7" 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-width="2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      ><path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"></path>
+      <path d="M7 16v6"></path>
+      <path d="M13 19v3"></path>
+      <path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5">
+      </path>
     </svg>
   ),
 };
