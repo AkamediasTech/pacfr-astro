@@ -1,0 +1,70 @@
+---
+---
+
+<section class="bg-white flex flex-col justify-center items-center w-full gap-[4vh] text-center py-[100px] bg-[url(../assets/main/home.png)] bg-cover bg-no-repeat bg-center">
+    <div class="flex justify-center items-stretch gap-[4vw] w-[100%] max-w-[1400px] py-0 px-[16px] fade-text fade-in">
+        <div class="item slide slideRight slidevisible">
+                <h2 class="text-5xl my-16">📝</h2>
+                <h3 class="text-xl">Vérifiez votre éligibilité</h3>
+                <p class="my-6">Remplissez notre formulaire simple pour savoir si vous pouvez bénéficier des aides</p>
+        </div>
+        <div class="item">
+                <h2 class="text-5xl my-16">👥</h2>
+                <h3 class="text-xl">Accompagnement personnalisé</h3>
+                <p class="my-6">Un expert vous contacte et évalue vos besoins spécifiques</p>
+        </div>
+        <div class="item slide slideLeft slidevisible">
+                <h2 class="text-5xl my-16">🏠</h2>
+                <h3 class="text-xl">Réalisation des travaux</h3>
+                <p class="my-6">Nos artisans certifiés réalisent vos travaux de rénovation</p>
+        </div>
+    </div>
+</section>
+
+<style>
+
+    .item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        max-width: 300px;
+        min-width: 20vw;
+        min-height: 200px;
+        height: 100%;
+        box-shadow: rgba(0, 0, 0, 0.26) 4px 4px 20px;
+        flex: 1 1 0%;
+        gap: 15px;
+        background: rgba(255, 255, 255, 0.894);
+        padding: 20px;
+        border-radius: 10px;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .fade-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .fade-text {
+        opacity: 1;
+        transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    .slide {
+        opacity: 0;
+        transform: translateX(0);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slideLeft {
+        transform: translateX(-100%);
+    }
+    .slideRight {
+        transform: translateX(100%);
+    }
+    .slidevisible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+</style>

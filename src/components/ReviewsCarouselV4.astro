@@ -44,7 +44,7 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
     >
 
         <div class="flex flex-col  gap-10 lg:flex-row lg:items-start lg:gap-6">
-            <aside class="rounded-2xl bg-white px-5 py-5 lg:w-[280px] mb-auto">
+            <aside class="rounded-2xl bg-white px-5 py-5 lg:w-[280px] my-auto">
                 <div class="flex items-center  justify-center lg:justtify-start gap-4">
                 <div class="h-14 w-14 overflow-hidden rounded-full bg-slate-200">
                     <AstroImage src={GoogleProfile} alt="Profil Google" class="h-full w-full object-cover" />
@@ -192,6 +192,7 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
     border-radius: 9999px;
     background-color: #cbd5f5;
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
   }
   :global(.carousel-dot.is-active) {
     background-color: #0a7cff;
