@@ -39,20 +39,18 @@ const steps = [
         <article
           class={`group relative flex flex-col bg-white/90 max-w-[300px] rounded-lg border border-white/60 p-6 text-left 
             shadow-[0_25px_60px_-30px_rgba(15,23,42,0.45)] 
-            transition hover:-translate-y-1 
+            transition 
             hover:shadow-[0_35px_80px_-35px_rgba(15,23,42,0.55)] slide ${
                 index === 0 ? 'slideRight' :
                 index === steps.length - 1 ? 'slideLeft' :
                 ''
             }`
-        
         }
         >
             <div class="absolute -top-3 left-6 inline-flex items-center rounded-full bg-[#0a3d85] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow">
                 {step.badge}
             </div>
 
-          {/* <div class="mt-6 mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0a7cff] to-[#1d1f55] text-3xl text-white shadow-lg"> */}
             <div class="my-12 mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl text-7xl text-white shadow-lg">
                 {step.emoji}
             </div>
@@ -98,6 +96,8 @@ const steps = [
         transform: translateX(0);
     }
 </style>
+
+
 
 <script is:inline>
   const observer = new IntersectionObserver((entries) => {
