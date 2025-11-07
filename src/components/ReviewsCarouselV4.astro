@@ -50,15 +50,24 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
                     <AstroImage src={GoogleProfile} alt="Profil Google" class="h-full w-full object-cover" />
                 </div>
                 <div>
-                    <p class="text-sm font-semibold text-slate-800">EnergieFrance</p>
+                    <p class="text-sm text-slate-800">EnergieFrance</p>
                     <div class="flex items-center gap-2">
                     <span class="text-xl font-bold text-slate-900">4.6</span>
-                    <span class="flex items-center text-amber-400">
+                    <!-- <span class="flex items-center text-amber-400">
                         {Array.from({ length: 5 }, (_, index) => (
-                        <svg class={`h-4 w-4 ${index < 4 ? 'fill-amber-400' : 'fill-slate-200'}`} viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.12 3.439a1 1 0 00.95.69h3.62c.969 0 1.371 1.24.588 1.81l-2.928 2.128a1 1 0 00-.364 1.118l1.12 3.438c.3.922-.755 1.688-1.54 1.118l-2.928-2.128a1 1 0 00-1.175 0L6.83 16.668c-.784.57-1.838-.196-1.539-1.118l1.12-3.438a1 1 0 00-.364-1.118L3.12 8.866c-.783-.57-.38-1.81.588-1.81h3.62a1 1 0 00.95-.69l1.12-3.439z" />
-                        </svg>
+                        // <svg class={`h-4 w-4 ${index < 4 ? 'fill-amber-400' : 'fill-slate-200'}`} viewBox="0 0 20 20">
+                        //     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.12 3.439a1 1 0 00.95.69h3.62c.969 0 1.371 1.24.588 1.81l-2.928 2.128a1 1 0 00-.364 1.118l1.12 3.438c.3.922-.755 1.688-1.54 1.118l-2.928-2.128a1 1 0 00-1.175 0L6.83 16.668c-.784.57-1.838-.196-1.539-1.118l1.12-3.438a1 1 0 00-.364-1.118L3.12 8.866c-.783-.57-.38-1.81.588-1.81h3.62a1 1 0 00.95-.69l1.12-3.439z" />
+                        // </svg>
+                        
                         ))}
+                    </span> -->
+                    <span class="ps-[6px] pr-[4px] flex" role="img" aria-label="4,6 étoiles">
+                                <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_14.png)] bg-contain"></span>
+                                <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_14.png)] bg-contain"></span>
+                                <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_14.png)] bg-contain"></span>
+                                <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_14.png)] bg-contain"></span>
+                                <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_half_14.png)] bg-contain"></span>
+                                <!-- <span class="inline-block w-5 h-5 bg-image:url(./assets/ic_star_rate_14.png) UpDOYb"></span> -->
                     </span>
                     </div>
                     <p class="text-xs text-slate-500">Basé sur 39 avis</p>
@@ -109,8 +118,6 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
                 </button>
                 </div>
             </div>
-
-            <!-- <div class="carousel-dots" data-dots></div> -->
         </div>
 
         <div class="carousel-dots" data-dots></div>
