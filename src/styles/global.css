@@ -19,6 +19,7 @@ html {
 :root {
   --brand-blue: #1264c1;
   --font-sans: 'Poppins', system-ui, sans-serif;
+  --color-bright-blue: #0a7cff;
 }
 
 body {

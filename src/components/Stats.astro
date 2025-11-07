@@ -1,4 +1,6 @@
 ---
+import FadeStyles from "../styles/FadeStyles.astro";
+
 ---
 
 <section class="stats bg-[#22234A] w-full h-[288px] flex justify-center items-center">
@@ -18,20 +20,4 @@
         </div>
 </section>
 
-<style>
-    .fade-text {
-        opacity: 1;
-        transition: opacity 1s ease-out, transform 1s ease-out;
-    }
-
-    .fade-in {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .highlight {
-        font-weight: 600;
-        color: #0a7cff;
-    }
-</style>
-
+<FadeStyles />

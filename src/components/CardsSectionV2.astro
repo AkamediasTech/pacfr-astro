@@ -1,4 +1,6 @@
 ---
+import FadeStyles from "../styles/FadeStyles.astro";
+
 const steps = [
   {
     id: 'eligibility',
@@ -68,18 +70,10 @@ const steps = [
   </div>
 </section>
 
+<FadeStyles />
+
 
 <style>
-
-    .fade-in {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    .fade-text {
-        opacity: 1;
-        transition: opacity 1s ease-out, transform 1s ease-out;
-    }
-
     .slide {
         opacity: 0;
         transform: translateX(0);

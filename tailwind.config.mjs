@@ -12,6 +12,10 @@ export default {
       fontFamily: {
         sans: ['Poppins', ...defaultTheme.fontFamily.sans],
       },
+      colors: {
+        'brand-blue': '#1264c1',
+        'bright-blue': '#0a7cff',
+      }
     },
   },
   plugins: [],
