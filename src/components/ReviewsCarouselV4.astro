@@ -245,7 +245,8 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
 
     const buildDots = () => {
       dotsContainer.innerHTML = '';
-      dots = slides.map((_, pos) => {
+      const dotCount = maxIndex() + 1; // positions affichables
+      dots = Array.from({ length: dotCount }, (_, pos) => {
         const dot = document.createElement('button');
         dot.type = 'button';
         dot.classList.add('carousel-dot');
