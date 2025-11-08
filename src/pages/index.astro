@@ -26,6 +26,7 @@ import PanasonicLogo from '../assets/main/panasonic.png';
 import AtlanticLogo from '../assets/main/atlantic.png';
 import MitsubishiLogo from '../assets/main/mitsubishi.png';
 import DaikinLogo from '../assets/main/daikin.png';
+import HeroBadges from '../components/HeroBadges.astro';
 
 const eligibilityMsgConfig = {
   paragraphText: "Êtes-vous éligible ? Découvrez le montant de vos aides !",
@@ -44,8 +45,9 @@ const eligibilityMsgConfig2 = {
 >
 
   <HeroSection />
-  <ReviewsCarouselV4/>
+  <HeroBadges />
 
+  <ReviewsCarouselV4/>
 
   <AidEligibilityCTA config={eligibilityMsgConfig} />
   <CardsSectionV2 />

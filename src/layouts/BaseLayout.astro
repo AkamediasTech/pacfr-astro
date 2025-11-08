@@ -2,10 +2,10 @@
 import '../styles/global.css';
 import {Image} from "astro:assets";
 import EcoEnergieLogo from "../assets/main/logo.png";
-import RepubliqueFrancaiseLogo from "../assets/main/logo_republique_francaise.png";
+import RepubliqueFrancaiseLogo from "../assets/main/logo_republique_francaise_q100.avif";
 import FranceRelanceLogo from "../assets/main/france_relance_logo.png";
 import MaPrimeRenovLogo from "../assets/main/ma_prime_renov_logo.png";
-import FranceRenovLogo from "../assets/main/france_renov_logo.png";
+import FranceRenovLogo from "../assets/main/france_renov_logo_q100.avif";
 
 const visibilityClasses = {
   mobile: 'flex',
@@ -91,7 +91,8 @@ const year = new Date().getFullYear();
                 src={brandLogo.file} 
                 alt={brandLogo.name}
                 class={`h-10 w-auto object-contain ${brandLogo?.className ?? ''}`}
-                loading="lazy"
+                loading="eager"
+                fetchpriority="high"
                 decoding="async"
               />
             </div>
@@ -123,7 +124,8 @@ const year = new Date().getFullYear();
               src={brand.file} 
               alt={brand.name}
               class={`h-10 w-auto object-contain ${brand?.className ?? ''}`}
-              loading="lazy"
+              loading="eager"
+              fetchpriority="high"
               decoding="async"
             />
             </div>

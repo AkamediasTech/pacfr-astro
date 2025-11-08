@@ -9,6 +9,11 @@ declare module '*.svg?component' {
   export default Component;
 }
 
+declare module '*.avif' {
+	const metadata: import ('astro').ImageMetadata;
+	export default metadata;
+}
+
 declare module '*.png' {
   const metadata: import ('astro').ImageMetadata;
   export default metadata;
