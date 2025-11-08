@@ -1,4 +1,5 @@
 ---
+import ExplainerHeading from './ExplainerHeading.astro';
 import heatPumpExplainerDiagram from '../assets/main/heat_pump_explainer_diagram.png';
 
 type ExplainerImage = {
@@ -7,6 +8,7 @@ type ExplainerImage = {
     caption?: string;
     width?: number;
     height?: number;
+    className?: string;
 }
 
 interface ExplainerSplitSectionProps {
@@ -15,12 +17,15 @@ interface ExplainerSplitSectionProps {
     highlight?: string;
     body: string;
     image: ExplainerImage;
+    headingId?: string;
+    // className?: string;
 }
 
-const defaultContent : ExplainerSplitSectionProps = {
+const defaultContent : Required<
+  Pick<ExplainerSplitSectionProps, 'eyebrow' | 'heading' | 'body' | 'image'>
+> = {
   eyebrow: 'Fonctionnement',
   heading: 'Comment fonctionne une pompe à chaleur ?',
-  highlight: 'Pompe à chaleur',
   body: `Une pompe à chaleur (PAC) est un système de chauffage et de climatisation qui utilise les énergies renouvelables présentes
   dans l’air, l’eau ou le sol pour chauffer ou rafraîchir votre logement. Son principe repose sur un cycle thermodynamique qui capte
   les calories gratuites de l’environnement pour les transformer en chaleur utilisable à l’intérieur de votre habitation. Investir
@@ -31,26 +36,16 @@ const defaultContent : ExplainerSplitSectionProps = {
     caption: 'Cycle thermodynamique simplifié d’une PAC.',
     width: 480,
     height: 320,
-  }, 
+  }
 }
 
 const {
-  eyebrow,
-  heading,
-  highlight,
-  body,
-  image,
-} = { ...defaultContent, ...Astro.props };
-
-const highlightIndex = highlight ? heading.indexOf(highlight) : -1;
-const headingParts =
-  highlightIndex >= 0
-    ? {
-        before: heading.slice(0, highlightIndex),
-        highlighted: heading.slice(highlightIndex, highlightIndex + highlight.length),
-        after: heading.slice(highlightIndex + highlight.length),
-      }
-    : { before: heading, highlighted: '', after: '' };
+  eyebrow = defaultContent.eyebrow,
+  heading = defaultContent.heading,
+  body = defaultContent.body,
+  image = defaultContent.image,
+  headingId = 'explainer-heading',
+} = Astro.props as ExplainerSplitSectionProps;
 
 ---
 
@@ -59,34 +54,25 @@ const headingParts =
   class="border-t-4 border-[#0a3d85] bg-white px-6 py-14 sm:px-10"
   aria-labelledby="explainer-heading"
 >
-  <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:items-center">
-    <div>
-      {eyebrow && (
-        <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[#0a3d85]">
-          {eyebrow}
-        </p>
-      )}
-      <h2
-        id="explainer-heading"
-        class="mt-3 text-3xl font-light text-slate-900 sm:text-[2.2rem]"
-      >
-        {highlightIndex >= 0 ? (
-          <>
-            {headingParts.before}
-            <span class="font-semibold text-[#0a3d85]">
-              {headingParts.highlighted}
-            </span>
-            {headingParts.after}
-          </>
-        ) : (
-          heading
-        )}
-      </h2>
-      <div class="mt-4 h-0.5 w-24 bg-[#0a7cff]" role="presentation"></div>
-      <p class="mt-6 text-lg leading-relaxed text-slate-700">
-        {body}
-      </p>
-    </div>
+    <div class="mx-auto grid max-w-7xl gap-2 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:items-center">
+        <div>
+            <ExplainerHeading 
+                eyebrow={eyebrow} 
+                headingId={headingId} 
+                showUnderline={false}
+                className="sm:text-[2rem]"
+            >
+                    <slot name="heading">
+                    {heading}
+                    </slot>
+            </ExplainerHeading>
+
+            <div class="mt-6 text-lg leading-relaxed text-slate-700 text-justify">
+                <slot name="body">
+                <p>{body}</p>
+                </slot>
+            </div>
+        </div>
 
     <figure class="mx-auto w-full max-w-md rounded-3xl border border-sky-100 bg-sky-50/60 p-4 shadow-lg">
       <img

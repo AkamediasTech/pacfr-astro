@@ -17,6 +17,9 @@ import ImageBanner from '../components/ImageBanner.astro';
 import Stats from '../components/Stats.astro';
 import AidSection from '../components/AidSection.astro';
 import ExplainerSplitSection from '../components/ExplainerSplitSection.astro';
+import UnderlineAccent from '../components/UnderlineAccent.astro';
+import ExplainerHeading from '../components/ExplainerHeading.astro';
+import LegalStrip from '../components/LegalStrip.astro';
 
 const eligibilityMsgConfig = {
   paragraphText: "Êtes-vous éligible ? Découvrez le montant de vos aides !",
@@ -48,9 +51,48 @@ const eligibilityMsgConfig2 = {
   <Stats />
   <AidSection />
   <AidEligibilityCTA config={eligibilityMsgConfig2} />
-  <ExplainerSplitSection eyebrow="Fonctionnement" heading="Comment fonctionne une pompe à chaleur ?" highlight="pompe à chaleur" body="Une pompe à chaleur (PAC) est un système de chauffage et de climatisation qui utilise les énergies renouvelables présentes dans l’air, l’eau ou le sol pour chauffer ou rafraîchir votre logement. Son principe repose sur un cycle thermodynamique qui capte les calories gratuites de l’environnement pour les transformer en chaleur utilisable à l’intérieur de votre habitation. Investir dans une pompe à chaleur, c’est choisir une solution performante, durable et respectueuse de l’environnement pour un logement plus confortable et économique." />
+  <!-- <ExplainerSplitSection eyebrow="Fonctionnement" heading="Comment fonctionne une pompe à chaleur ?" highlight="pompe à chaleur" body="Une pompe à chaleur (PAC) est un système de chauffage et de climatisation qui utilise les énergies renouvelables présentes dans l’air, l’eau ou le sol pour chauffer ou rafraîchir votre logement. Son principe repose sur un cycle thermodynamique qui capte les calories gratuites de l’environnement pour les transformer en chaleur utilisable à l’intérieur de votre habitation. Investir dans une pompe à chaleur, c’est choisir une solution performante, durable et respectueuse de l’environnement pour un logement plus confortable et économique." /> -->
+
+  <ExplainerSplitSection eyebrow="Fonctionnement" >
+    <Fragment slot="heading" >
+      <!-- Comment fonctionne une <span class="font-semibold text-[#0a3d85]">pompe à chaleur</span> ? -->
+       <!-- Comment fonctionne une  -->
+       <!-- <UnderlineAccent className="" underlineClass="bg-emerald-400/80 bg-[#0a3d85] h-[0.1em]">
+          pompe à chaleur
+      </UnderlineAccent> -->
+
+      Comment fonctionne une
+
+      <UnderlineAccent className="text-[#0a3d85] font-semibold" underlineClass="bg-[#0a7cff] h-[0.175em] translate-y-2 px-0 mx-0 ">
+        pompe à chaleur ?
+      </UnderlineAccent>
+
+      <!-- <span class="font-semibold text-[#0a3d85]" -->
+       
+       <!-- >pompe à chaleur</span> ? -->
+    </Fragment>
+
+    <Fragment slot="body">
+      Une pompe à chaleur (PAC) est un système de chauffage et de climatisation qui utilise les énergies
+      renouvelables présentes dans l’air, l’eau ou le sol pour chauffer ou rafraîchir votre logement.
+      Son principe repose sur un cycle thermodynamique qui capte les calories gratuites de l’environnement
+      pour les transformer en chaleur utilisable à l’intérieur de votre habitation. Investir dans une pompe
+      à chaleur, c’est choisir une solution performante, durable et respectueuse de l’environnement pour un
+      logement plus confortable et économique.
+    </Fragment>
+  </ExplainerSplitSection>
 
   <AidEligibilityCTA config={eligibilityMsgConfig} />
+
+  <LegalStrip
+    brand="EcoEnergieFrance"
+    items={[
+      { label: 'Tous droits réservés' },
+      { label: 'Mentions légales', href: '/mentions-legales' },
+      { label: 'Politique de confidentialité', href: '/confidentialite' },
+      { label: 'CGU', href: '/cgu' },
+    ]}
+  />
 
   <!-- <Hero
     eyebrow="Studio créatif"

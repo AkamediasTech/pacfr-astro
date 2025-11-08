@@ -1,0 +1,27 @@
+---
+interface UnderlineAccentProps {
+  as?: keyof HTMLElementTagNameMap;
+  underlineClass?: string;
+  className?: string;
+}
+
+const {
+  as = 'span',
+  underlineClass = 'bg-[#0a7cff]',
+  className = '',
+} = Astro.props as UnderlineAccentProps;
+---
+
+<component
+  is={as}
+  class:list={['relative inline-block', className]}
+>
+  <slot />
+  <span
+    aria-hidden="true"
+    class:list={[
+      'pointer-events-none absolute inset-x-0 bottom-0 h-[0.2em] translate-y-1 rounded-full',
+      underlineClass,
+    ]}
+  ></span>
+</component>
