@@ -9,13 +9,24 @@ import ContactCard from '../components/ContactCard.astro';
 import HeroSection from '../components/HeroSection.astro';
 import ReviewsCarousel from '../components/ReviewsCarousel.astro';
 import ReviewsCarouselV4 from '../components/ReviewsCarouselV4.astro';
-import EligibilityCTA from '../components/EligibilityCTA.astro';
+import AidEligibilityCTA from '../components/AidEligibilityCTA.astro';
 import CardsSection from '../components/CardsSection.astro';
 import CardsSectionV2 from '../components/CardsSectionV2.astro';
 import GovAidBanner from '../components/GovAidBanner.astro';
 import ImageBanner from '../components/ImageBanner.astro';
 import Stats from '../components/Stats.astro';
 import AidSection from '../components/AidSection.astro';
+import ExplainerSplitSection from '../components/ExplainerSplitSection.astro';
+
+const eligibilityMsgConfig = {
+  paragraphText: "Êtes-vous éligible ? Découvrez le montant de vos aides !",
+  buttonText: "Simuler mes aides",
+}
+
+const eligibilityMsgConfig2 = {
+  paragraphText: "Êtes-vous éligible ? Découvrez le montant de vos aides !",
+  buttonText: "Vérifier mon éligibilité",
+}
 
 ---
 <BaseLayout
@@ -26,13 +37,20 @@ import AidSection from '../components/AidSection.astro';
   <HeroSection />
   <!-- <ReviewsCarousel /> -->
   <ReviewsCarouselV4/>
-  <EligibilityCTA />
+  <!-- <EligibilityCTA /> -->
+
+
+  <AidEligibilityCTA config={eligibilityMsgConfig} />
   <!-- <CardsSection /> -->
   <CardsSectionV2 />
   <GovAidBanner />
   <ImageBanner />
   <Stats />
   <AidSection />
+  <AidEligibilityCTA config={eligibilityMsgConfig2} />
+  <ExplainerSplitSection eyebrow="Fonctionnement" heading="Comment fonctionne une pompe à chaleur ?" highlight="pompe à chaleur" body="Une pompe à chaleur (PAC) est un système de chauffage et de climatisation qui utilise les énergies renouvelables présentes dans l’air, l’eau ou le sol pour chauffer ou rafraîchir votre logement. Son principe repose sur un cycle thermodynamique qui capte les calories gratuites de l’environnement pour les transformer en chaleur utilisable à l’intérieur de votre habitation. Investir dans une pompe à chaleur, c’est choisir une solution performante, durable et respectueuse de l’environnement pour un logement plus confortable et économique." />
+
+  <AidEligibilityCTA config={eligibilityMsgConfig} />
 
   <!-- <Hero
     eyebrow="Studio créatif"
