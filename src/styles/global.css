@@ -11,6 +11,12 @@
 @import "@fontsource/poppins/900.css";
 
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -24,6 +30,8 @@ html {
 
 body {
   font-family: var(--font-sans);
+  padding: 0;
+  margin: 0;
 }
 
 @layer components {
