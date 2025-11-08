@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'preact/hooks';
+import { cn } from '../../utils/cn';
 
 type ChecklistAnimatorProps = {
   items: string[];
@@ -53,7 +54,7 @@ export function ChecklistAnimator({ items, playKey, animationTiming, onComplete 
 
 
 const LoaderIcon = () => (
-  <svg class="h-5 w-5 text-emerald-500" viewBox="0 0 20 20" fill="currentColor">
+  <svg class="h-6 w-6 text-emerald-500 mb-auto" viewBox="0 0 20 20" fill="currentColor">
     <path
       fill-rule="evenodd"
       d="M16.707 5.293a1 1 0 010 1.414l-7.2 7.2a1 1 0 01-1.414 0l-3-3A1 1 0 016.8 9.793l2.293 2.293 6.493-6.493a1 1 0 011.414 0z"
@@ -63,7 +64,7 @@ const LoaderIcon = () => (
 );
 
 const LoaderSpinner = () => (
-  <span class="h-5 w-5 inset-0 animate-spin rounded-full border-3 border-[#007bff] border-r-[#d3eaff] border-b-[#d3eaff] border-l-[#d3eaff]" />
+  <span class="h-6 w-6 inset-0 animate-spin rounded-full border-3 border-[#007bff] border-r-[#d3eaff] border-b-[#d3eaff] border-l-[#d3eaff]" />
 );
 
 return (
@@ -78,8 +79,8 @@ return (
         }
 
         return (
-          <li key={`${playKey}-${label}`} class="flex items-center gap-3 text-brand-blue">
-             <span class="relative flex h-6 w-6 items-center justify-center">
+          <li key={`${playKey}-${label}`} class="flex items-center gap-2 text-brand-blue">
+             <span class="relative flex h-8 w-8 items-center justify-center">
               {isDone ? (
                 <LoaderIcon />
               ) : (
@@ -88,7 +89,7 @@ return (
                 </>
               )}
             </span>
-            <span class={`text-sm font-semibold ${isDone ? 'text-emerald-600' : 'text-brand-blue'}`}>
+            <span class={`text-[0.975rem] font-semibold ${isDone ? 'text-emerald-600' : 'text-brand-blue'}`}>
               {label}
             </span>
           </li>

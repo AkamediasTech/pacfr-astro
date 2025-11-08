@@ -98,10 +98,6 @@ export const OPTION_ICONS: Record<NonNullable<ChoiceOption['icon']>, JSX.Element
     </svg>
   ),
   gas: (
-    // <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-    //   <path d="M12 2v6l3 3-3 3v8" />
-    //   <path d="M9 18h6" />
-    // </svg>
     <svg 
       class="h-7 w-7"
       xmlns="http://www.w3.org/2000/svg" 
@@ -117,9 +113,6 @@ export const OPTION_ICONS: Record<NonNullable<ChoiceOption['icon']>, JSX.Element
     </svg>
   ),
   electricity: (
-    // <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-    //   <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" />
-    // </svg>
     <svg
       class="h-7 w-7" 
       xmlns="http://www.w3.org/2000/svg" 
@@ -135,11 +128,6 @@ export const OPTION_ICONS: Record<NonNullable<ChoiceOption['icon']>, JSX.Element
     </svg>
   ),
   other: (
-    // <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-    //   <path d="M3 21c3-8 7-12 9-12s6 4 9 12" />
-    //   <path d="M8 15h8" />
-    // </svg>
-
     <svg 
       class="h-7 w-7" 
       xmlns="http://www.w3.org/2000/svg" 
@@ -206,6 +194,10 @@ export type PhaseHeaderConfig = {
 const DEFAULT_PHASE_AUTO_ADVANCE_DELAY_MS = 1200;
 const DEFAULT_CHECK_ITEM_MIN_DELAY_MS = 950;
 const DEFAULT_CHECK_ITEM_MAX_DELAY_MS = 1450;
+
+
+// const DEFAULT_CHECK_ITEM_MIN_DELAY_MS = 95000;
+// const DEFAULT_CHECK_ITEM_MAX_DELAY_MS = 145000;
 
 export const CHECKLIST_ANIMATION = {
   minDelayMs: DEFAULT_CHECK_ITEM_MIN_DELAY_MS,

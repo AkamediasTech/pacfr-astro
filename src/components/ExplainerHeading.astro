@@ -6,7 +6,6 @@ interface ExplainerHeadingProps {
   eyebrow?: string;
   headingId?: string;
   level?: 1 | 2 | 3 | 4 | 5 | 6;
-//   showUnderline?: boolean;
   className?: string;
 }
 
@@ -15,14 +14,11 @@ const {
   eyebrow,
   headingId = 'explainer-heading',
   level = 2,
-//   showUnderline = true,
   className = '',
 } = Astro.props as ExplainerHeadingProps;
 
 const clampedLevel = Math.min(6, Math.max(1, level));
 const headingTag = `h${clampedLevel}` as const;
-
-// {import.meta.env.DEV && console.log('showUnderline ->', showUnderline);}
 
 const headingClasses = cn(
   'mt-3 text-3xl font-light text-slate-900 sm:text-[2.2rem]',
@@ -34,7 +30,7 @@ const headingClasses = cn(
 
 <div>
   {eyebrow && (
-    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[#0a3d85]">
+    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[#0a7cff]">
       {eyebrow}
     </p>
   )}
