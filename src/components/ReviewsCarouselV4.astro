@@ -11,6 +11,7 @@ import ReviewShot3 from '../assets/reviews/review-3.png';
 import ReviewShot4 from '../assets/reviews/review-4.png';
 import ReviewShot5 from '../assets/reviews/review-5.png';
 import ReviewShot6 from '../assets/reviews/review-6.png';
+import FadeStyles from '../styles/FadeStyles.astro';
 
 const slides = [
   { id: 'review-1', image: ReviewShot1, alt: 'Avis client 1' },
@@ -23,6 +24,8 @@ const slides = [
 
 const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
 ---
+
+<FadeStyles />
 
 <section class="bg-white">
   <div class="bg-[#1D1F55] text-white">

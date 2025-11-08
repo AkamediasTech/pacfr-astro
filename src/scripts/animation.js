@@ -1,93 +1,80 @@
-document.addEventListener("DOMContentLoaded", function () {
-const stats = document.querySelectorAll(".stats h3");
-let animationQueue = [];
-let isAnimating = false;
+document.addEventListener('DOMContentLoaded', () => {
+  const stats = document.querySelectorAll('.stats h3');
+  const fades = document.querySelectorAll('.fade-text-auto');
 
-stats.forEach(stat => {
-    stat.setAttribute("data-value", stat.innerText);
-    stat.innerText = "0";
-});
+  // Prépare chaque compteur
+  stats.forEach((stat) => {
+    stat.dataset.value = stat.textContent;
+    stat.textContent = '0';
+  });
 
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.boundingClientRect.top <= window.innerHeight && entry.isIntersecting) {
-            animationQueue.push(entry.target);
-            observer.unobserve(entry.target);
-            if (!isAnimating && animationQueue.length === 1) {
-                scrollDown();
-            }
-        }
+  // File d’attente pour jouer les compteurs dans l’ordre d’apparition
+  const animationQueue = [];
+  let isAnimating = false;
+
+  const startNextAnimation = () => {
+    if (isAnimating || animationQueue.length === 0) return;
+    isAnimating = true;
+
+    const element = animationQueue.shift();
+    const targetValue = element?.dataset.value;
+    if (!targetValue) {
+      isAnimating = false;
+      startNextAnimation();
+      return;
+    }
+
+    animateNumbers(element, targetValue, () => {
+      isAnimating = false;
+      startNextAnimation();
     });
-}, { threshold: 0 });
+  };
 
-stats.forEach(stat => observer.observe(stat));
-
-function scrollDown() {
-    const scrollOffset = window.innerHeight * 0.75; 
-    window.scrollBy({
-        top: scrollOffset,
-        behavior: 'smooth'  
-    });
-
-    setTimeout(() => {
-        lockScroll();
+  // Observer pour les compteurs
+  const statsObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        animationQueue.push(entry.target);
+        observer.unobserve(entry.target);
         startNextAnimation();
-    }, 600);  // Délai pour permettre à l'auto-défilement de se terminer
-}
+      });
+    },
+    { threshold: 0.4 }
+  );
 
-function lockScroll() {
-    document.body.style.overflow = 'hidden';
-}
+  stats.forEach((stat) => statsObserver.observe(stat));
 
-function unlockScroll() {
-    document.body.style.overflow = '';
-}
+  // Observer fade-in
+  const fadeObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('fade-in');
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.25 }
+  );
 
-function startNextAnimation() {
-    if (animationQueue.length > 0) {
-        isAnimating = true;
-        const currentElement = animationQueue.shift();
-        let targetValue = currentElement.getAttribute("data-value");
-        if (targetValue) {
-            animateNumbers(currentElement, targetValue, () => {
-                setTimeout(() => {
-                    isAnimating = false;
-                    if (animationQueue.length > 0) {
-                        startNextAnimation();
-                    } else {
-                        unlockScroll(); // Déverrouiller le scroll une fois toutes les animations terminées
-                    }
-                }, 100);
-            });
-        }
-    }
-}
+  fades.forEach((el) => fadeObserver.observe(el));
 
-function animateNumbers(element, targetValue, callback) {
-    let target = parseInt(targetValue.replace('%', ''));
-    let isPercentage = targetValue.includes('%');
+  function animateNumbers(element, targetValue, callback) {
+    const target = parseInt(targetValue.replace('%', ''), 10);
+    const isPercentage = targetValue.includes('%');
+    const steps = 50;
+    const increment = Math.max(1, Math.ceil(target / steps));
+    const speed = 15;
     let count = 0;
-    let steps = 50;
-    let increment = Math.ceil(target / steps);
-    let speed = 15;
 
-    function updateNumber() {
-        count += increment;
-        if (count >= target) {
-            count = target;
-            clearInterval(interval);
-            if (callback) callback();
-        }
-        element.innerText = count + (isPercentage ? '%' : '');
-    }
-
-    let interval = setInterval(updateNumber, speed);
-}
-
-
-document.querySelectorAll(".fade-text-auto").forEach(element => {
-    if (element.getBoundingClientRect().top < window.innerHeight - 75) {
-        element.classList.add("fade-in");
-    }
-});
+    const interval = setInterval(() => {
+      count += increment;
+      if (count >= target) {
+        count = target;
+        clearInterval(interval);
+        if (callback) callback();
+      }
+      element.textContent = count + (isPercentage ? '%' : '');
+    }, speed);
+  }
 });
