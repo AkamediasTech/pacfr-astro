@@ -20,6 +20,12 @@ import ExplainerSplitSection from '../components/ExplainerSplitSection.astro';
 import UnderlineAccent from '../components/UnderlineAccent.astro';
 import ExplainerHeading from '../components/ExplainerHeading.astro';
 import LegalStrip from '../components/LegalStrip.astro';
+import PartnersShowcase from '../components/PartnersShowcase.astro';
+
+import PanasonicLogo from '../assets/main/panasonic.png';
+import AtlanticLogo from '../assets/main/atlantic.png';
+import MitsubishiLogo from '../assets/main/mitsubishi.png';
+import DaikinLogo from '../assets/main/daikin.png';
 
 const eligibilityMsgConfig = {
   paragraphText: "Êtes-vous éligible ? Découvrez le montant de vos aides !",
@@ -82,6 +88,16 @@ const eligibilityMsgConfig2 = {
     </Fragment>
   </ExplainerSplitSection>
 
+  <PartnersShowcase partners = {
+    [
+      {name: "Panasonic", logo: PanasonicLogo.src, href: "https://www.panasonic.fr/", width: 200, height: 120},
+      {name: "Atlantic", logo: AtlanticLogo.src, href: "https://www.atlantic.fr/", width: 200, height: 120},
+      {name: "Mitsubishi-Electric", logo: MitsubishiLogo.src, href: "https://www.mitsubishielectric.com/", width: 200, height: 120},
+      {name : "Daikin", logo: DaikinLogo.src, href: "https://www.daikin.fr/", width: 200, height: 120},
+    ]
+  }
+  borderClass="border-emerald-600/70 border-[1px]"
+  />
   <AidEligibilityCTA config={eligibilityMsgConfig} />
 
   <LegalStrip
