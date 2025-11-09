@@ -2,102 +2,114 @@
 import CarouselDemoFormIsland from "./CarouselDemoFormIsland.jsx";
 
 const stepFlow = [
-  {
-    id: "care",
-    title: "Soin",
-    subtitle: "Niveau de besoin en soins courants",
-    fields: [
-      {
-        id: "care-level",
-        prompt: "Choisissez votre niveau de couverture",
-        options: [
-          { value: "minimum", label: "Minimum" },
-          { value: "medium", label: "Moyen" },
-          { value: "high", label: "Eleve" },
-          { value: "maximum", label: "Maximum" }
-        ]
-      },
-      {
-        id: "care-focus",
-        prompt: "Quel poste souhaitez-vous prioriser ?",
-        options: [
-          { value: "dental", label: "Dentaire" },
-          { value: "vision", label: "Optique" },
-          { value: "hospital", label: "Hospitalisation" }
-        ]
-      }
-    ]
-  },
-  {
-    id: "profile",
-    title: "Profil",
-    subtitle: "Parlez-nous de vous",
-    fields: [
-      {
-        id: "household",
-        prompt: "Qui est concerne ?",
-        options: [
-          { value: "solo", label: "Seul" },
-          { value: "couple", label: "Couple" },
-          { value: "family", label: "Famille" }
-        ]
-      },
-      {
-        id: "age",
-        prompt: "Quelle tranche d age ?",
-        options: [
-          { value: "18-30", label: "18-30" },
-          { value: "31-45", label: "31-45" },
-          { value: "46-60", label: "46-60" },
-          { value: "60plus", label: "60 et +" }
-        ]
-      }
-    ]
-  },
-  {
-    id: "location",
-    title: "Ville",
-    subtitle: "Ou habitez-vous ?",
-    fields: [
-      {
-        id: "city-size",
-        prompt: "Type de commune",
-        options: [
-          { value: "metropole", label: "Grande ville" },
-          { value: "mid", label: "Ville moyenne" },
-          { value: "small", label: "Petite ville" },
-          { value: "rural", label: "Zone rurale" }
-        ]
-      }
-    ]
-  },
-  {
-    id: "finish",
-    title: "Finaliser",
-    subtitle: "Validez vos informations",
-    fields: [
-      {
-        id: "contact",
-        prompt: "Comment prefereriez-vous etre contacte ?",
-        options: [
-          { value: "email", label: "Email" },
-          { value: "phone", label: "Telephone" },
-          { value: "sms", label: "SMS" }
-        ]
-      }
-    ]
-  }
+    {
+        id: "care",
+        title: "Soin",
+        subtitle: "Niveau de besoin en soins courants",
+        fields: [
+            {
+                id: "care-level",
+                prompt: "Choisissez votre niveau de couverture",
+                options: [
+                    { value: "minimum", label: "Minimum" },
+                    { value: "medium", label: "Moyen" },
+                    { value: "high", label: "Eleve" },
+                    { value: "maximum", label: "Maximum" },
+                ],
+            },
+            {
+                id: "care-focus",
+                prompt: "Quel poste souhaitez-vous prioriser ?",
+                options: [
+                    { value: "dental", label: "Dentaire" },
+                    { value: "vision", label: "Optique" },
+                    { value: "hospital", label: "Hospitalisation" },
+                ],
+            },
+        ],
+    },
+    {
+        id: "profile",
+        title: "Profil",
+        subtitle: "Parlez-nous de vous",
+        fields: [
+            {
+                id: "household",
+                prompt: "Qui est concerne ?",
+                options: [
+                    { value: "solo", label: "Seul" },
+                    { value: "couple", label: "Couple" },
+                    { value: "family", label: "Famille" },
+                ],
+            },
+            {
+                id: "age",
+                prompt: "Quelle tranche d age ?",
+                options: [
+                    { value: "18-30", label: "18-30" },
+                    { value: "31-45", label: "31-45" },
+                    { value: "46-60", label: "46-60" },
+                    { value: "60plus", label: "60 et +" },
+                ],
+            },
+        ],
+    },
+    {
+        id: "location",
+        title: "Ville",
+        subtitle: "Ou habitez-vous ?",
+        fields: [
+            {
+                id: "city-size",
+                prompt: "Type de commune",
+                options: [
+                    { value: "metropole", label: "Grande ville" },
+                    { value: "mid", label: "Ville moyenne" },
+                    { value: "small", label: "Petite ville" },
+                    { value: "rural", label: "Zone rurale" },
+                ],
+            },
+        ],
+    },
+    {
+        id: "finish",
+        title: "Finaliser",
+        subtitle: "Validez vos informations",
+        fields: [
+            {
+                id: "contact",
+                prompt: "Comment prefereriez-vous etre contacte ?",
+                options: [
+                    { value: "email", label: "Email" },
+                    { value: "phone", label: "Telephone" },
+                    { value: "sms", label: "SMS" },
+                ],
+            },
+        ],
+    },
 ];
 ---
+
 <section class="relative flex w-full justify-center px-4 py-12 sm:px-6 lg:px-8">
-  <div class="w-full max-w-2xl rounded-[32px] bg-white shadow-2xl shadow-sky-900/10 ring-1 ring-slate-200">
-    <header class="rounded-t-[32px] bg-[#0097B2] px-10 py-8 text-center text-white">
-      <h2 class="text-2xl font-semibold tracking-wide md:text-3xl">Comparez et recevez votre devis</h2>
-      <p class="mt-2 text-lg text-teal-50/90 md:text-xl">Trouvez la mutuelle adaptee</p>
-    </header>
+    <div
+        class="w-full max-w-2xl rounded-[32px] bg-white shadow-2xl ring-1 shadow-sky-900/10 ring-slate-200"
+    >
+        <header
+            class="rounded-t-[32px] bg-[#0097B2] px-10 py-8 text-center text-white"
+        >
+            <h2 class="text-2xl font-semibold tracking-wide md:text-3xl">
+                Comparez et recevez votre devis
+            </h2>
+            <p class="mt-2 text-lg text-teal-50/90 md:text-xl">
+                Trouvez la mutuelle adaptee
+            </p>
+        </header>
 
-    <CarouselDemoFormIsland client:load steps={stepFlow} />
-  </div>
+        <CarouselDemoFormIsland client:load steps={stepFlow} />
+    </div>
 
-  <div class="pointer-events-none absolute -inset-4 -z-10 rounded-[40px] bg-gradient-to-br from-sky-100/70 via-sky-50 to-white blur-xl"></div>
+    <div
+        class="pointer-events-none absolute -inset-4 -z-10 rounded-[40px] bg-gradient-to-br from-sky-100/70 via-sky-50 to-white blur-xl"
+    >
+    </div>
 </section>

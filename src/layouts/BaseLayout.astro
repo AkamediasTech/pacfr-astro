@@ -1,143 +1,151 @@
 ﻿---
-import '../styles/global.css';
-import {Image} from "astro:assets";
+import "../styles/global.css";
+import { Image } from "astro:assets";
 import EcoEnergieLogo from "../assets/main/logo.png";
 import RepubliqueFrancaiseLogo from "../assets/main/logo_republique_francaise_q100.avif";
 import FranceRelanceLogo from "../assets/main/france_relance_logo.png";
 import MaPrimeRenovLogo from "../assets/main/ma_prime_renov_logo.png";
 import FranceRenovLogo from "../assets/main/france_renov_logo_q100.avif";
-import FadeStyles from '../styles/FadeStyles.astro';
-import SlideInStyles from '../styles/SlideInStyles.astro';
+import FadeStyles from "../styles/FadeStyles.astro";
+import SlideInStyles from "../styles/SlideInStyles.astro";
 
 const visibilityClasses = {
-  mobile: 'flex',
-  tablet: 'hidden sm:flex',
-  desktop: 'hidden lg:flex',
+    mobile: "flex",
+    tablet: "hidden sm:flex",
+    desktop: "hidden lg:flex",
 } as const;
 
 const brandLogo = {
-  name: "Eco Energie France",
-  file: EcoEnergieLogo,
-  className: "h-8 md:h-15 px-3",
-  showOnMobile: true,
-}
-
-const partnerLogos = [
-  { name: "République Française", 
-    file: RepubliqueFrancaiseLogo, 
-    className: "h-8 md:h-15", 
-    visibleAbove: "tablet"
-  },
-  { name: "France Relance", 
-    file: FranceRelanceLogo, 
-    className: "md:h-15", 
-    visibleAbove: "mobile", 
-  },
-  { name: "MaPrimeRenov", 
-    file: MaPrimeRenovLogo, 
-    className: "md:h-15", 
-    visibleAbove: "mobile",
-  },
-  { name: "France Renov", 
-    file: FranceRenovLogo, 
-    className: "md:h-15", 
-    visibleAbove: "desktop"
-  },
-]
-
-
-const getVisibilityClass = (viewport: string) => {
-
-  switch (viewport) {
-    case "mobile":
-      return visibilityClasses.mobile;
-    case "tablet":
-      return visibilityClasses.tablet;
-    case "desktop":
-      return visibilityClasses.desktop;
-    default:
-      return visibilityClasses.mobile;
-  }
+    name: "Eco Energie France",
+    file: EcoEnergieLogo,
+    className: "h-8 md:h-15 px-3",
+    showOnMobile: true,
 };
 
+const partnerLogos = [
+    {
+        name: "République Française",
+        file: RepubliqueFrancaiseLogo,
+        className: "h-8 md:h-15",
+        visibleAbove: "tablet",
+    },
+    {
+        name: "France Relance",
+        file: FranceRelanceLogo,
+        className: "md:h-15",
+        visibleAbove: "mobile",
+    },
+    {
+        name: "MaPrimeRenov",
+        file: MaPrimeRenovLogo,
+        className: "md:h-15",
+        visibleAbove: "mobile",
+    },
+    {
+        name: "France Renov",
+        file: FranceRenovLogo,
+        className: "md:h-15",
+        visibleAbove: "desktop",
+    },
+];
+
+const getVisibilityClass = (viewport: string) => {
+    switch (viewport) {
+        case "mobile":
+            return visibilityClasses.mobile;
+        case "tablet":
+            return visibilityClasses.tablet;
+        case "desktop":
+            return visibilityClasses.desktop;
+        default:
+            return visibilityClasses.mobile;
+    }
+};
 
 const {
-  title = 'Aka Médias — Agence créative',
-  description = "Landing page démo construite avec Astro et Tailwind.",
+    title = "Aka Médias — Agence créative",
+    description = "Landing page démo construite avec Astro et Tailwind.",
 } = Astro.props;
 const year = new Date().getFullYear();
-
 ---
 
-
 <html lang="fr" class="bg-slate-50 text-slate-900">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <title>{title}</title>
-    <FadeStyles />
-    <SlideInStyles />
-  </head>
-  <body class="min-h-screen max-w-screen bg-gradient-to-b from-white via-slate-50 to-slate-100 font-sans text-slate-900 overflow-x-hidden">
-    <header class="relative z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
-      <div class="bg-[#004081] text-white px-[5%]">
-        <!-- <div class="mx-auto w-[90%] py-1 lg:px-12 text-center text-xs md:text-md lg:text-lg sm:text-left tracking-wide italic">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={description} />
+        <title>{title}</title>
+        <FadeStyles />
+        <SlideInStyles />
+    </head>
+    <body
+        class="min-h-screen max-w-screen overflow-x-hidden bg-gradient-to-b from-white via-slate-50 to-slate-100 font-sans text-slate-900"
+    >
+        <header
+            class="relative z-50 border-b border-slate-200 bg-white/90 backdrop-blur"
+        >
+            <div class="bg-[#004081] px-[5%] text-white">
+                <!-- <div class="mx-auto w-[90%] py-1 lg:px-12 text-center text-xs md:text-md lg:text-lg sm:text-left tracking-wide italic">
           Jusqu'à 11 500 € d'aides pour votre pompe à chaleur
         </div> -->
-        <div class="mx-auto w-full max-w-[90%]py-1 lg:px-6 text-center text-xs md:text-md lg:text-lg sm:text-left tracking-wide italic">
-          Jusqu'à 11 500 € d'aides pour votre pompe à chaleur
-        </div>
-      </div>
-
-      <div class="mx-auto w-[95%] sm:w-[90%] flex items-center gap-4 sm:px-6 py-2 md:flex-row justify-between">
-        <div>
-        <a href="/" class="flex items-center gap-3 text-lg font-semibold tracking-tight text-slate-900">
-           <div class="flex items-center justify-center"
-           >
-          <!-- <div class="flex flex-shrink-0 items-center justify-center gap-3 px-4 py-2"> -->
-              <Image 
-                src={brandLogo.file} 
-                alt={brandLogo.name}
-                class={`h-10 w-auto object-contain ${brandLogo?.className ?? ''}`}
-                loading="eager"
-                fetchpriority="high"
-                decoding="async"
-              />
+                <div
+                    class="max-w-[90%]py-1 md:text-md mx-auto w-full text-center text-xs tracking-wide italic sm:text-left lg:px-6 lg:text-lg"
+                >
+                    Jusqu'à 11 500 € d'aides pour votre pompe à chaleur
+                </div>
             </div>
-        </a>
-        </div>
 
-      <div class="flex items-center gap-4 md:gap-3">
+            <div
+                class="mx-auto flex w-[95%] items-center justify-between gap-4 py-2 sm:w-[90%] sm:px-6 md:flex-row"
+            >
+                <div>
+                    <a
+                        href="/"
+                        class="flex items-center gap-3 text-lg font-semibold tracking-tight text-slate-900"
+                    >
+                        <div class="flex items-center justify-center">
+                            <!-- <div class="flex flex-shrink-0 items-center justify-center gap-3 px-4 py-2"> -->
+                            <Image
+                                src={brandLogo.file}
+                                alt={brandLogo.name}
+                                class={`h-10 w-auto object-contain ${brandLogo?.className ?? ""}`}
+                                loading="eager"
+                                fetchpriority="high"
+                                decoding="async"
+                            />
+                        </div>
+                    </a>
+                </div>
 
-        {partnerLogos.map((brand) => {
+                <div class="flex items-center gap-4 md:gap-3">
+                    {
+                        partnerLogos.map((brand) => {
+                            const classes = getVisibilityClass(
+                                brand?.visibleAbove
+                            );
 
-          const classes = getVisibilityClass(brand?.visibleAbove);
-
-          return (
-            <div class={`${classes} items-center justify-center bg-white px-2 sm:px-4 sm:py-2`}>
-              <Image 
-              src={brand.file} 
-              alt={brand.name}
-              class={`h-10 w-auto object-contain ${brand?.className ?? ''}`}
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
+                            return (
+                                <div
+                                    class={`${classes} items-center justify-center bg-white px-2 sm:px-4 sm:py-2`}
+                                >
+                                    <Image
+                                        src={brand.file}
+                                        alt={brand.name}
+                                        class={`h-10 w-auto object-contain ${brand?.className ?? ""}`}
+                                        loading="eager"
+                                        fetchpriority="high"
+                                        decoding="async"
+                                    />
+                                </div>
+                            );
+                        })
+                    }
+                </div>
             </div>
-          );
-        })}
+        </header>
 
-      </div>
-
-
-
-      </div>
-     
-    </header>
-
-    <!-- Mobile Menu Slide In -->
-    <!-- <div id="mobile-menu" class="fixed top-0 right-0 pt-28 w-64 h-screen bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-40 md:hidden flex flex-col p-6 space-y-4 translate-x-full">
+        <!-- Mobile Menu Slide In -->
+        <!-- <div id="mobile-menu" class="fixed top-0 right-0 pt-28 w-64 h-screen bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-40 md:hidden flex flex-col p-6 space-y-4 translate-x-full">
 		<a href="#accueil" class="text-gray-700 hover:text-[#0097B2] transition-colors">Accueil</a>
 		<a href="#avantages" class="text-gray-700 hover:text-[#0097B2] transition-colors">Avantages</a>
 		<a href="#temoignages" class="text-gray-700 hover:text-[#0097B2] transition-colors">Témoignages</a>
@@ -146,13 +154,17 @@ const year = new Date().getFullYear();
 			Devis gratuit
 		</button>
 		</div> -->
-    <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-30 md:hidden hidden"></div>
+        <div
+            id="menu-overlay"
+            class="fixed inset-0 z-30 hidden bg-black/50 md:hidden"
+        >
+        </div>
 
-    <main>
-      <slot />
-    </main>
+        <main>
+            <slot />
+        </main>
 
-    <!-- <footer class="border-t border-slate-200 bg-white/80">
+        <!-- <footer class="border-t border-slate-200 bg-white/80">
       <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm text-slate-500 md:flex-row">
         <span>&copy; {year} Aka Médias. Tous droits réservés.</span>
         <a class="transition hover:text-cyan-600" href="mailto:contact@aka-medias.com">
@@ -160,16 +172,12 @@ const year = new Date().getFullYear();
         </a>
       </div>
     </footer> -->
-    <script>
-      // import "../scripts/scrollReveal";
-      import "../scripts/animation";
-      import "../scripts/ctaScrollToForm";
-      // import "../scripts/slideIn";
-      import "../scripts/effectsObserver";
-    </script>
-
-  </body>
+        <script>
+            // import "../scripts/scrollReveal";
+            import "../scripts/animation";
+            import "../scripts/ctaScrollToForm";
+            // import "../scripts/slideIn";
+            import "../scripts/effectsObserver";
+        </script>
+    </body>
 </html>
-
-
-

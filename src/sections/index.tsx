@@ -7,12 +7,11 @@ import AidEligibilityCTA from "../components/AidEligibilityCTA.astro";
 import HeaderResolver from "./Header/HeaderResolver.astro";
 import AidSectionResolver from "./AidSection/AidSectionResolver.astro";
 
-
 export const sectionsRegistry: Record<string, any> = {
-  Header: HeaderResolver,
-  HeroSection,
-  AidSection: AidSectionResolver,
-  ReviewsCarousel,
-  AidEligibilityCTA,
-  HeroBadges,
+    Header: HeaderResolver,
+    HeroSection,
+    AidSection: AidSectionResolver,
+    ReviewsCarousel,
+    AidEligibilityCTA,
+    HeroBadges,
 };

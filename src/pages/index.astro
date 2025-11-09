@@ -1,88 +1,109 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import FeatureGrid from '../components/FeatureGrid.astro';
-import CaseStudies from '../components/CaseStudies.astro';
-import ImageShowcase from '../components/ImageShowcase.astro';
-import Testimonial from '../components/Testimonial.astro';
-import ContactCard from '../components/ContactCard.astro';
-import HeroSection from '../sections/HeroSection.astro';
-import ReviewsCarousel from '../sections/ReviewsCarousel.astro';
-import AidEligibilityCTA from '../components/AidEligibilityCTA.astro';
-import CardsSection from '../components/CardsSection.astro';
-import GovAidBanner from '../components/GovAidBanner.astro';
-import ImageBanner from '../components/ImageBanner.astro';
-import Stats from '../components/Stats.astro';
-import AidSection from '../sections/AidSection.astro';
-import UnderlineAccent from '../components/UnderlineAccent.astro';
-import ExplainerHeading from '../components/ExplainerHeading.astro';
-import LegalStrip from '../components/LegalStrip.astro';
-import PartnersShowcase from '../components/PartnersShowcase.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import FeatureGrid from "../components/FeatureGrid.astro";
+import CaseStudies from "../components/CaseStudies.astro";
+import ImageShowcase from "../components/ImageShowcase.astro";
+import Testimonial from "../components/Testimonial.astro";
+import ContactCard from "../components/ContactCard.astro";
+import HeroSection from "../sections/HeroSection.astro";
+import ReviewsCarousel from "../sections/ReviewsCarousel.astro";
+import AidEligibilityCTA from "../components/AidEligibilityCTA.astro";
+import CardsSection from "../components/CardsSection.astro";
+import GovAidBanner from "../components/GovAidBanner.astro";
+import ImageBanner from "../components/ImageBanner.astro";
+import Stats from "../components/Stats.astro";
+import AidSection from "../sections/AidSection.astro";
+import UnderlineAccent from "../components/UnderlineAccent.astro";
+import ExplainerHeading from "../components/ExplainerHeading.astro";
+import LegalStrip from "../components/LegalStrip.astro";
+import PartnersShowcase from "../components/PartnersShowcase.astro";
 
-import PanasonicLogo from '../assets/main/panasonic.png';
-import AtlanticLogo from '../assets/main/atlantic.png';
-import MitsubishiLogo from '../assets/main/mitsubishi.png';
-import DaikinLogo from '../assets/main/daikin.png';
-import HeroBadges from '../sections/HeroBadges.astro';
+import PanasonicLogo from "../assets/main/panasonic.png";
+import AtlanticLogo from "../assets/main/atlantic.png";
+import MitsubishiLogo from "../assets/main/mitsubishi.png";
+import DaikinLogo from "../assets/main/daikin.png";
+import HeroBadges from "../sections/HeroBadges.astro";
 
-import ExplainerSplitSectionV2 from '../components/ExplainerSplitSectionV2.astro';
-import heatPumpDiagram from '../assets/main/heat_pump_explainer_diagram.png';
+import ExplainerSplitSectionV2 from "../components/ExplainerSplitSectionV2.astro";
+import heatPumpDiagram from "../assets/main/heat_pump_explainer_diagram.png";
 
 const eligibilityMsgConfig = {
-  paragraphText: "Êtes-vous éligible ? Découvrez le montant de vos aides !",
-  buttonText: "Simuler mes aides",
-}
+    paragraphText: "Êtes-vous éligible ? Découvrez le montant de vos aides !",
+    buttonText: "Simuler mes aides",
+};
 
 const eligibilityMsgConfig2 = {
-  paragraphText: "Êtes-vous éligible ? Découvrez le montant de vos aides !",
-  buttonText: "Vérifier mon éligibilité",
-}
-
+    paragraphText: "Êtes-vous éligible ? Découvrez le montant de vos aides !",
+    buttonText: "Vérifier mon éligibilité",
+};
 ---
+
 <BaseLayout
-  title="Aka Médias — Studio créatif Astro + Tailwind"
-  description="Exemple de landing page Astro qui démontre l’intégration de Tailwind et de composants réutilisables."
+    title="Aka Médias — Studio créatif Astro + Tailwind"
+    description="Exemple de landing page Astro qui démontre l’intégration de Tailwind et de composants réutilisables."
 >
+    <HeroSection />
+    <HeroBadges />
 
-  <HeroSection />
-  <HeroBadges />
+    <ReviewsCarousel />
 
-  <ReviewsCarousel/>
+    <AidEligibilityCTA config={eligibilityMsgConfig} />
+    <CardsSection />
+    <GovAidBanner />
+    <ImageBanner />
+    <Stats />
+    <AidSection />
+    <AidEligibilityCTA config={eligibilityMsgConfig2} />
 
-  <AidEligibilityCTA config={eligibilityMsgConfig} />
-  <CardsSection />
-  <GovAidBanner />
-  <ImageBanner />
-  <Stats />
-  <AidSection />
-  <AidEligibilityCTA config={eligibilityMsgConfig2} /> 
+    <ExplainerSplitSectionV2 />
 
-  <ExplainerSplitSectionV2 />
+    <PartnersShowcase
+        partners={[
+            {
+                name: "Panasonic",
+                logo: PanasonicLogo.src,
+                href: "https://www.panasonic.fr/",
+                width: 200,
+                height: 120,
+            },
+            {
+                name: "Atlantic",
+                logo: AtlanticLogo.src,
+                href: "https://www.atlantic.fr/",
+                width: 200,
+                height: 120,
+            },
+            {
+                name: "Mitsubishi-Electric",
+                logo: MitsubishiLogo.src,
+                href: "https://www.mitsubishielectric.com/",
+                width: 200,
+                height: 120,
+            },
+            {
+                name: "Daikin",
+                logo: DaikinLogo.src,
+                href: "https://www.daikin.fr/",
+                width: 200,
+                height: 120,
+            },
+        ]}
+        borderClass="border-emerald-600/70 border-[1px]"
+    />
+    <AidEligibilityCTA config={eligibilityMsgConfig} />
 
+    <LegalStrip
+        brand="EcoEnergieFrance"
+        items={[
+            { label: "Tous droits réservés" },
+            { label: "Mentions légales", href: "/mentions-legales" },
+            { label: "Politique de confidentialité", href: "/confidentialite" },
+            { label: "CGU", href: "/cgu" },
+        ]}
+    />
 
-  <PartnersShowcase partners = {
-    [
-      {name: "Panasonic", logo: PanasonicLogo.src, href: "https://www.panasonic.fr/", width: 200, height: 120},
-      {name: "Atlantic", logo: AtlanticLogo.src, href: "https://www.atlantic.fr/", width: 200, height: 120},
-      {name: "Mitsubishi-Electric", logo: MitsubishiLogo.src, href: "https://www.mitsubishielectric.com/", width: 200, height: 120},
-      {name : "Daikin", logo: DaikinLogo.src, href: "https://www.daikin.fr/", width: 200, height: 120},
-    ]
-  }
-  borderClass="border-emerald-600/70 border-[1px]"
-  />
-  <AidEligibilityCTA config={eligibilityMsgConfig} />
-
-  <LegalStrip
-    brand="EcoEnergieFrance"
-    items={[
-      { label: 'Tous droits réservés' },
-      { label: 'Mentions légales', href: '/mentions-legales' },
-      { label: 'Politique de confidentialité', href: '/confidentialite' },
-      { label: 'CGU', href: '/cgu' },
-    ]}
-  />
-
-  <!-- <Hero
+    <!-- <Hero
     eyebrow="Studio créatif"
     title="Des expériences digitales qui marquent"
     description="Nous aidons les marques à raconter des histoires mémorables grâce à des design soignés, des vidéos impactantes et une présence numérique cohérente."
@@ -90,17 +111,17 @@ const eligibilityMsgConfig2 = {
     secondaryCta={{ href: '#portfolio', label: 'Voir nos réalisations' }}
   /> -->
 
-  <!-- <FeatureGrid
+    <!-- <FeatureGrid
     eyebrow="Services"
     title="Nos expertises"
     description="Une équipe pluridisciplinaire, des process agiles et un regard créatif pour dérouler vos projets du concept à la mise en ligne."
     features={features}
   /> -->
 
-  <!-- <CaseStudies /> -->
+    <!-- <CaseStudies /> -->
 
-  <!-- <ImageShowcase /> -->
-<!-- 
+    <!-- <ImageShowcase /> -->
+    <!-- 
   <section id="portfolio" class="flex flex-col gap-8">
     <div class="max-w-2xl">
       <p class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Portfolio</p>
@@ -144,10 +165,9 @@ const eligibilityMsgConfig2 = {
     role="Directrice marketing, Orizon"
   /> -->
 
-  <!-- <ContactCard
+    <!-- <ContactCard
     title="Parlons de votre prochain projet"
     description="Réservez un créneau de découverte ou écrivez-nous pour recevoir une proposition sur mesure."
     email="contact@aka-medias.com"
   /> -->
-
 </BaseLayout>

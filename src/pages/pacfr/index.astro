@@ -5,14 +5,15 @@ import LandingShell from "../../components/LandingShell.astro";
 import { sectionsRegistry } from "../../sections";
 import def from "../../landings/pacfr/pacfr-v1";
 import type { SectionDef } from "../../types/landing";
-
 ---
 
 <LandingLayout title={def.title} description={def.description}>
-  <LandingShell>
-        {def.sections.map((s : SectionDef, _ : number) => {
-          const Component = sectionsRegistry[s.type]; // "HeroSection" => "./components/HeroSection.astro"
-          return <Component {...s.props} />;
-        })}
-  </LandingShell>
+    <LandingShell>
+        {
+            def.sections.map((s: SectionDef, _: number) => {
+                const Component = sectionsRegistry[s.type]; // "HeroSection" => "./components/HeroSection.astro"
+                return <Component {...s.props} />;
+            })
+        }
+    </LandingShell>
 </LandingLayout>

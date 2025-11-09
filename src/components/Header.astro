@@ -1,76 +1,94 @@
 ---
-import {Image} from "astro:assets";
+import { Image } from "astro:assets";
 
 type Logo = {
     name: string;
     file: any;
     className?: string;
     visibleAbove?: "mobile" | "tablet" | "desktop";
-}
+};
 
 type BrandLogo = {
-  name: string;
-  file: any;
-  className?: string;
+    name: string;
+    file: any;
+    className?: string;
 };
 
 interface HeaderProps {
-  bannerText?: string;
-  brandLogo: BrandLogo;
-  partnerLogos?: Logo[];
+    bannerText?: string;
+    brandLogo: BrandLogo;
+    partnerLogos?: Logo[];
 }
 
 const {
-  bannerText = "Jusqu'à 11 500 € d'aides pour votre pompe à chaleur",
-  brandLogo,
-  partnerLogos = [],
+    bannerText = "Jusqu'à 11 500 € d'aides pour votre pompe à chaleur",
+    brandLogo,
+    partnerLogos = [],
 } = Astro.props as HeaderProps;
 
 const visibilityClasses = {
-  mobile: 'flex',
-  tablet: 'hidden sm:flex',
-  desktop: 'hidden lg:flex',
+    mobile: "flex",
+    tablet: "hidden sm:flex",
+    desktop: "hidden lg:flex",
 } as const;
 
 const getVisibilityClass = (viewport?: keyof typeof visibilityClasses) =>
-  viewport ? visibilityClasses[viewport] : visibilityClasses.mobile;
+    viewport ? visibilityClasses[viewport] : visibilityClasses.mobile;
 ---
 
-<header class="relative z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
-  <div class="bg-[#004081] text-white px-[5%]">
-    <div class="mx-auto w-full max-w-[90%] py-1 lg:px-6 text-center text-xs md:text-md lg:text-lg sm:text-left tracking-wide italic">
-      {bannerText}
-    </div>
-  </div>
-
-  <div class="mx-auto w-[95%] sm:w-[90%] flex items-center gap-4 sm:px-6 py-2 md:flex-row justify-between">
-    <div>
-      <a href="/" class="flex items-center gap-3 text-lg font-semibold tracking-tight text-slate-900">
-        <div class="flex items-center justify-center">
-          <Image 
-            src={brandLogo.file} 
-            alt={brandLogo.name}
-            class={`h-10 w-auto object-contain ${brandLogo?.className ?? ''}`}
-            loading="eager" fetchpriority="high" decoding="async"
-          />
+<header
+    class="relative z-50 border-b border-slate-200 bg-white/90 backdrop-blur"
+>
+    <div class="bg-[#004081] px-[5%] text-white">
+        <div
+            class="md:text-md mx-auto w-full max-w-[90%] py-1 text-center text-xs tracking-wide italic sm:text-left lg:px-6 lg:text-lg"
+        >
+            {bannerText}
         </div>
-      </a>
     </div>
 
-    <div class="flex items-center gap-4 md:gap-3">
-      {partnerLogos.map((brand, i) => {
-        const classes = getVisibilityClass(brand?.visibleAbove);
-        return (
-          <div class={`${classes} items-center justify-center bg-white px-2 sm:px-4 sm:py-2`} id={`${brand?.name}-logo`}>
-            <Image 
-              src={brand.file} 
-              alt={brand.name}
-              class={`h-10 w-auto object-contain ${brand?.className ?? ''}`}
-              loading="eager" fetchpriority="high" decoding="async"
-            />
-          </div>
-        );
-      })}
+    <div
+        class="mx-auto flex w-[95%] items-center justify-between gap-4 py-2 sm:w-[90%] sm:px-6 md:flex-row"
+    >
+        <div>
+            <a
+                href="/"
+                class="flex items-center gap-3 text-lg font-semibold tracking-tight text-slate-900"
+            >
+                <div class="flex items-center justify-center">
+                    <Image
+                        src={brandLogo.file}
+                        alt={brandLogo.name}
+                        class={`h-10 w-auto object-contain ${brandLogo?.className ?? ""}`}
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                    />
+                </div>
+            </a>
+        </div>
+
+        <div class="flex items-center gap-4 md:gap-3">
+            {
+                partnerLogos.map((brand, i) => {
+                    const classes = getVisibilityClass(brand?.visibleAbove);
+                    return (
+                        <div
+                            class={`${classes} items-center justify-center bg-white px-2 sm:px-4 sm:py-2`}
+                            id={`${brand?.name}-logo`}
+                        >
+                            <Image
+                                src={brand.file}
+                                alt={brand.name}
+                                class={`h-10 w-auto object-contain ${brand?.className ?? ""}`}
+                                loading="eager"
+                                fetchpriority="high"
+                                decoding="async"
+                            />
+                        </div>
+                    );
+                })
+            }
+        </div>
     </div>
-  </div>
 </header>

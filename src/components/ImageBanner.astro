@@ -1,18 +1,18 @@
 ---
 import { Image } from "astro:assets";
 import bannerImage from "../assets/main/banner_w3000.avif";
-
 ---
 
-
-<section class="h-[512px] xl:h-[628px] flex justify-center items-center overflow-hidden">
-     <Image
-    src={bannerImage}
-    alt="Vue lifestyle illustrant le confort offert par la pompe à chaleur"
-    class="w-full h-full object-cover"
-    sizes="(min-width: 1280px) 1200px, (min-width: 768px) 90vw, 100vw"
-    loading="eager"
-    fetchpriority="high"
-    decoding="async"
-  />
+<section
+    class="flex h-[512px] items-center justify-center overflow-hidden xl:h-[628px]"
+>
+    <Image
+        src={bannerImage}
+        alt="Vue lifestyle illustrant le confort offert par la pompe à chaleur"
+        class="h-full w-full object-cover"
+        sizes="(min-width: 1280px) 1200px, (min-width: 768px) 90vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+    />
 </section>

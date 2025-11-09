@@ -1,43 +1,38 @@
 ---
-
-import { cn } from '../utils/cn';
+import { cn } from "../utils/cn";
 
 interface ExplainerHeadingProps {
-  eyebrow?: string;
-  headingId?: string;
-  level?: 1 | 2 | 3 | 4 | 5 | 6;
-  className?: string;
+    eyebrow?: string;
+    headingId?: string;
+    level?: 1 | 2 | 3 | 4 | 5 | 6;
+    className?: string;
 }
 
-
 const {
-  eyebrow,
-  headingId = 'explainer-heading',
-  level = 2,
-  className = '',
+    eyebrow,
+    headingId = "explainer-heading",
+    level = 2,
+    className = "",
 } = Astro.props as ExplainerHeadingProps;
 
 const clampedLevel = Math.min(6, Math.max(1, level));
 const headingTag = `h${clampedLevel}` as const;
 
 const headingClasses = cn(
-  'mt-3 text-3xl font-light text-slate-900 sm:text-[2.2rem]',
-  className
+    "mt-3 text-3xl font-light text-slate-900 sm:text-[2.2rem]",
+    className
 );
-
 ---
 
 <div>
-  {eyebrow && (
-    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[#0a7cff]">
-      {eyebrow}
-    </p>
-  )}
-  <component
-    is={headingTag}
-    id={headingId}
-    class={headingClasses}
-  >
-    <slot />
-  </component>
+    {
+        eyebrow && (
+            <p class="text-sm font-semibold tracking-[0.3em] text-[#0a7cff] uppercase">
+                {eyebrow}
+            </p>
+        )
+    }
+    <component is={headingTag} id={headingId} class={headingClasses}>
+        <slot />
+    </component>
 </div>

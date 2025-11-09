@@ -1,60 +1,63 @@
 ---
 interface LegalStripItem {
-  label: string;
-  href?: string;
+    label: string;
+    href?: string;
 }
 
 interface LegalStripProps {
-  brand: string;
-  items?: LegalStripItem[];
-  separator?: string;
-  backgroundClass?: string;
-  brandClass?: string;
-  textClass?: string;
-  containerClass?: string;
+    brand: string;
+    items?: LegalStripItem[];
+    separator?: string;
+    backgroundClass?: string;
+    brandClass?: string;
+    textClass?: string;
+    containerClass?: string;
 }
 
 const {
-  brand,
-  items = [
-    { label: 'Tous droits réservés' },
-    { label: 'Mentions légales' },
-    { label: 'Politique de confidentialité' },
-    { label: 'CGU' },
-  ],
-  separator = '–',
-  backgroundClass = 'bg-[#1c1f4d]',
-  brandClass = 'font-semibold text-white',
-  textClass = 'text-slate-200',
-  containerClass = 'text-sm sm:text-base',
+    brand,
+    items = [
+        { label: "Tous droits réservés" },
+        { label: "Mentions légales" },
+        { label: "Politique de confidentialité" },
+        { label: "CGU" },
+    ],
+    separator = "–",
+    backgroundClass = "bg-[#1c1f4d]",
+    brandClass = "font-semibold text-white",
+    textClass = "text-slate-200",
+    containerClass = "text-sm sm:text-base",
 } = Astro.props as LegalStripProps;
 ---
 
-
 <section class={`w-full ${backgroundClass}`}>
-  <div
-    class={`mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-2 py-6 px-4 text-center leading-relaxed ${containerClass}`}
-    role="contentinfo"
-  >
-    <span class={`${brandClass}`}>{brand}</span>
+    <div
+        class={`mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-2 py-6 px-4 text-center leading-relaxed ${containerClass}`}
+        role="contentinfo"
+    >
+        <span class={`${brandClass}`}>{brand}</span>
 
-    {items.map((item, _) => (
-      <>
-        <span aria-hidden="true" class={`text-slate-400 ${textClass ? '' : ''}`}>
-          {separator}
-        </span>
-        {item.href ? (
-          <a
-            href={item.href}
-            class={`${textClass} underline-offset-4 transition hover:text-white hover:underline focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white`}
-          >
-            {item.label}
-          </a>
-        ) : (
-          <span class={textClass}>{item.label}</span>
-        )}
-      </>
-    ))}
-  </div>
+        {
+            items.map((item, _) => (
+                <>
+                    <span
+                        aria-hidden="true"
+                        class={`text-slate-400 ${textClass ? "" : ""}`}
+                    >
+                        {separator}
+                    </span>
+                    {item.href ? (
+                        <a
+                            href={item.href}
+                            class={`${textClass} underline-offset-4 transition hover:text-white hover:underline focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white`}
+                        >
+                            {item.label}
+                        </a>
+                    ) : (
+                        <span class={textClass}>{item.label}</span>
+                    )}
+                </>
+            ))
+        }
+    </div>
 </section>
-

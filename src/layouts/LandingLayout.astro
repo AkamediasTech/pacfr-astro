@@ -1,26 +1,29 @@
 ---
 // src/layouts/LandingLayout.astro
-import '../styles/global.css';
-import FadeStyles from '../styles/FadeStyles.astro';
-import SlideInStyles from '../styles/SlideInStyles.astro';
+import "../styles/global.css";
+import FadeStyles from "../styles/FadeStyles.astro";
+import SlideInStyles from "../styles/SlideInStyles.astro";
 
-const { title = 'Titre', description = '' } = Astro.props;
+const { title = "Titre", description = "" } = Astro.props;
 ---
+
 <html lang="fr" class="bg-slate-50 text-slate-900">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <title>{title}</title>
-    <FadeStyles />
-    <SlideInStyles />
-  </head>
-  <body class="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100">
-    <slot />
-    <script>
-      import "../scripts/animation";
-      import "../scripts/ctaScrollToForm";
-      import "../scripts/effectsObserver";
-    </script>
-  </body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={description} />
+        <title>{title}</title>
+        <FadeStyles />
+        <SlideInStyles />
+    </head>
+    <body
+        class="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100"
+    >
+        <slot />
+        <script>
+            import "../scripts/animation";
+            import "../scripts/ctaScrollToForm";
+            import "../scripts/effectsObserver";
+        </script>
+    </body>
 </html>

@@ -1,43 +1,44 @@
 import type { LandingDef } from "../../types/landing";
 
 const def: LandingDef = {
-  title: "Pacfr",
-  description: "Pacfr est un simulateur de tarifs de pompe à chaleur",
+    title: "Pacfr",
+    description: "Pacfr est un simulateur de tarifs de pompe à chaleur",
     sections: [
         {
             type: "Header",
             props: {
                 theme: "pacfr",
-                bannerText: "Jusqu'à 11 500 € d'aides pour votre pompe à chaleur"
-            }
+                bannerText:
+                    "Jusqu'à 11 500 € d'aides pour votre pompe à chaleur",
+            },
         },
         {
             type: "HeroSection",
-            props: {}
+            props: {},
         },
         {
             type: "HeroBadges",
-            props: {}
+            props: {},
         },
         {
             type: "ReviewsCarousel",
-            props: {}
-        },  
+            props: {},
+        },
         {
             type: "AidEligibilityCTA",
             props: {
                 config: {
-                    paragraphText: "Êtes-vous éligible ? Découvrez le montant de vos aides !",
+                    paragraphText:
+                        "Êtes-vous éligible ? Découvrez le montant de vos aides !",
                     buttonText: "Simuler mes aides",
-                }
-            }
-        },       
+                },
+            },
+        },
         {
             type: "AidSection",
-            props: {}
+            props: {},
         },
-
-    ]
+    ],
 };
 
 export default def;

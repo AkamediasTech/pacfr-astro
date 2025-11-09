@@ -1,28 +1,39 @@
 ---
+
 ---
 
-<section class="bg-white flex flex-col justify-center items-center w-full gap-[4vh] text-center py-[100px] bg-[url(../assets/main/home2_q99.avif)] bg-cover bg-no-repeat bg-center">
-    <div class="flex justify-center items-stretch gap-[4vw] w-[100%] max-w-[1400px] py-0 px-[16px] fade-text fade-in">
+<section
+    class="flex w-full flex-col items-center justify-center gap-[4vh] bg-white bg-[url(../assets/main/home2_q99.avif)] bg-cover bg-center bg-no-repeat py-[100px] text-center"
+>
+    <div
+        class="fade-text fade-in flex w-[100%] max-w-[1400px] items-stretch justify-center gap-[4vw] px-[16px] py-0"
+    >
         <div class="item slide slideRight slidevisible">
-                <h2 class="text-5xl my-16">📝</h2>
-                <h3 class="text-xl">Vérifiez votre éligibilité</h3>
-                <p class="my-6">Remplissez notre formulaire simple pour savoir si vous pouvez bénéficier des aides</p>
+            <h2 class="my-16 text-5xl">📝</h2>
+            <h3 class="text-xl">Vérifiez votre éligibilité</h3>
+            <p class="my-6">
+                Remplissez notre formulaire simple pour savoir si vous pouvez
+                bénéficier des aides
+            </p>
         </div>
         <div class="item">
-                <h2 class="text-5xl my-16">👥</h2>
-                <h3 class="text-xl">Accompagnement personnalisé</h3>
-                <p class="my-6">Un expert vous contacte et évalue vos besoins spécifiques</p>
+            <h2 class="my-16 text-5xl">👥</h2>
+            <h3 class="text-xl">Accompagnement personnalisé</h3>
+            <p class="my-6">
+                Un expert vous contacte et évalue vos besoins spécifiques
+            </p>
         </div>
         <div class="item slide slideLeft slidevisible">
-                <h2 class="text-5xl my-16">🏠</h2>
-                <h3 class="text-xl">Réalisation des travaux</h3>
-                <p class="my-6">Nos artisans certifiés réalisent vos travaux de rénovation</p>
+            <h2 class="my-16 text-5xl">🏠</h2>
+            <h3 class="text-xl">Réalisation des travaux</h3>
+            <p class="my-6">
+                Nos artisans certifiés réalisent vos travaux de rénovation
+            </p>
         </div>
     </div>
 </section>
 
 <style>
-
     .item {
         display: flex;
         flex-direction: column;
@@ -39,7 +50,9 @@
         background: rgba(255, 255, 255, 0.894);
         padding: 20px;
         border-radius: 10px;
-        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        transition:
+            transform 0.2s ease-in-out,
+            box-shadow 0.2s ease-in-out;
     }
 
     .fade-in {
@@ -48,13 +61,17 @@
     }
     .fade-text {
         opacity: 1;
-        transition: opacity 1s ease-out, transform 1s ease-out;
+        transition:
+            opacity 1s ease-out,
+            transform 1s ease-out;
     }
 
     .slide {
         opacity: 0;
         transform: translateX(0);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        transition:
+            opacity 0.8s ease-out,
+            transform 0.8s ease-out;
     }
     .slideLeft {
         transform: translateX(-100%);
@@ -66,5 +83,4 @@
         opacity: 1;
         transform: translateX(0);
     }
-
 </style>

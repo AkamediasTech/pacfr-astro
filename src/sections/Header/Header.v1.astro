@@ -1,43 +1,65 @@
 ---
 import { Image } from "astro:assets";
 import type { Visible } from "../../themes/header";
-import type {Logo} from "../../config/header/types";
+import type { Logo } from "../../config/header/types";
 
 const { brandLogo, partnerLogos, bannerText } = Astro.props as {
-  brandLogo: Logo;
-  partnerLogos: Logo[];
-  bannerText: string;
-}
+    brandLogo: Logo;
+    partnerLogos: Logo[];
+    bannerText: string;
+};
 
-
-const visibility = { 
-  mobile: "flex", 
-  tablet: "hidden sm:flex", 
-  desktop: "hidden lg:flex" 
+const visibility = {
+    mobile: "flex",
+    tablet: "hidden sm:flex",
+    desktop: "hidden lg:flex",
 } as const;
 
-const show = (v : Visible) => (v ? visibility[v] : visibility.mobile);
-
+const show = (v: Visible) => (v ? visibility[v] : visibility.mobile);
 ---
 
-<header class="relative z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
-  <div class="bg-[#004081] text-white px-[5%]">
-    <div class="mx-auto w-full max-w-[90%] py-1 lg:px-10 text-center text-xs md:text-md lg:text-lg sm:text-left tracking-wide italic">
-      {bannerText}
-    </div>
-  </div>
-
-  <div class="mx-auto w-[95%] sm:w-[90%] flex items-center gap-4 sm:px-6 py-2 md:flex-row justify-between">
-    <a href="/" class="flex items-center gap-3">
-      <Image src={brandLogo.file} alt={brandLogo.name} class={`h-10 w-auto object-contain ${brandLogo.className ?? ""}`} loading="eager" fetchpriority="high" decoding="async" />
-    </a>
-
-    <div class="flex items-center gap-4 md:gap-3">
-      {partnerLogos.map((p, _) => (
-        <div class={`${show(p.visibleAbove ?? 'desktop')} items-center justify-center bg-white px-2 sm:px-4 sm:py-2`}>
-          <Image src={p.file} alt={p.name} class={`h-10 w-auto object-contain ${p.className ?? ""}`} loading="eager" fetchpriority="high" decoding="async" />
+<header
+    class="relative z-50 border-b border-slate-200 bg-white/90 backdrop-blur"
+>
+    <div class="bg-[#004081] px-[5%] text-white">
+        <div
+            class="md:text-md mx-auto w-full max-w-[90%] py-1 text-center text-xs tracking-wide italic sm:text-left lg:px-10 lg:text-lg"
+        >
+            {bannerText}
         </div>
-      ))}
     </div>
-  </div>
+
+    <div
+        class="mx-auto flex w-[95%] items-center justify-between gap-4 py-2 sm:w-[90%] sm:px-6 md:flex-row"
+    >
+        <a href="/" class="flex items-center gap-3">
+            <Image
+                src={brandLogo.file}
+                alt={brandLogo.name}
+                class={`h-10 w-auto object-contain ${brandLogo.className ?? ""}`}
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+            />
+        </a>
+
+        <div class="flex items-center gap-4 md:gap-3">
+            {
+                partnerLogos.map((p, _) => (
+                    <div
+                        class={`${show(p.visibleAbove ?? "desktop")} items-center justify-center bg-white px-2 sm:px-4 sm:py-2`}
+                    >
+                        <Image
+                            src={p.file}
+                            alt={p.name}
+                            class={`h-10 w-auto object-contain ${p.className ?? ""}`}
+                            loading="eager"
+                            fetchpriority="high"
+                            decoding="async"
+                        />
+                    </div>
+                ))
+            }
+        </div>
+    </div>
 </header>

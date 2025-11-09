@@ -1,22 +1,38 @@
 {
-  "css.lint.unknownAtRules": "ignore",
+    "css.lint.unknownAtRules": "ignore",
 
-  "tailwindCSS.validate": true,
-  "tailwindCSS.lint.invalidApply": "error",
-  "tailwindCSS.lint.invalidScreen": "error",
-  "tailwindCSS.lint.invalidVariant": "error",
-  "tailwindCSS.lint.tailwindDirective": "error",
-  "tailwindCSS.lint.recommendedVariantOrder": "warning",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[astro]":{
-    "editor.defaultFormatter": "astro-build.astro-vscode"
-  },
-  "editor.formatOnSave": true,
-  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "liveServer.settings.multiRootWorkspaceName": "pacfr-astro"
+    "tailwindCSS.validate": true,
+    "tailwindCSS.lint.invalidApply": "error",
+    "tailwindCSS.lint.invalidScreen": "error",
+    "tailwindCSS.lint.invalidVariant": "error",
+    "tailwindCSS.lint.tailwindDirective": "error",
+    "tailwindCSS.lint.recommendedVariantOrder": "warning",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[astro]": {
+        "editor.defaultFormatter": "astro-build.astro-vscode",
+        "editor.formatOnSave": true
+    },
+    "editor.formatOnSave": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "prettier.requireConfig": true,
+    "prettier.useEditorConfig": false,
+    "files.associations": {
+        "*.astro": "astro"
+    }
+    // "liveServer.settings.multiRootWorkspaceName": "pacfr-astro"
 }

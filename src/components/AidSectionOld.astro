@@ -1,32 +1,50 @@
 ---
 import FadeStyles from "../styles/FadeStyles.astro";
 import SlideInStyles from "../styles/SlideInStyles.astro";
-
 ---
 
-
-<section class="w-full min-h-[350px] bg-white flex justify-center">
-    <div class="h-auto max-w-[90%] xl:max-w-[1280px] flex flex-col my-16">
+<section class="flex min-h-[350px] w-full justify-center bg-white">
+    <div class="my-16 flex h-auto max-w-[90%] flex-col xl:max-w-[1280px]">
         <!-- <h2 class="text-[28px] text-black font-medium fade-text fade-in">Installez une pompe à chaleur, faites des économies, <span class="highlight">augmentez <br> la valeur de votre bien</span></h2> -->
 
-        <h2 class="text-3xl text-slate-900 sm:text-[2rem] font-light fade-text fade-in">Installez une pompe à chaleur, faites des économies, <span class="highlight">augmentez <br> la valeur de votre bien</span></h2>
+        <h2
+            class="fade-text fade-in text-3xl font-light text-slate-900 sm:text-[2rem]"
+        >
+            Installez une pompe à chaleur, faites des économies, <span
+                class="highlight">augmentez <br /> la valeur de votre bien</span
+            >
+        </h2>
 
-        <div class="w-full h-[1px] bg-[var(--color-bright-blue)] fade-text fade-in my-1"></div>
+        <div
+            class="fade-text fade-in my-1 h-[1px] w-full bg-[var(--color-bright-blue)]"
+        >
+        </div>
 
-        <div class="my-8 flex flex-row-reverse justify-center items-center gap-10">
+        <div
+            class="my-8 flex flex-row-reverse items-center justify-center gap-10"
+        >
             <div class="slide slideLeft slidevisible flex flex-col gap-4">
                 <div>
-                    <h2 class="text-2xl text-black font-light">L'installation d'une pompe à chaleur désormais <br>
+                    <h2 class="text-2xl font-light text-black">
+                        L'installation d'une pompe à chaleur désormais <br />
                         <span class="highlight">financée par l'Etat</span>
                     </h2>
-                    <div class="w-[220px] h-[1px] bg-[var(--color-bright-blue)] fade-text fade-in my-1"></div>
+                    <div
+                        class="fade-text fade-in my-1 h-[1px] w-[220px] bg-[var(--color-bright-blue)]"
+                    >
+                    </div>
                 </div>
-                <p class="text-lg leading-relaxed text-slate-700 text-justify">Le gouvernement met en place un programme pour aider les propriétaires, en particulier ceux chauffés au gaz ou au fioul, à passer à la pompe à chaleur air-eau grâce à des aides financières. <br>
-                        Cette transition permet de réduire jusqu’à 70 % de la facture énergétique tout en limitant l'empreinte carbone. <br>
-                        Le plus avantageux ? <br>
-                        Les nouvelles subventions couvrent l’installation, évitant ainsi toute avance de frais pour les bénéficiaires.
+                <p class="text-justify text-lg leading-relaxed text-slate-700">
+                    Le gouvernement met en place un programme pour aider les
+                    propriétaires, en particulier ceux chauffés au gaz ou au
+                    fioul, à passer à la pompe à chaleur air-eau grâce à des
+                    aides financières. <br />
+                    Cette transition permet de réduire jusqu’à 70 % de la facture
+                    énergétique tout en limitant l'empreinte carbone. <br />
+                    Le plus avantageux ? <br />
+                    Les nouvelles subventions couvrent l’installation, évitant ainsi
+                    toute avance de frais pour les bénéficiaires.
                 </p>
-
             </div>
 
             <!-- <div class="relative w-full max-w-[480px] min-w-[380px] h-full slide slideRight slidevisible">
@@ -34,23 +52,19 @@ import SlideInStyles from "../styles/SlideInStyles.astro";
                 </iframe>
             </div> -->
 
-            <div class="relative w-full max-w-[480px] min-w-[380px] h-full slide slideRight slidevisible">
-                <iframe 
-                src="https://www.youtube.com/embed/u971CsSDe1c" 
-                title="YouTube video player" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen=""
-                class="w-full h-full rounded-2xl"
+            <div
+                class="slide slideRight slidevisible relative h-full w-full max-w-[480px] min-w-[380px]"
+            >
+                <iframe
+                    src="https://www.youtube.com/embed/u971CsSDe1c"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen=""
+                    class="h-full w-full rounded-2xl"
                 >
                 </iframe>
             </div>
-
-
         </div>
-
     </div>
-
 </section>
-
-
-
