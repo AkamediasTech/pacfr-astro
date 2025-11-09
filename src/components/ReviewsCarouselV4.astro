@@ -1,7 +1,6 @@
 ---
 import { Image as AstroImage } from 'astro:assets';
 
-// Remplace ces imports par tes propres fichiers.
 import GoogleProfile from '../assets/reviews/google-profile.webp';
 import ArrowLeft from '../assets/reviews/arrow-left.png';
 import ArrowRight from '../assets/reviews/arrow-right.png';
@@ -11,7 +10,6 @@ import ReviewShot3 from '../assets/reviews/review-3.png';
 import ReviewShot4 from '../assets/reviews/review-4.png';
 import ReviewShot5 from '../assets/reviews/review-5.png';
 import ReviewShot6 from '../assets/reviews/review-6.png';
-import FadeStyles from '../styles/FadeStyles.astro';
 
 const slides = [
   { id: 'review-1', image: ReviewShot1, alt: 'Avis client 1' },
@@ -25,7 +23,6 @@ const slides = [
 const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
 ---
 
-<FadeStyles />
 
 <section class="bg-white">
   <div class="bg-[#1D1F55] text-white">
@@ -39,11 +36,11 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
 
     <div
         id={carouselId}
-        
         data-visible-desktop="3"
         data-visible-tablet="2"
         data-visible-mobile="1"
         data-gap="24"
+        class="fade-text fade-text-auto"
     >
 
         <div class="flex flex-col  gap-10 lg:flex-row lg:items-start lg:gap-6">

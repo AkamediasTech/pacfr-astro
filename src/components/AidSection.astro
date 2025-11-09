@@ -1,9 +1,8 @@
 ---
-import FadeStyles from '../styles/FadeStyles.astro';
-import SlideInStyles from '../styles/SlideInStyles.astro';
+
 ---
 
-<section class="w-full bg-white" aria-labelledby="aid-section-title">
+<section class="w-full bg-white sm:px-10" aria-labelledby="aid-section-title" id="#aid-section">
   <div class="mx-auto flex w-full max-w-7xl flex-col gap-8 px-6 py-16 sm:px-10 lg:px-0 px-auto">
     <header>
       <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[#0a7cff]">Transition énergétique</p>
@@ -14,12 +13,13 @@ import SlideInStyles from '../styles/SlideInStyles.astro';
         Installez une pompe à chaleur, faites des économies,
         <span class="highlight">augmentez la valeur de votre bien</span>
       </h2>
+      <div class="mt-3 h-[0.12rem] w-[25%] rounded-full bg-[var(--color-bright-blue)]" role="presentation"></div>
     </header>
 
     <div class="flex flex-col-reverse items-center gap-10 lg:flex-row-reverse lg:items-start">
       <article class="slide slideLeft slidevisible flex-1 space-y-5 text-lg leading-relaxed text-slate-700">
         <div>
-          <h3 class="text-2xl font-light text-slate-900">
+          <h3 class="text-2xl font-normal text-slate-900">
             L’installation d’une pompe à chaleur désormais <span class="highlight">financée par l’État</span>
           </h3>
           <div class="mt-2 h-0.5 w-40 bg-[var(--color-bright-blue)]" role="presentation"></div>
@@ -52,6 +52,3 @@ import SlideInStyles from '../styles/SlideInStyles.astro';
     </div>
   </div>
 </section>
-
-<SlideInStyles />
-<FadeStyles />

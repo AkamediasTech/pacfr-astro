@@ -1,0 +1,65 @@
+---
+import heatPumpDiagram from '../assets/main/heat_pump_explainer_diagram.png';
+import SlideInStyles from '../styles/SlideInStyles.astro';
+import FadeStyles from '../styles/FadeStyles.astro';
+---
+
+<SlideInStyles />
+
+
+<section
+  class="border-t-4 border-[#0a3d85] bg-white px-6 py-14 sm:px-10"
+  aria-labelledby="explainer-heading"
+>
+    <div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:items-center">
+
+      <!-- Text -->
+        <div class="mb-auto slide slideRight">
+            <div class="">
+                <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[#0a7cff]">
+                Fonctionnement
+                </p>
+
+                <h2 class="mt-2 text-3xl font-normal text-slate-900 sm:text-[2rem] 
+                fade-text fade-text-auto">
+
+                    Comment fonctionne une 
+                    <span class="text-[#0a7cff] font-semibold ">
+                      pompe à chaleur ?
+                    </span>
+                </h2>
+
+                <div class="mt-3 h-[0.12rem] w-[22.5%] w-[40%] rounded-full bg-[var(--color-bright-blue)]" role="presentation"></div>
+            </div>
+
+          <div class="mt-6 text-lg leading-relaxed text-slate-700 text-justify">
+              <slot name="body">
+              <p> 
+                  Une pompe à chaleur (PAC) est un système de chauffage et de climatisation qui utilise les énergies
+                  renouvelables présentes dans l’air, l’eau ou le sol pour chauffer ou rafraîchir votre logement.
+                  Son principe repose sur un cycle thermodynamique qui capte les calories gratuites de l’environnement
+                  pour les transformer en chaleur utilisable à l’intérieur de votre habitation. Investir dans une pompe
+                  à chaleur, c’est choisir une solution performante, durable et respectueuse de l’environnement pour un
+                  logement plus confortable et économique.
+                  </p>
+              </slot>
+          </div>
+          
+    </div>
+
+    <figure class="mx-auto w-full max-w-md rounded-3xl border border-sky-100 bg-sky-50/60 p-4 shadow-lg slide slideLeft">
+      <img
+        src={heatPumpDiagram.src}
+        alt="Schéma illustrant le circuit de fonctionnement d’une pompe à chaleur"
+        width={heatPumpDiagram.width ?? 480}
+        height={heatPumpDiagram.height ?? 320}
+        loading="lazy"
+        decoding="async"
+        class="h-auto w-full rounded-2xl object-contain"
+      />
+        <figcaption class="mt-3 text-center text-sm text-slate-600">
+          Cycle thermodynamique simplifié d’une PAC.
+        </figcaption>
+    </figure>
+  </div>
+</section>
