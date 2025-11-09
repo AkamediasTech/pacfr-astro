@@ -1,0 +1,14 @@
+---
+import { resolveVariant } from "./factory";
+import type { Theme } from "@content/header/types";
+
+const { theme = "pacfr", variant = "v1" } = Astro.props as {
+    theme?: Theme;
+    variant?: string;
+};
+
+const { component: Component, propsFactory } = resolveVariant(variant);
+const props = propsFactory(theme);
+---
+
+<Component {...props} />

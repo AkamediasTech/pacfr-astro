@@ -1,0 +1,16 @@
+---
+import { ContentByTheme } from "@content/govSubsidy/content.v1";
+import { resolveVariant } from "./factory";
+
+const { theme = "pacfr", variant = "v1" } = Astro.props as {
+    theme?: "pacfr" | "itefr" | "pv";
+    variant?: string;
+};
+
+const content = ContentByTheme[theme];
+
+const { component: Component, propsFactory } = resolveVariant(variant);
+const props = propsFactory(content);
+---
+
+<Component {...props} />

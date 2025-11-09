@@ -1,21 +1,28 @@
 ---
 import { Image } from "astro:assets";
-import type { Visible } from "../../themes/header";
-import type { Logo } from "../../config/header/types";
+// import type { Logo } from "@content/header/types";
+// import { getVisibilityClass } from "./factory";
 
-const { brandLogo, partnerLogos, bannerText } = Astro.props as {
-    brandLogo: Logo;
-    partnerLogos: Logo[];
+// const { brandLogo, partnerLogos, bannerText } = Astro.props as {
+//     brandLogo: Logo;
+//     partnerLogos: Logo[];
+//     bannerText: string;
+// };
+
+const { bannerText, brandLogo, partnerLogos } = Astro.props as {
     bannerText: string;
+    brandLogo: {
+        name: string;
+        file: any;
+        className: string;
+    };
+    partnerLogos: Array<{
+        name: string;
+        file: any;
+        className: string;
+        visibilityClass: string; // ← Déjà calculée !
+    }>;
 };
-
-const visibility = {
-    mobile: "flex",
-    tablet: "hidden sm:flex",
-    desktop: "hidden lg:flex",
-} as const;
-
-const show = (v: Visible) => (v ? visibility[v] : visibility.mobile);
 ---
 
 <header
@@ -45,14 +52,18 @@ const show = (v: Visible) => (v ? visibility[v] : visibility.mobile);
 
         <div class="flex items-center gap-4 md:gap-3">
             {
-                partnerLogos.map((p, _) => (
+                partnerLogos.map((logo, _) => (
+                    // <div
+                    //     class={`${getVisibilityClass(p.visibleAbove ?? "desktop")} items-center justify-center bg-white px-2 sm:px-4 sm:py-2`}
+
+                    // >
                     <div
-                        class={`${show(p.visibleAbove ?? "desktop")} items-center justify-center bg-white px-2 sm:px-4 sm:py-2`}
+                        class={`${logo.visibilityClass} items-center justify-center bg-white px-2 sm:px-4 sm:py-2`}
                     >
                         <Image
-                            src={p.file}
-                            alt={p.name}
-                            class={`h-10 w-auto object-contain ${p.className ?? ""}`}
+                            src={logo.file}
+                            alt={logo.name}
+                            class={`h-10 w-auto object-contain ${logo.className ?? ""}`}
                             loading="eager"
                             fetchpriority="high"
                             decoding="async"

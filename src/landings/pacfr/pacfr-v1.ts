@@ -6,36 +6,45 @@ const def: LandingDef = {
     sections: [
         {
             type: "Header",
-            props: {
-                theme: "pacfr",
-                bannerText:
-                    "Jusqu'à 11 500 € d'aides pour votre pompe à chaleur",
-            },
+            // props: {
+            //     theme: "pacfr",
+            //     bannerText:
+            //         "Jusqu'à 11 500 € d'aides pour votre pompe à chaleur",
+            // },
+            props: {},
+            theme: "pacfr",
+            variant: "v1",
         },
         {
+            theme: "pacfr",
             type: "HeroSection",
             props: {},
         },
         {
+            theme: "pacfr",
             type: "HeroBadges",
             props: {},
         },
         {
+            theme: "pacfr",
             type: "ReviewsCarousel",
             props: {},
         },
         {
+            theme: "pacfr",
             type: "AidEligibilityCTA",
-            props: {
-                config: {
-                    paragraphText:
-                        "Êtes-vous éligible ? Découvrez le montant de vos aides !",
-                    buttonText: "Simuler mes aides",
-                },
-            },
+            props: {},
+            // props: {
+            //     config: {
+            //         paragraphText:
+            //             "Êtes-vous éligible ? Découvrez le montant de vos aides !",
+            //         buttonText: "Simuler mes aides",
+            //     },
+            // },
         },
         {
-            type: "AidSection",
+            theme: "pacfr",
+            type: "GovSubsidy",
             props: {},
         },
     ],

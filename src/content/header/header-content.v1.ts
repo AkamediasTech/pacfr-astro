@@ -64,3 +64,70 @@ export const headerPartnersByTheme: Record<"pv" | "itefr" | "pacfr", Logo[]> = {
         /* ... */
     ],
 };
+
+export const ContentByTheme: Record<
+    Theme,
+    {
+        bannerText: string;
+        brandLogo: Logo;
+        partnerLogos: Logo[];
+    }
+> = {
+    pacfr: {
+        bannerText: "Jusqu'à 11 500 € d'aides pour votre pompe à chaleur",
+        brandLogo: {
+            name: "Eco Energie France",
+            file: EcoEnergieLogo,
+            className: "h-8 md:h-15 px-3",
+        },
+        partnerLogos: [
+            {
+                name: "République Française",
+                file: RepubliqueFrancaiseLogo,
+                className: "h-8 md:h-15",
+                visibleAbove: "tablet",
+            },
+            {
+                name: "France Relance",
+                file: FranceRelanceLogo,
+                className: "md:h-15",
+                visibleAbove: "mobile",
+            },
+            {
+                name: "MaPrimeRenov",
+                file: MaPrimeRenovLogo,
+                className: "md:h-15",
+                visibleAbove: "mobile",
+            },
+            {
+                name: "France Renov",
+                file: FranceRenovLogo,
+                className: "md:h-15",
+                visibleAbove: "desktop",
+            },
+        ],
+    },
+    itefr: {
+        bannerText:
+            "Jusqu'à 15 000€ d'aides sur l'isolation thermique extérieure",
+        brandLogo: {
+            name: "Eco Energie France",
+            file: EcoEnergieLogo,
+            className: "h-8 md:h-15 px-3",
+        },
+        partnerLogos: [
+            // ... logos spécifiques ITE
+        ],
+    },
+    pv: {
+        bannerText: "Jusqu'à 11 000€ d'aides sur vos panneaux photovoltaïques",
+        brandLogo: {
+            name: "Eco Energie France",
+            file: EcoEnergieLogo,
+            className: "h-8 md:h-15 px-3",
+        },
+        partnerLogos: [
+            // ... logos spécifiques PV
+        ],
+    },
+};

@@ -1,7 +1,7 @@
 ---
-import type { AidV1Props } from "./adapters";
+import type { V1Props } from "./factory";
 
-const props = Astro.props as AidV1Props;
+const props = Astro.props as V1Props;
 
 const { eyebrow, title, highlight, secondTitle, secondHighlight } =
     props.heading;

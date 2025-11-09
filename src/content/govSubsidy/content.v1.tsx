@@ -1,4 +1,4 @@
-export type AidContent = {
+export type ContentType = {
     eyebrow: string;
     title: string;
     highlight: string;
@@ -8,10 +8,9 @@ export type AidContent = {
     videoId?: string;
 };
 
-type ThemesRecords = Record<"pv" | "itefr" | "pacfr", AidContent>;
-// type ThemesRecords = Record< "pacfr", AidContent>;
+type ThemesRecords = Record<"pv" | "itefr" | "pacfr", ContentType>;
 
-export const aidContentByTheme: ThemesRecords = {
+export const ContentByTheme: ThemesRecords = {
     pacfr: {
         eyebrow: "Transition énergétique",
         title: "Installez une pompe à chaleur, faites des économies",

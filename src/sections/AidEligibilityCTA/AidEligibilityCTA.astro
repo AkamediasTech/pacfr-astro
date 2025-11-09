@@ -1,0 +1,47 @@
+---
+type CTAMessageConfig = {
+    paragraphText: string;
+    buttonText: string;
+};
+
+interface EligibilityCTAProps {
+    config?: CTAMessageConfig;
+}
+
+const defaultConfig: CTAMessageConfig = {
+    paragraphText: "Êtes-vous éligible ? Découvrez le montant de vos aides !",
+    buttonText: "Simuler mes aides",
+};
+
+const { config = defaultConfig } = Astro.props as EligibilityCTAProps;
+
+const resolvedConfig = {
+    ...defaultConfig,
+    ...config,
+};
+
+const buttonId = `cta-scroll-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<section class="bg-[#0a3d85] py-6">
+    <div
+        class="mx-auto flex w-full max-w-xs flex-col items-center gap-6 overflow-x-hidden px-4 text-white sm:max-w-6xl sm:justify-center lg:flex-row"
+    >
+        <p
+            class="text-center font-sans text-xl font-light sm:text-left sm:text-2xl"
+        >
+            <!-- Êtes-vous éligible ? Découvrez le montant de vos aides ! -->
+            {resolvedConfig.paragraphText}
+        </p>
+        <button
+            type="button"
+            id={buttonId}
+            data-scroll-to-form-target="eligibility-form-wrapper"
+            data-scroll-offset="400"
+            class="btn btn-success btn--glow w-full cursor-pointer rounded-[4px] bg-[#0a7cff] py-2.5 text-xl font-light shadow-none sm:text-2xl md:w-auto"
+        >
+            <!-- Simuler mes aides -->
+            {resolvedConfig.buttonText}
+        </button>
+    </div>
+</section>

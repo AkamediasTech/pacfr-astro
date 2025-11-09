@@ -8,7 +8,9 @@ export type HeaderLogo = {
 
 export type SectionDef = {
     type: string; // ex: "Hero" | "Features" | "FAQ" | "CTA"
+    theme: "pacfr" | "itefr" | "pv";
     props: Record<string, any>;
+    variant?: string;
 };
 
 export type LandingDef = {
