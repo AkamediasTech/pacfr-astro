@@ -6,15 +6,14 @@ import CaseStudies from '../components/CaseStudies.astro';
 import ImageShowcase from '../components/ImageShowcase.astro';
 import Testimonial from '../components/Testimonial.astro';
 import ContactCard from '../components/ContactCard.astro';
-import HeroSection from '../components/HeroSection.astro';
-import ReviewsCarouselV4 from '../components/ReviewsCarouselV4.astro';
+import HeroSection from '../sections/HeroSection.astro';
+import ReviewsCarousel from '../sections/ReviewsCarousel.astro';
 import AidEligibilityCTA from '../components/AidEligibilityCTA.astro';
 import CardsSection from '../components/CardsSection.astro';
-import CardsSectionV2 from '../components/CardsSectionV2.astro';
 import GovAidBanner from '../components/GovAidBanner.astro';
 import ImageBanner from '../components/ImageBanner.astro';
 import Stats from '../components/Stats.astro';
-import AidSection from '../components/AidSection.astro';
+import AidSection from '../sections/AidSection.astro';
 import UnderlineAccent from '../components/UnderlineAccent.astro';
 import ExplainerHeading from '../components/ExplainerHeading.astro';
 import LegalStrip from '../components/LegalStrip.astro';
@@ -24,7 +23,7 @@ import PanasonicLogo from '../assets/main/panasonic.png';
 import AtlanticLogo from '../assets/main/atlantic.png';
 import MitsubishiLogo from '../assets/main/mitsubishi.png';
 import DaikinLogo from '../assets/main/daikin.png';
-import HeroBadges from '../components/HeroBadges.astro';
+import HeroBadges from '../sections/HeroBadges.astro';
 
 import ExplainerSplitSectionV2 from '../components/ExplainerSplitSectionV2.astro';
 import heatPumpDiagram from '../assets/main/heat_pump_explainer_diagram.png';
@@ -48,10 +47,10 @@ const eligibilityMsgConfig2 = {
   <HeroSection />
   <HeroBadges />
 
-  <ReviewsCarouselV4/>
+  <ReviewsCarousel/>
 
   <AidEligibilityCTA config={eligibilityMsgConfig} />
-  <CardsSectionV2 />
+  <CardsSection />
   <GovAidBanner />
   <ImageBanner />
   <Stats />

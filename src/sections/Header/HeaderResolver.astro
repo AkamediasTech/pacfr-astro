@@ -1,0 +1,14 @@
+---
+import { resolveHeaderVariant } from "./adapters";
+import type {Theme } from "../../config/header/types";
+
+
+const { theme = "pacfr", variant = "v1" } = Astro.props as {
+  theme?: Theme;
+  variant?: string;
+};
+
+const { component: Component, adapter: toProps } = resolveHeaderVariant(variant);
+const props = toProps(theme as Theme);
+---
+<Component {...props} />

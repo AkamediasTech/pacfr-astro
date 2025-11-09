@@ -17,5 +17,6 @@
   "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "liveServer.settings.multiRootWorkspaceName": "pacfr-astro"
 }

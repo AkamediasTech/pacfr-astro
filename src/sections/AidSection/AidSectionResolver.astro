@@ -1,0 +1,21 @@
+---
+import { resolveSection } from "./index"; 
+import { aidContentByTheme } from "@/config/aid-content/aid-content.v1";
+import {resolveAdapter } from "./adapters";
+
+
+const { theme = "pacfr", variant = "v1" } = Astro.props as {
+    theme?: "pacfr" | "itefr" | "pv";
+    variant?: string;
+}
+
+const content = aidContentByTheme[theme];
+
+const adapter = resolveAdapter(variant);
+const props = adapter(content);
+
+
+const Component = resolveSection(variant);
+---
+
+<Component {...props} />

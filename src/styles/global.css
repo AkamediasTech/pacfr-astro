@@ -34,6 +34,7 @@ body {
   margin: 0;
 }
 
+
 @layer components {
   .bg-brand-gradient {
     background: linear-gradient(90deg, rgb(74, 144, 226), rgb(53, 122, 189));

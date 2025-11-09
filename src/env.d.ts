@@ -2,6 +2,10 @@
 /// <reference types="astro/client" />
 
 
+declare module '*.astro' {
+  const Component: import('astro').AstroComponentFactory;
+  export default Component;
+}
 
 declare module '*.svg?component' {
   import type { FunctionalComponent } from 'preact';
