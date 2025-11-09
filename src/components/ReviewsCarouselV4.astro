@@ -40,7 +40,8 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
         data-visible-tablet="2"
         data-visible-mobile="1"
         data-gap="24"
-        class="fade-text fade-text-auto"
+        class=" fadeReveal fadeFromBottom"
+        style="--fade-duration: 1000ms; --fade-easing: ease-out;"
     >
 
         <div class="flex flex-col  gap-10 lg:flex-row lg:items-start lg:gap-6">
@@ -62,12 +63,12 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
                         ))}
                     </span> -->
                     <span class="ps-[6px] pr-[4px] flex" role="img" aria-label="4,6 étoiles">
-                                <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_14.png)] bg-contain"></span>
-                                <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_14.png)] bg-contain"></span>
-                                <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_14.png)] bg-contain"></span>
-                                <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_14.png)] bg-contain"></span>
-                                <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_half_14.png)] bg-contain"></span>
-                                <!-- <span class="inline-block w-5 h-5 bg-image:url(./assets/ic_star_rate_14.png) UpDOYb"></span> -->
+                        <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_14.png)] bg-contain"></span>
+                        <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_14.png)] bg-contain"></span>
+                        <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_14.png)] bg-contain"></span>
+                        <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_14.png)] bg-contain"></span>
+                        <span class="inline-block w-5 h-5 bg-[url(../assets/main/ic_star_rate_half_14.png)] bg-contain"></span>
+                        <!-- <span class="inline-block w-5 h-5 bg-image:url(./assets/ic_star_rate_14.png) UpDOYb"></span> -->
                     </span>
                     </div>
                     <p class="text-xs text-slate-500">Basé sur 39 avis</p>

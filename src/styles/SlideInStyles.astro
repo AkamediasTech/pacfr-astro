@@ -1,18 +1,21 @@
 
+
 <style define:vars is:global>
-    .slide {
-        opacity: 0;
-        transform: translateX(0);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    .slideLeft {
-        transform: translateX(50px);
-    }
-    .slideRight {
-        transform: translateX(-50px);
-    }
-    .slidevisible {
-        opacity: 1;
-        transform: translateX(0);
-    }
+  .slideReveal {
+    opacity: 0;
+    transform: translateX(0);
+    transition:
+      opacity var(--slide-duration, 0.8s) ease-out,
+      transform var(--slide-duration, 0.8s) ease-out;
+  }
+
+  .slideFromLeft   { transform: translateX(calc(var(--slide-distance, 50px) * -1)); }
+  .slideFromRight  { transform: translateX(var(--slide-distance, 50px)); }
+  .slideUp     { transform: translateY(calc(var(--slide-distance, 40px) * -1)); }
+  .slideDown   { transform: translateY(var(--slide-distance, 40px)); }
+
+  .isVisible {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
 </style>

@@ -1,4 +1,4 @@
-<style define:vars is:global>
+<!-- <style define:vars is:global>
 
     .fade-text {
         opacity: 0;
@@ -15,4 +15,35 @@
         font-weight: 600;
         color: #0a7cff;
     }
+</style> -->
+
+<style define:vars is:global>
+  .fadeReveal {
+    opacity: 0;
+    transform: translateY(var(--fade-offset, 20px));
+    transition:
+      opacity var(--fade-duration, 0.8s) var(--fade-easing, ease-out),
+      transform var(--fade-duration, 0.8s) var(--fade-easing, ease-out);
+  }
+
+  .fadeFromTop {
+    --fade-offset: calc(var(--fade-distance, 20px) * -1);
+  }
+
+  .fadeFromBottom {
+    --fade-offset: var(--fade-distance, 20px);
+  }
+
+  .fadeFromLeft {
+    transform: translateX(calc(var(--fade-distance, 20px) * -1));
+  }
+
+  .fadeFromRight {
+    transform: translateX(var(--fade-distance, 20px));
+  }
+
+  .fadeReveal.isVisible {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
 </style>

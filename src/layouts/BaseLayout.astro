@@ -81,11 +81,11 @@ const year = new Date().getFullYear();
   </head>
   <body class="min-h-screen max-w-screen bg-gradient-to-b from-white via-slate-50 to-slate-100 font-sans text-slate-900 overflow-x-hidden">
     <header class="relative z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
-      <div class="bg-[#004081] text-white">
+      <div class="bg-[#004081] text-white px-[5%]">
         <!-- <div class="mx-auto w-[90%] py-1 lg:px-12 text-center text-xs md:text-md lg:text-lg sm:text-left tracking-wide italic">
           Jusqu'à 11 500 € d'aides pour votre pompe à chaleur
         </div> -->
-        <div class="mx-auto w-full py-1 lg:px-12 text-center text-xs md:text-md lg:text-lg sm:text-left tracking-wide italic">
+        <div class="mx-auto w-full max-w-[90%]py-1 lg:px-6 text-center text-xs md:text-md lg:text-lg sm:text-left tracking-wide italic">
           Jusqu'à 11 500 € d'aides pour votre pompe à chaleur
         </div>
       </div>
@@ -93,7 +93,7 @@ const year = new Date().getFullYear();
       <div class="mx-auto w-[95%] sm:w-[90%] flex items-center gap-4 sm:px-6 py-2 md:flex-row justify-between">
         <div>
         <a href="/" class="flex items-center gap-3 text-lg font-semibold tracking-tight text-slate-900">
-           <div class="flex items-center justify-center sm:px-4 py-4"
+           <div class="flex items-center justify-center"
            >
           <!-- <div class="flex flex-shrink-0 items-center justify-center gap-3 px-4 py-2"> -->
               <Image 
@@ -109,19 +109,6 @@ const year = new Date().getFullYear();
         </div>
 
       <div class="flex items-center gap-4 md:gap-3">
-        <!-- {partnerLogos && Array.isArray(partnerLogos) && partnerLogos?.map((brand)=>{
-          return (
-            <div class={`flex flex-shrink-0 items-center justify-center ${brand?.showOnMobile ? null : 'hidden sm:flex'} : '' bg-white px-2 sm:px-4 sm:py-2`}>
-              <Image 
-                src={brand.file} 
-                alt={brand.name}
-                class={`h-10 w-auto object-contain ${brand?.className ?? ''}`}
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          )
-        })} -->
 
         {partnerLogos.map((brand) => {
 
@@ -174,11 +161,11 @@ const year = new Date().getFullYear();
       </div>
     </footer> -->
     <script>
-      // import "../scripts/mobileMenu";
-      import "../scripts/scrollReveal";
+      // import "../scripts/scrollReveal";
       import "../scripts/animation";
       import "../scripts/ctaScrollToForm";
-      import "../scripts/slideIn";
+      // import "../scripts/slideIn";
+      import "../scripts/effectsObserver";
     </script>
 
   </body>

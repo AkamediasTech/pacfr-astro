@@ -1,4 +1,3 @@
-import { init } from "astro/virtual-modules/prefetch.js";
 
 const SELECTOR = ".slide";
 const VISIBLE_CLASS = "slidevisible";
