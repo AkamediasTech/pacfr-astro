@@ -383,24 +383,28 @@ export const PHASES: PhaseConfig[] = [
                         label: "Prénom",
                         type: "text",
                         autoComplete: "given-name",
+                        required: true,
                     },
                     {
                         name: "family-name",
                         label: "Nom",
                         type: "text",
                         autoComplete: "family-name",
+                        required: true,
                     },
                     {
                         name: "email",
                         label: "Email",
                         type: "email",
                         autoComplete: "email",
+                        required: true,
                     },
                     {
                         name: "tel",
                         label: "Téléphone",
                         type: "tel",
                         autoComplete: "tel",
+                        required: true,
                     },
                     {
                         name: "consent",

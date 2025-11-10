@@ -322,6 +322,11 @@ export default function EligibilityForm() {
             const mergedAnswers = { ...answers, ...nextValues };
             setAnswers(mergedAnswers);
 
+            if (!currentPhase.isFinal) {
+                goToNextStep();
+                return;
+            }
+
             const payload = new FormData();
             Object.entries(mergedAnswers).forEach(([key, value]) => {
                 payload.append(key, value);

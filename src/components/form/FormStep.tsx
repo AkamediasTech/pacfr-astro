@@ -1,6 +1,6 @@
 import type { FunctionalComponent } from "preact";
 import type { FormStep as FormStepType } from "./config";
-import { SelectField } from "./SelectField";
+import { CitySelect } from "./CitySelect";
 
 type FormStepProps = {
     step: FormStepType;
@@ -14,7 +14,7 @@ const renderConsentLabel = () => (
     <span class="leading-tight">
         J’accepte la{" "}
         <a
-            href="/politiqueConfidentialite.html"
+            href="/pacfr/meta/politiqueConfidentialite.html"
             target="_blank"
             rel="noreferrer"
             class="text-brand-blue hover:text-brand-blue/80 underline decoration-2 underline-offset-4"
@@ -42,22 +42,45 @@ const FormStep: FunctionalComponent<FormStepProps> = ({
             const currentValue = values[field.name];
 
             const options = selectOptions?.[field.name];
-
-            if (options && options.length > 0) {
+            if (field.name === "address-level2" && options?.length) {
                 return (
-                    <SelectField
-                        key={field.name}
-                        name={field.name}
-                        label={field.label}
-                        value={currentValue ?? ""}
-                        placeholder={field.placeholder}
-                        options={options}
-                        onChange={(next) => onFieldChange(field.name, next)}
-                        fullWidth={field.fullWidth}
-                        required={field?.required && true}
-                    />
+                    <>
+                        <CitySelect
+                            key={field.name}
+                            name={field.name}
+                            label={field.label}
+                            value={currentValue ?? ""}
+                            options={options}
+                            onChange={(next) => onFieldChange(field.name, next)}
+                            placeholder={field.placeholder}
+                            fullWidth={field.fullWidth}
+                        />
+                        <input
+                            type="hidden"
+                            name={field.name}
+                            value={currentValue ?? ""}
+                        />
+                    </>
                 );
             }
+
+            // const options = selectOptions?.[field.name];
+
+            // if (options && options.length > 0) {
+            //     return (
+            //         <SelectField
+            //             key={field.name}
+            //             name={field.name}
+            //             label={field.label}
+            //             value={currentValue ?? ""}
+            //             placeholder={field.placeholder}
+            //             options={options}
+            //             onChange={(next) => onFieldChange(field.name, next)}
+            //             fullWidth={field.fullWidth}
+            //             required={field?.required && true}
+            //         />
+            //     );
+            // }
 
             if (isCheckbox) {
                 const isChecked = (currentValue ?? "on") === "on";
