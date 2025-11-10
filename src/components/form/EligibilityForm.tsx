@@ -483,7 +483,8 @@ export default function EligibilityForm() {
             : currentPhase.successMessage;
 
     return (
-        <section class="mx-auto flex h-full min-h-fit w-[100%] flex-col overflow-hidden rounded-[8px] bg-white shadow-[0_30px_60px_-20px_rgba(10,63,149,0.35)] sm:min-h-[560px] sm:w-full">
+        // <section class="mx-auto flex h-full min-h-fit w-[100%] flex-col overflow-hidden rounded-[8px] bg-white shadow-[0_30px_60px_-20px_rgba(10,63,149,0.35)] sm:min-h-[560px] sm:w-full">
+        <section class="mx-auto flex h-full min-h-fit w-[100%] flex-col overflow-hidden rounded-[8px] bg-white shadow-[0_0_10px_10px_rgba(0,94,188,0.3)] sm:min-h-[560px] sm:w-full">
             <PhaseHeader content={headerContent} />
 
             <div class="px-6 pt-6 sm:px-8">
