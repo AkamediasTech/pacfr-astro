@@ -3,12 +3,14 @@ import FadeStyles from "../styles/FadeStyles.astro";
 import SlideInStyles from "../styles/SlideInStyles.astro";
 ---
 
-<section class="flex min-h-[350px] w-full justify-center bg-white">
+<section
+    class="flex min-h-[350px] w-full justify-center overflow-x-hidden bg-white"
+>
     <div class="m-6 flex h-auto max-w-[1280px] flex-col">
         <h2 class="fade-text fade-in text-[28px] font-medium text-black">
             Installez une pompe à chaleur, faites des économies, <span
-                class="highlight"
-                >augmentez <br /> la valeur de votre bien</span>
+                class="highlight">augmentez <br /> la valeur de votre bien</span
+            >
         </h2>
 
         <div
@@ -48,8 +50,11 @@ import SlideInStyles from "../styles/SlideInStyles.astro";
                 </iframe>
             </div> -->
 
-            <div
+            <!-- <div
                 class="slide slideRight slidevisible relative h-full w-full max-w-[480px] min-w-[380px]"
+            > -->
+            <div
+                class="slide slideRight slidevisible relative h-full w-full max-w-[480px]"
             >
                 <iframe
                     src="https://www.youtube.com/embed/u971CsSDe1c"

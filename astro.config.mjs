@@ -9,7 +9,7 @@ import preact from "@astrojs/preact";
 export default defineConfig({
     site: "https://lemonchiffon-jaguar-901965.hostingersite.com/astro-test/dist/",
     // base: "/astro-test/dist/",
-    base: "./",
+    base: "/pac/meta",
     vite: {
         plugins: [tailwindcss()],
         resolve: {

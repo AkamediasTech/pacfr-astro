@@ -27,7 +27,7 @@ import heatPumpDiagram from "../assets/main/heat_pump_explainer_diagram.png";
         > -->
         <div
             class="slideReveal slideFromLeft mb-auto lg:order-1 xl:basis-[60%]"
-            style="--slide-duration: 900ms; --slide-distance: 60px;"
+            style="--slide-duration: 900ms; --slide-distance: 50px;"
         >
             <div class="">
                 <p
@@ -124,14 +124,17 @@ import heatPumpDiagram from "../assets/main/heat_pump_explainer_diagram.png";
 </style> -->
 
 <!-- <script is:inline>
-  const items = document.querySelectorAll('.slideReveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('isVisible');
-      observer.unobserve(entry.target);
-    });
-  }, { threshold: 0.2 });
+    const items = document.querySelectorAll(".slideReveal");
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("isVisible");
+                observer.unobserve(entry.target);
+            });
+        },
+        { threshold: 0.2 }
+    );
 
-  items.forEach((item) => observer.observe(item));
-</script> -->
+    items.forEach((item) => observer.observe(item));
+</script>  -->
