@@ -25,7 +25,9 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
 
 <section class="bg-white">
     <div class="bg-[#1D1F55] text-white">
-        <div class="mx-auto max-w-[90%] py-6 text-start sm:px-6 sm:py-10">
+        <div
+            class="mx-auto max-w-[90%] py-6 text-start sm:px-6 sm:py-10 lg:max-w-7xl"
+        >
             <p
                 class="text-2xl font-semibold tracking-[0.0em] text-slate-50 uppercase sm:text-3xl"
             >
@@ -39,16 +41,19 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
         </div>
     </div>
 
+    <!-- <div
+        class="mx-auto w-full max-w-[95%] pt-10 pb-16 sm:max-w-[90%] lg:px-6 lg:py-24 lg:ps-0"
+    > -->
     <div
-        class="mx-auto max-w-[95%] pt-10 pb-16 sm:max-w-[90%] lg:px-6 lg:py-24 lg:ps-0"
+        class="xs:max-w-[80%] mx-auto w-full max-w-[90%] pt-10 pb-16 sm:max-w-[85%] md:max-w-[80%] lg:max-w-7xl lg:px-0 lg:py-24"
     >
         <div
             id={carouselId}
             data-visible-desktop="3"
             data-visible-tablet="2"
             data-visible-mobile="1"
-            data-gap="24"
-            class="fadeReveal fadeFromBottom"
+            data-gap="16"
+            class="fadeReveal fadeFromBottom w-full"
             style="--fade-duration: 1000ms; --fade-easing: ease-out;"
         >
             <div
@@ -160,7 +165,7 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
                                 {
                                     slides.map((slide) => (
                                         <li class="carousel-slide" data-slide>
-                                            <div class="inline-block overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                                            <div class="inline-block w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                                                 <AstroImage
                                                     src={slide.image}
                                                     alt={slide.alt}
@@ -309,17 +314,59 @@ const carouselId = `reviews-carousel-${Math.random().toString(36).slice(2, 8)}`;
         let index = 0;
         let dots = [];
 
-        const setSlideWidths = () => {
-            const viewportWidth = viewport.clientWidth;
-            const totalGap = gap * (visible - 1);
-            const width = Math.max(0, (viewportWidth - totalGap) / visible);
+        // const setSlideWidths = () => {
+        //     const viewportWidth = viewport.clientWidth;
+        //     const totalGap = gap * (visible - 1);
+        //     const width = Math.max(0, (viewportWidth - totalGap) / visible);
 
-            slides.forEach((slide) => {
+        //     slides.forEach((slide) => {
+        //         slide.style.width = `${width}px`;
+        //         slide.style.marginRight = `${gap}px`;
+        //     });
+        //     slides[slides.length - 1].style.marginRight = "0px";
+        //     track.style.setProperty("--carousel-gap", `${gap}px`);
+        // };
+
+        // const setSlideWidths = () => {
+        //     const viewportWidth = viewport.offsetWidth;
+        //     const totalGap = gap * (visible - 1);
+        //     const slideWidth = (viewportWidth - totalGap) / visible;
+
+        //     // Arrondir à l'entier inférieur pour éviter les problèmes de décimales
+        //     const width = Math.floor(slideWidth);
+
+        //     slides.forEach((slide, i) => {
+        //         slide.style.width = `${width}px`;
+        //         // Appliquer la marge seulement si ce n'est pas le dernier slide
+        //         slide.style.marginRight =
+        //             i < slides.length - 1 ? `${gap}px` : "0";
+        //     });
+        // };
+
+        const setSlideWidths = () => {
+            const viewportWidth = viewport.offsetWidth;
+            const totalGap = gap * (visible - 1);
+
+            // Définir une largeur maximale pour desktop
+            const maxSlideWidth = 400; // ou une autre valeur qui vous convient
+
+            // Calculer la largeur de base
+            let baseWidth = (viewportWidth - totalGap) / visible;
+
+            // Limiter la largeur sur desktop
+            if (window.innerWidth >= 1024) {
+                // breakpoint lg
+                baseWidth = Math.min(baseWidth, maxSlideWidth);
+            }
+
+            // Arrondir à l'entier inférieur
+            const width = Math.floor(baseWidth);
+
+            slides.forEach((slide, i) => {
                 slide.style.width = `${width}px`;
-                slide.style.marginRight = `${gap}px`;
+                slide.style.marginRight =
+                    i < slides.length - 1 ? `${gap}px` : "0";
             });
-            slides[slides.length - 1].style.marginRight = "0px";
-            track.style.setProperty("--carousel-gap", `${gap}px`);
         };
 
         const maxIndex = () => Math.max(0, slides.length - visible);
