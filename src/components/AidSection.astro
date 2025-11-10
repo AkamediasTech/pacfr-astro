@@ -1,0 +1,54 @@
+---
+import FadeStyles from "../styles/FadeStyles.astro";
+import SlideInStyles from "../styles/SlideInStyles.astro";
+
+---
+
+
+<section class="w-full min-h-[350px] bg-white flex justify-center">
+    <div class="h-auto max-w-[1280px] flex flex-col m-6">
+        <h2 class="text-[28px] text-black font-medium fade-text fade-in">Installez une pompe à chaleur, faites des économies, <span class="highlight">augmentez <br> la valeur de votre bien</span></h2>
+
+        <div class="w-full h-[1px] bg-[var(--color-bright-blue)] fade-text fade-in my-1"></div>
+
+        <div class="my-8 flex flex-row-reverse justify-center items-center gap-8">
+            <div class="slide slideLeft slidevisible">
+                <h2 class="text-2xl text-black font-light">Installze une pompe à chaleur, faites des économies <br>
+                    <span class="highlight">augmentez la valeur de votre bien !</span>
+                </h2>
+                <div class="w-[220px] h-[1px] bg-[var(--color-bright-blue)] fade-text fade-in my-1"></div>
+                <p>Le gouvernement met en place un programme pour aider les propriétaires, en particulier ceux chauffés au gaz ou au fioul, à passer à la pompe à chaleur air-eau grâce à des aides financières. <br>
+                        Cette transition permet de réduire jusqu’à 70 % de la facture énergétique tout en limitant l'empreinte carbone. <br>
+                        Le plus avantageux ? <br>
+                        Les nouvelles subventions couvrent l’installation, évitant ainsi toute avance de frais pour les bénéficiaires.
+                </p>
+
+            </div>
+
+            <!-- <div class="relative w-full max-w-[480px] min-w-[380px] h-full slide slideRight slidevisible">
+                <iframe src="https://www.youtube.com/embed/u971CsSDe1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+                </iframe>
+            </div> -->
+
+            <div class="relative w-full max-w-[480px] min-w-[380px] h-full slide slideRight slidevisible">
+                <iframe 
+                src="https://www.youtube.com/embed/u971CsSDe1c" 
+                title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen=""
+                class="w-full h-full rounded-2xl"
+                >
+                </iframe>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+<SlideInStyles />
+<FadeStyles />
+
+

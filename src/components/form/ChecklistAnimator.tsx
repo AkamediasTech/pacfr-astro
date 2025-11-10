@@ -97,7 +97,7 @@ export function ChecklistAnimator({
                             )}
                         </span>
                         <span
-                            class={`text-[0.975rem] font-semibold ${isDone ? "text-emerald-600" : "text-brand-blue"}`}
+                            class={`text-[0.9rem] font-semibold sm:text-[0.975rem] ${isDone ? "text-emerald-600" : "text-brand-blue"}`}
                         >
                             {label}
                         </span>
