@@ -10,10 +10,10 @@ import heatPumpDiagram from "../assets/main/heat_pump_explainer_diagram.png";
     aria-labelledby="explainer-heading"
 >
     <!-- <div
-        class="mx-auto grid max-w-7xl gap-6 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:items-center"
+        class="mx-auto flex max-w-7xl flex-col gap-6 md:items-center lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]"
     > -->
     <div
-        class="mx-auto flex max-w-7xl flex-col gap-6 md:items-center lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]"
+        class="mx-auto flex max-w-7xl flex-col justify-between gap-6 md:flex-row md:items-center"
     >
         <!-- Text -->
         <!-- <div class="mb-auto slide slideRight"> -->
@@ -26,7 +26,7 @@ import heatPumpDiagram from "../assets/main/heat_pump_explainer_diagram.png";
           data-reveal-easing="cubic-bezier(0.22, 1, 0.36, 1)"
         > -->
         <div
-            class="slideReveal slideFromLeft mb-auto lg:order-1"
+            class="slideReveal slideFromLeft mb-auto lg:order-1 xl:basis-[60%]"
             style="--slide-duration: 900ms; --slide-distance: 60px;"
         >
             <div class="">
@@ -85,7 +85,7 @@ import heatPumpDiagram from "../assets/main/heat_pump_explainer_diagram.png";
       data-reveal-easing="cubic-bezier(0.22, 1, 0.36, 1)"
     > -->
         <figure
-            class="slideReveal slideFromRight mx-auto w-full max-w-md rounded-3xl border border-sky-100 bg-sky-50/60 p-4 shadow-lg lg:order-2"
+            class="slideReveal slideFromRight mx-auto w-full max-w-md basis-[40%] rounded-3xl border border-sky-100 bg-sky-50/60 p-4 shadow-lg lg:order-2 lg:m-0"
         >
             <img
                 src={heatPumpDiagram.src}
