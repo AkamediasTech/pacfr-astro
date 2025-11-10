@@ -75,12 +75,37 @@ const year = new Date().getFullYear();
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={description} />
         <title>{title}</title>
+        <!-- Google Tag Manager -->
+        <script is:inline>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    "gtm.start": new Date().getTime(),
+                    event: "gtm.js",
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-PPSHS9XF");
+        </script>
+        <!-- End Google Tag Manager -->
         <FadeStyles />
         <SlideInStyles />
     </head>
     <body
         class="min-h-screen max-w-screen overflow-x-hidden bg-gradient-to-b from-white via-slate-50 to-slate-100 font-sans text-slate-900"
     >
+        <!-- Google Tag Manager (noscript) -->
+        <noscript
+            ><iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-PPSHS9XF"
+                height="0"
+                width="0"
+                style="display:none;visibility:hidden"></iframe></noscript
+        >
         <header
             class="relative z-50 overflow-x-hidden border-b border-slate-200 bg-white/90 backdrop-blur"
         >
