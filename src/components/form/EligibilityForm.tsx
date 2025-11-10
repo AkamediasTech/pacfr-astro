@@ -28,7 +28,8 @@ const FIELD_KEY_MAPPING: Record<string, string> = {
     "address-level2": "Ville",
     "given-name": "prenom",
     "family-name": "nom",
-    tel: "telephone",
+    tel: "Telephone",
+    consent: "Consentement",
     email: "email",
 };
 
@@ -345,7 +346,7 @@ export default function EligibilityForm() {
             try {
                 const response = await fetch(N8N_WEBHOOK_URL, {
                     method: "POST",
-                    body: payload,
+                    body: submissionPayload,
                 });
 
                 const contentType = response.headers.get("content-type") ?? "";
@@ -364,6 +365,13 @@ export default function EligibilityForm() {
                 console.log("Données envoyées:", responseBody);
                 sendS2SPixelIfNeeded(mergedAnswers);
                 goToNextStep();
+
+                if (typeof window !== "undefined") {
+                    const url = new URL(window.location.href);
+                    url.searchParams.set("pacfr-meta-validation", "1"); // ou "true"
+                    window.history.replaceState({}, "", url.toString());
+                }
+
                 // TODO: appeler sendS2SPixelIfNeeded()/finalizeForm equivalents si nécessaire
             } catch (error) {
                 console.error("Erreur lors de l'envoi du formulaire:", error);

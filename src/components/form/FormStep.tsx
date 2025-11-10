@@ -14,7 +14,7 @@ const renderConsentLabel = () => (
     <span class="leading-tight">
         J’accepte la{" "}
         <a
-            href="/pacfr/meta/politiqueConfidentialite.html"
+            href="https://simulateur-energiefrance.fr/pacfr/meta/politiqueConfidentialite.html"
             target="_blank"
             rel="noreferrer"
             class="text-brand-blue hover:text-brand-blue/80 underline decoration-2 underline-offset-4"

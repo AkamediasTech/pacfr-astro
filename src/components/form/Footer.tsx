@@ -32,7 +32,7 @@ const Footer: FunctionalComponent<FooterProps> = ({
             <button
                 type="submit"
                 form="eligibility-step-form"
-                class="btn btn-success btn--glow rounded-[8px] px-6 py-3 text-sm hover:cursor-pointer sm:py-4"
+                class="btn btn-success btn--glow rounded-[8px] px-3 py-3 text-sm hover:cursor-pointer sm:px-6 sm:py-4"
             >
                 {submitLabel ?? "Continuer"}
             </button>
