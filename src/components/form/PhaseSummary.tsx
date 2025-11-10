@@ -36,7 +36,7 @@ const PhaseSummary: FunctionalComponent<PhaseSummaryProps> = ({
             </p>
         </div>
 
-        {isFinal ? (
+        {/* {isFinal ? (
             <button
                 type="button"
                 onClick={onReset}
@@ -44,7 +44,7 @@ const PhaseSummary: FunctionalComponent<PhaseSummaryProps> = ({
             >
                 Recommencer une simulation
             </button>
-        ) : null}
+        ) : null} */}
     </div>
 );
 
