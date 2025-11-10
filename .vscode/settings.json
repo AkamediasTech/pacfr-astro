@@ -33,6 +33,7 @@
     "prettier.useEditorConfig": false,
     "files.associations": {
         "*.astro": "astro"
-    }
+    },
+    "json.schemaDownload.enable": false
     // "liveServer.settings.multiRootWorkspaceName": "pacfr-astro"
 }

@@ -30,29 +30,29 @@ const { bannerText, brandLogo, partnerLogos } = Astro.props as {
 >
     <div class="bg-[#004081] px-[5%] text-white">
         <div
-            class="md:text-md mx-auto w-full max-w-[90%] sm:max-w-none py-1 text-center text-xs tracking-wide italic sm:text-left lg:px-6 lg:text-lg"
+            class="md:text-md mx-auto w-full max-w-[90%] py-1 text-center text-xs tracking-wide italic sm:max-w-none sm:text-left lg:px-6 lg:text-lg"
         >
             {bannerText}
         </div>
     </div>
 
     <div
-        class="mx-auto flex w-[95%] items-center justify-between gap-4 py-4 sm:py-2 sm:w-[90%] sm:px-6 md:flex-row"
+        class="mx-auto flex w-[95%] items-center justify-between gap-4 py-4 sm:w-[90%] sm:px-6 sm:py-2 md:flex-row"
     >
-     <div>
-        <a 
-            href="/" 
-            class="flex items-center gap-3 text-lg font-semibold tracking-tight text-slate-900"
-        >
-            <Image
-                src={brandLogo.file}
-                alt={brandLogo.name}
-                class={`h-12 w-auto object-contain ${brandLogo.className ?? ""}`}
-                loading="eager"
-                fetchpriority="high"
-                decoding="async"
-            />
-        </a>
+        <div>
+            <a
+                href="/"
+                class="flex items-center gap-3 text-lg font-semibold tracking-tight text-slate-900"
+            >
+                <Image
+                    src={brandLogo.file}
+                    alt={brandLogo.name}
+                    class={`h-12 w-auto object-contain ${brandLogo.className ?? ""}`}
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                />
+            </a>
         </div>
 
         <div class="flex items-center gap-4 md:gap-3">
