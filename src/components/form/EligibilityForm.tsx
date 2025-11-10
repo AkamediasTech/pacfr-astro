@@ -73,6 +73,23 @@ const FIELD_VALUE_MAPPING: Record<string, Record<string, string>> = {
 //     return mapped;
 // };
 
+// Scroll automatiquement le formulaire dans la fenêtre sur mobile
+const scrollActiveStepIntoView = () => {
+    if (typeof window === "undefined") return;
+    if (window.innerWidth > 768) return;
+
+    const wrapper = document.querySelector("#eligibility-form-wrapper");
+    if (!wrapper) return;
+
+    // On laisse le layout se mettre à jour avant de scroller
+    window.requestAnimationFrame(() => {
+        wrapper.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+        });
+    });
+};
+
 const mapAnswersForSubmission = (
     answers: Record<string, string>
 ): Record<string, string> => {
@@ -190,6 +207,11 @@ export default function EligibilityForm() {
             }
         });
     }, [answers["postal-code"]]);
+
+    // À appeler après chaque changement d’étape
+    useEffect(() => {
+        scrollActiveStepIntoView();
+    }, [phaseIndex, stepIndex, screen]);
 
     const currentPhase = PHASES[phaseIndex];
     if (!currentPhase) {
