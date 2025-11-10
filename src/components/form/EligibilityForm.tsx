@@ -99,6 +99,30 @@ const buildSubmissionFormData = (answers: Record<string, string>) => {
     return formData;
 };
 
+const fetchCitiesByPostalCode = async (
+    postalCode: string
+): Promise<string[]> => {
+    if (!/^\d{5}$/.test(postalCode)) {
+        return [];
+    }
+
+    try {
+        const response = await fetch(
+            `https://geo.api.gouv.fr/communes?codePostal=${postalCode}&fields=nom&format=json`
+        );
+
+        if (!response.ok) {
+            throw new Error(`Erreur réseau (${response.status})`);
+        }
+
+        const data: Array<{ nom: string }> = await response.json();
+        return data.map((ville) => ville.nom);
+    } catch (error) {
+        console.error("Erreur lors de la récupération des villes :", error);
+        return [];
+    }
+};
+
 export default function EligibilityForm() {
     const [phaseIndex, setPhaseIndex] = useState(0);
     const [stepIndex, setStepIndex] = useState(0);
@@ -110,6 +134,7 @@ export default function EligibilityForm() {
         title: string;
         description: string;
     } | null>(null);
+    const [cityOptions, setCityOptions] = useState<string[]>([]);
 
     // useEffect(() => {
     //     setSubmissionError({
@@ -118,6 +143,26 @@ export default function EligibilityForm() {
     //             "Ceci est un test visuel pour vérifier le rendu de l’alerte.",
     //     });
     // }, []);
+
+    useEffect(() => {
+        const postalCode = answers["postal-code"];
+
+        console.log("useEffect postalCode:", postalCode);
+        console.log("useEffect postalCode.length:", postalCode?.length);
+
+        if (!postalCode || postalCode.length !== 5) {
+            setCityOptions([]);
+            return;
+        }
+
+        fetchCitiesByPostalCode(postalCode).then((cities) => {
+            console.log("useEffect cities:", cities);
+            setCityOptions(cities);
+            if (cities.length === 0) {
+                setAnswers((prev) => ({ ...prev, "address-level2": "" }));
+            }
+        });
+    }, [answers["postal-code"]]);
 
     const currentPhase = PHASES[phaseIndex];
     if (!currentPhase) {
@@ -400,6 +445,7 @@ export default function EligibilityForm() {
                         setAnswers((prev) => ({ ...prev, [name]: value }))
                     }
                     onSubmit={handleFormSubmit(currentStep)}
+                    selectOptions={{ "address-level2": cityOptions }}
                 />
             ) : null}
         </>

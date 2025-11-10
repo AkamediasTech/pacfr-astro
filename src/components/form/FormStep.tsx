@@ -1,11 +1,13 @@
 import type { FunctionalComponent } from "preact";
 import type { FormStep as FormStepType } from "./config";
+import { SelectField } from "./SelectField";
 
 type FormStepProps = {
     step: FormStepType;
     values: Record<string, string>;
     onFieldChange: (fieldName: string, value: string) => void;
     onSubmit: (event: Event & { currentTarget: HTMLFormElement }) => void;
+    selectOptions?: Record<string, string[]>;
 };
 
 const FormStep: FunctionalComponent<FormStepProps> = ({
@@ -13,6 +15,7 @@ const FormStep: FunctionalComponent<FormStepProps> = ({
     values,
     onFieldChange,
     onSubmit,
+    selectOptions,
 }) => (
     <form
         id="eligibility-step-form"
@@ -22,6 +25,24 @@ const FormStep: FunctionalComponent<FormStepProps> = ({
         {step.fields.map((field) => {
             const isCheckbox = field.type === "checkbox";
             const currentValue = values[field.name];
+
+            const options = selectOptions?.[field.name];
+
+            if (options && options.length > 0) {
+                return (
+                    <SelectField
+                        key={field.name}
+                        name={field.name}
+                        label={field.label}
+                        value={currentValue ?? ""}
+                        placeholder={field.placeholder}
+                        options={options}
+                        onChange={(next) => onFieldChange(field.name, next)}
+                        fullWidth={field.fullWidth}
+                        required={field?.required && true}
+                    />
+                );
+            }
 
             if (isCheckbox) {
                 const isChecked = (currentValue ?? "on") === "on";

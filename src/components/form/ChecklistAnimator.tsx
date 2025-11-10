@@ -87,7 +87,7 @@ export function ChecklistAnimator({
                         key={`${playKey}-${label}`}
                         class="text-brand-blue flex items-center gap-2"
                     >
-                        <span class="relative flex h-8 w-8 items-center justify-center">
+                        <span class="relative flex h-6 w-6 items-center justify-center">
                             {isDone ? (
                                 <LoaderIcon />
                             ) : (

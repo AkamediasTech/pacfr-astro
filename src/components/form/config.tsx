@@ -165,6 +165,7 @@ export type FormField = {
     autoComplete?: string;
     maxLength?: number;
     fullWidth?: boolean; // ← optionnel si certains champs doivent prendre toute la ligne
+    required?: boolean;
 };
 
 export type Step =
@@ -325,16 +326,18 @@ export const PHASES: PhaseConfig[] = [
                         name: "postal-code",
                         label: "Code postal",
                         type: "text",
-                        placeholder: "ex : 75008",
+                        placeholder: "ex : 78000",
                         autoComplete: "postal-code",
                         maxLength: 5,
+                        required: true,
                     },
                     {
                         name: "address-level2",
                         label: "Ville",
                         type: "text",
-                        placeholder: "ex : Paris",
+                        placeholder: "ex : Versailles",
                         autoComplete: "address-level2",
+                        required: true,
                     },
                 ],
                 submitLabel: "Vérifier mon éligibilité",
