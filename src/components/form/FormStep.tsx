@@ -10,6 +10,21 @@ type FormStepProps = {
     selectOptions?: Record<string, string[]>;
 };
 
+const renderConsentLabel = () => (
+    <span class="leading-tight">
+        J’accepte la{" "}
+        <a
+            href="/politiqueConfidentialite.html"
+            target="_blank"
+            rel="noreferrer"
+            class="text-brand-blue hover:text-brand-blue/80 underline decoration-2 underline-offset-4"
+        >
+            politique de confidentialité
+        </a>
+        .
+    </span>
+);
+
 const FormStep: FunctionalComponent<FormStepProps> = ({
     step,
     values,
@@ -68,7 +83,13 @@ const FormStep: FunctionalComponent<FormStepProps> = ({
                             }}
                             class="text-brand-blue focus:ring-brand-blue/40 h-5 w-5 rounded border-slate-300"
                         />
-                        <span class="leading-tight">{field.label}</span>
+                        {/* <span class="leading-tight">{field.label}</span> */}
+
+                        <span class="leading-tight">
+                            {field.name === "consent"
+                                ? renderConsentLabel()
+                                : field.label}
+                        </span>
                     </label>
                 );
             }
