@@ -25,3 +25,5 @@ pnpm-debug.log*
 # .vscode/
 
 package-lock.json
+
+old_pacfr.meta_2/

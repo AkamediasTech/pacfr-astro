@@ -399,6 +399,12 @@ export const PHASES: PhaseConfig[] = [
                         type: "tel",
                         autoComplete: "tel",
                     },
+                    {
+                        name: "consent",
+                        label: "J’accepte la politique de confidentialité",
+                        type: "checkbox",
+                        fullWidth: true,
+                    },
                 ],
                 submitLabel: "Obtenir une estimation",
             },

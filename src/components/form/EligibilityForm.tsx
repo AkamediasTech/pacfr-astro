@@ -19,6 +19,86 @@ function isFormStep(step: Step): step is Extract<Step, { type: "form" }> {
     return step.type === "form";
 }
 
+const FIELD_KEY_MAPPING: Record<string, string> = {
+    propertyType: "step1",
+    ownership: "step2",
+    heating: "step3",
+    surface: "step4",
+    "postal-code": "codePostal",
+    "address-level2": "Ville",
+    "given-name": "prenom",
+    "family-name": "nom",
+    tel: "telephone",
+    email: "email",
+};
+
+const FIELD_VALUE_MAPPING: Record<string, Record<string, string>> = {
+    propertyType: {
+        apartment: "Appartement",
+        house: "Maison",
+    },
+    ownership: {
+        tenant: "Locataire",
+        owner: "Propriétaire",
+    },
+    heating: {
+        oil: "Fioul",
+        gas: "Gaz",
+        electricity: "Électricité",
+        other: "Autres",
+    },
+    surface: {
+        "0-100": "0-100m2",
+        "100-150": "100-150m2",
+        "150-200": "150-200m2",
+        "200+": "200m2+",
+    },
+    consent: {
+        on: "Oui",
+        off: "Non",
+    },
+};
+
+// const mapAnswersForSubmission = (
+//     answers: Record<string, string>
+// ): Record<string, string> => {
+//     const mapped: Record<string, string> = {};
+
+//     Object.entries(answers).forEach(([key, value]) => {
+//         const targetKey = FIELD_KEY_MAPPING[key] ?? key;
+//         mapped[targetKey] = value;
+//     });
+
+//     return mapped;
+// };
+
+const mapAnswersForSubmission = (
+    answers: Record<string, string>
+): Record<string, string> => {
+    const mapped: Record<string, string> = {};
+
+    Object.entries(answers).forEach(([field, rawValue]) => {
+        const targetKey = FIELD_KEY_MAPPING[field] ?? field;
+        const mappedValue =
+            FIELD_VALUE_MAPPING[field]?.[rawValue] ?? rawValue ?? "";
+
+        mapped[targetKey] = mappedValue;
+    });
+
+    return mapped;
+};
+
+const buildSubmissionFormData = (answers: Record<string, string>) => {
+    const mappedAnswers = mapAnswersForSubmission(answers);
+    const formData = new FormData();
+
+    Object.entries(mappedAnswers).forEach(([key, value]) => {
+        formData.append(key, value ?? "");
+    });
+
+    return formData;
+};
+
 export default function EligibilityForm() {
     const [phaseIndex, setPhaseIndex] = useState(0);
     const [stepIndex, setStepIndex] = useState(0);
@@ -128,9 +208,20 @@ export default function EligibilityForm() {
         goToNextStep();
     };
 
+    const logFormData = (formData: FormData) => {
+        const payloadPreview: Record<string, FormDataEntryValue> = {};
+        formData.forEach((value, key) => {
+            payloadPreview[key] = value;
+        });
+        console.log("Payload envoyé :", payloadPreview);
+    };
+
+    const N8N_WEBHOOK_URL =
+        "https://techaka.app.n8n.cloud/webhook/8ed7e6eb-317b-42cf-9826-68b1680efa0d";
+
     const handleFormSubmit =
         (step: Extract<Step, { type: "form" }>) =>
-        (event: Event & { currentTarget: HTMLFormElement }) => {
+        async (event: Event & { currentTarget: HTMLFormElement }) => {
             event.preventDefault();
             const formData = new FormData(event.currentTarget);
             const nextValues: Record<string, string> = {};
@@ -142,7 +233,54 @@ export default function EligibilityForm() {
             });
 
             setAnswers((prev) => ({ ...prev, ...nextValues }));
+
+            console.log("Answers:", answers);
+
+            const mergedAnswers = { ...answers, ...nextValues };
+            setAnswers(mergedAnswers);
+
+            const payload = new FormData();
+            Object.entries(mergedAnswers).forEach(([key, value]) => {
+                payload.append(key, value);
+            });
+
+            logFormData(payload);
+
+            const submissionPayload = buildSubmissionFormData(mergedAnswers);
+
+            console.log("submissionPayload:");
+            logFormData(submissionPayload);
+
             goToNextStep();
+
+            return;
+
+            try {
+                const response = await fetch(N8N_WEBHOOK_URL, {
+                    method: "POST",
+                    body: payload,
+                });
+
+                const contentType = response.headers.get("content-type") ?? "";
+                const responseBody = contentType.includes("application/json")
+                    ? await response.json().catch(() => null)
+                    : await response.text().catch(() => null);
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Erreur réseau (${response.status}): ${
+                            responseBody ?? "Réponse invalide"
+                        }`
+                    );
+                }
+
+                console.log("Données envoyées:", responseBody);
+                goToNextStep();
+                // TODO: appeler sendS2SPixelIfNeeded()/finalizeForm equivalents si nécessaire
+            } catch (error) {
+                console.error("Erreur lors de l'envoi du formulaire:", error);
+                // TODO: afficher un feedback utilisateur ou gérer l’échec comme finaliseFormError
+            }
         };
 
     const goToNextStep = () => {

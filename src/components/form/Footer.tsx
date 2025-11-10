@@ -20,7 +20,7 @@ const Footer: FunctionalComponent<FooterProps> = ({
             <button
                 type="button"
                 onClick={onBack}
-                class="text-brand-blue inline-flex items-center justify-center rounded-[8px] border border-[rgba(18,100,193,0.25)] bg-transparent px-3 py-3 text-sm font-semibold transition hover:cursor-pointer hover:border-[rgba(18,100,193,0.4)] hover:bg-[rgba(18,100,193,0.08)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(18,100,193,0.4)] min-[380px]:px-6 sm:px-6 sm:py-5 lg:text-base"
+                class="text-brand-blue inline-flex items-center justify-center rounded-[8px] border border-[rgba(18,100,193,0.25)] bg-transparent px-3 py-3 text-sm font-semibold transition hover:cursor-pointer hover:border-[rgba(18,100,193,0.4)] hover:bg-[rgba(18,100,193,0.08)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(18,100,193,0.4)] min-[380px]:px-6 sm:px-6 sm:py-3 lg:text-base"
             >
                 Retour
             </button>
