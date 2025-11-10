@@ -123,6 +123,32 @@ const fetchCitiesByPostalCode = async (
     }
 };
 
+const sendS2SPixelIfNeeded = (answers: Record<string, string>) => {
+    if (typeof window === "undefined") return;
+
+    const params = new URLSearchParams(window.location.search);
+    const varOc = params.get("var_oc");
+    if (!varOc) return;
+
+    if (answers.ownership === "tenant") return;
+    if (answers.propertyType === "apartment") return;
+
+    fetch(
+        `https://publisher.api.optincollect.com/s2s/lead.json?uid=auto&s2s=${encodeURIComponent(varOc)}`
+    )
+        .then((res) => {
+            if (res.ok) {
+                console.log("Pixel S2S envoyé avec succès.");
+            } else {
+                console.warn(
+                    "Erreur lors de l'envoi du pixel S2S :",
+                    res.status
+                );
+            }
+        })
+        .catch((error) => console.error("Erreur requête S2S :", error));
+};
+
 export default function EligibilityForm() {
     const [phaseIndex, setPhaseIndex] = useState(0);
     const [stepIndex, setStepIndex] = useState(0);
@@ -308,9 +334,8 @@ export default function EligibilityForm() {
             console.log("submissionPayload:");
             logFormData(submissionPayload);
 
-            goToNextStep();
-
-            return;
+            // goToNextStep();
+            // return;
 
             try {
                 const response = await fetch(N8N_WEBHOOK_URL, {
@@ -332,6 +357,7 @@ export default function EligibilityForm() {
                 }
 
                 console.log("Données envoyées:", responseBody);
+                sendS2SPixelIfNeeded(mergedAnswers);
                 goToNextStep();
                 // TODO: appeler sendS2SPixelIfNeeded()/finalizeForm equivalents si nécessaire
             } catch (error) {
